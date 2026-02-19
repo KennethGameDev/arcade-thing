@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://q7man2qtsne7"]
+
+[ext_resource type="Script" uid="uid://6657v8kflfqu" path="res://scripts/games/prize games/dropper_game.gd" id="1_u64oa"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_u64oa"]
+
+[node name="DropperGame" type="StaticBody3D"]
+script = ExtResource("1_u64oa")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_u64oa")

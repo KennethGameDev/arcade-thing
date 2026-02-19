@@ -1,0 +1,124 @@
+[gd_scene load_steps=10 format=3 uid="uid://cesmlm6lleomr"]
+
+[ext_resource type="Script" uid="uid://ckonmmgrmb36y" path="res://scripts/arcade.gd" id="1_84opf"]
+[ext_resource type="PackedScene" uid="uid://iag01nydi4vi" path="res://scenes/games/prize games/claw machine/ClawMachine.tscn" id="1_tie2s"]
+[ext_resource type="PackedScene" uid="uid://pb213jsy1a7f" path="res://scenes/proto_player.tscn" id="2_84opf"]
+[ext_resource type="PackedScene" uid="uid://drceaq1lxg5k6" path="res://scenes/camera/player_cam.tscn" id="3_xm7at"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_adccw"]
+sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
+ground_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
+
+[sub_resource type="Sky" id="Sky_pig0t"]
+sky_material = SubResource("ProceduralSkyMaterial_adccw")
+
+[sub_resource type="Environment" id="Environment_me10n"]
+background_mode = 2
+sky = SubResource("Sky_pig0t")
+tonemap_mode = 2
+glow_enabled = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_hb7i7"]
+albedo_color = Color(0.7220274, 0.58205354, 0.38260242, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_tie2s"]
+albedo_color = Color(0.14044744, 0.14044744, 0.14044744, 1)
+
+[node name="Arcade" type="Node3D"]
+script = ExtResource("1_84opf")
+
+[node name="Sky&Lighting" type="Node" parent="."]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="Sky&Lighting"]
+environment = SubResource("Environment_me10n")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="Sky&Lighting"]
+transform = Transform3D(-0.8660254, -0.43301278, 0.25, 0, 0.49999997, 0.86602545, -0.50000006, 0.75, -0.43301266, 0, 0, 0)
+shadow_enabled = true
+
+[node name="ProtoPlayer" parent="." instance=ExtResource("2_84opf")]
+transform = Transform3D(-0.46484205, 0, 0.88539356, 0, 1, 0, -0.88539356, 0, -0.46484205, 2.4829164, 1.1933594, -18.598217)
+
+[node name="Player Camera" parent="." instance=ExtResource("3_xm7at")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.515257, 4.523198)
+
+[node name="Building Blockout" type="Node3D" parent="."]
+
+[node name="Floor" type="Node3D" parent="Building Blockout"]
+
+[node name="Carpet" type="CSGBox3D" parent="Building Blockout/Floor"]
+use_collision = true
+size = Vector3(81.812744, 0.38671875, 71.21069)
+material = SubResource("StandardMaterial3D_hb7i7")
+
+[node name="Rug Path 01" type="CSGBox3D" parent="Building Blockout/Floor"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.503544, 0.176, -17.618)
+size = Vector3(57.89746, 0.09716797, 3.9453125)
+material = SubResource("StandardMaterial3D_tie2s")
+
+[node name="Rug Path 02" type="CSGBox3D" parent="Building Blockout/Floor"]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -15.465038, 0.176, -10.46569)
+size = Vector3(10.470703, 0.09716797, 3.9453125)
+material = SubResource("StandardMaterial3D_tie2s")
+
+[node name="Walls" type="Node3D" parent="Building Blockout"]
+
+[node name="North" type="CSGBox3D" parent="Building Blockout/Walls"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 6.4830017, -35.484695)
+size = Vector3(81.82422, 13.358582, 0.37109375)
+
+[node name="South" type="CSGBox3D" parent="Building Blockout/Walls"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 6.4626465, 35.523464)
+size = Vector3(81.94141, 13.325684, 0.21228027)
+
+[node name="East" type="CSGBox3D" parent="Building Blockout/Walls"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 40.784454, 6.4568787, 0)
+size = Vector3(0.27722168, 13.304382, 71.413086)
+
+[node name="Main Entrance Cutout" type="CSGBox3D" parent="Building Blockout/Walls/East"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -4.4043007, -17.618343)
+operation = 2
+size = Vector3(1, 4.6703796, 5.083008)
+
+[node name="West" type="CSGBox3D" parent="Building Blockout/Walls"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -40.751984, 6.4831543, 0)
+size = Vector3(0.32006836, 13.36084, 71.31445)
+
+[node name="Pize Games" type="Node3D" parent="Building Blockout"]
+
+[node name="Claw Machines" type="Node3D" parent="Building Blockout/Pize Games"]
+
+[node name="ClawMachine" parent="Building Blockout/Pize Games/Claw Machines" instance=ExtResource("1_tie2s")]
+transform = Transform3D(0.8, 0, 0, 0, 0.8, 0, 0, 0, 0.8, 0.055565834, 1.279068, -14.814262)
+
+[node name="Dropper Machines" type="Node3D" parent="Building Blockout/Pize Games"]
+
+[node name="Lottery Games" type="Node3D" parent="Building Blockout"]
+
+[node name="Coin Toss Machines" type="Node3D" parent="Building Blockout/Lottery Games"]
+
+[node name="Ticket-Scoring Machines" type="Node3D" parent="Building Blockout/Lottery Games"]
+
+[node name="Ranked Games" type="Node3D" parent="Building Blockout"]
+
+[node name="Pinball Machines" type="Node3D" parent="Building Blockout/Ranked Games"]
+
+[node name="Dart Boards" type="Node3D" parent="Building Blockout/Ranked Games"]
+
+[node name="Skeeball Machines" type="Node3D" parent="Building Blockout/Ranked Games"]
+
+[node name="BBGun Machines" type="Node3D" parent="Building Blockout/Ranked Games"]
+
+[node name="Racing Game Machines" type="Node3D" parent="Building Blockout/Ranked Games"]
+
+[node name="Fighting Game Machines" type="Node3D" parent="Building Blockout/Ranked Games"]
+
+[node name="Rail Shooter Machines" type="Node3D" parent="Building Blockout/Ranked Games"]
+
+[node name="Rythym Game Machines" type="Node3D" parent="Building Blockout/Ranked Games"]
+
+[node name="Booths" type="Node3D" parent="Building Blockout"]
+
+[node name="Prize Exchange" type="Node3D" parent="Building Blockout/Booths"]
+
+[node name="Info Booth" type="Node3D" parent="Building Blockout/Booths"]

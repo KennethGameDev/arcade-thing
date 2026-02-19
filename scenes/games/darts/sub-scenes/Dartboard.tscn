@@ -1,0 +1,5 @@
+[gd_scene load_steps=2 format=3 uid="uid://0gjjbh33dvem"]
+
+[ext_resource type="PackedScene" uid="uid://baog074021hl8" path="res://meshes/dart game/dartboard.glb" id="1_rljwm"]
+
+[node name="dartboard" instance=ExtResource("1_rljwm")]

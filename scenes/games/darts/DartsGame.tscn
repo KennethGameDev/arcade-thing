@@ -1,0 +1,65 @@
+[gd_scene load_steps=10 format=3 uid="uid://8hsxu26nhkdq"]
+
+[ext_resource type="Texture2D" uid="uid://b2q00j6rjei08" path="res://textures/corkboard.jpg" id="1_2hmgw"]
+[ext_resource type="Script" uid="uid://cjto843mif0qh" path="res://scripts/games/darts/darts_game.gd" id="1_hrhfp"]
+[ext_resource type="PackedScene" uid="uid://baog074021hl8" path="res://meshes/dart game/dartboard.glb" id="1_pokqq"]
+[ext_resource type="Texture2D" uid="uid://b47iel5y6o2vj" path="res://textures/wood_wall.jpg" id="1_yx1dv"]
+[ext_resource type="PackedScene" uid="uid://bm3k3vk3r2xo3" path="res://scenes/games/darts/sub-scenes/Scoreboard.tscn" id="7_40cyx"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_d3tb4"]
+size = Vector3(26.40918, 28.00879, 2.117981)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_cphj8"]
+albedo_texture = ExtResource("1_yx1dv")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2hmgw"]
+albedo_color = Color(0.3700424, 0.19987112, 0.0323301, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_yx1dv"]
+albedo_color = Color(0.8117647, 0.59607846, 0.30980393, 1)
+albedo_texture = ExtResource("1_2hmgw")
+uv1_scale = Vector3(1, 2.005, 1)
+
+[node name="Darts_Game" type="StaticBody3D" groups=["Game"]]
+collision_layer = 5
+collision_mask = 2
+script = ExtResource("1_hrhfp")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(0.07958075, 0, 0, 0, 0.07958075, 0, 0, 0, 0.07958075, 0.00095539866, -0.44109637, 0.0682021)
+shape = SubResource("BoxShape3D_d3tb4")
+
+[node name="Wall" type="CSGBox3D" parent="."]
+transform = Transform3D(0.07958075, 0, 0, 0, 0.07958075, 0, 0, 0, 0.07958075, 0, 0, 0)
+material_override = SubResource("StandardMaterial3D_cphj8")
+size = Vector3(26.28125, 16.69165, 0.33642578)
+
+[node name="DartBoxExterior" type="CSGBox3D" parent="."]
+transform = Transform3D(0.07958075, 0, 0, 0, 0.07958075, 0, 0, 0, 0.07958075, 0, 0, 0)
+size = Vector3(11.545166, 11.213867, 1)
+material = SubResource("StandardMaterial3D_2hmgw")
+
+[node name="DartBoxInterior" type="CSGBox3D" parent="DartBoxExterior"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.34191465)
+operation = 2
+size = Vector3(10.750244, 10.593994, 1)
+material = SubResource("StandardMaterial3D_2hmgw")
+
+[node name="Corkboard" type="CSGBox3D" parent="."]
+transform = Transform3D(0.07958075, 0, 0, 0, 0.07958075, 0, 0, 0, 0.07958075, 0, 0, 0.014511801)
+use_collision = true
+size = Vector3(11.013672, 10.827881, 0.095458984)
+material = SubResource("StandardMaterial3D_yx1dv")
+
+[node name="dartboard" parent="." instance=ExtResource("1_pokqq")]
+transform = Transform3D(0.07958075, 0, 0, 0, -3.478585e-09, -0.07958075, 0, 0.07958075, -3.478585e-09, 0, 0, 0.013351619)
+
+[node name="Area3D" type="Area3D" parent="dartboard"]
+
+[node name="CollisionPolygon3D" type="CollisionPolygon3D" parent="dartboard/Area3D"]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0.40740716, -1.7808333e-08)
+depth = 0.16
+polygon = PackedVector2Array(-0.9776462, -1.8616207, -0.665, -2, -0.39011735, -2.0706718, -0.08702691, -0.37899157, -0.16236629, -0.3452899)
+
+[node name="Scoreboard" parent="." instance=ExtResource("7_40cyx")]
+transform = Transform3D(0.07958075, 0, 0, 0, 0.07958075, 0, 0, 0, 0.07958075, 0.6462674, 0, 0.06)

@@ -1,0 +1,7 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://cn4fvpcsao2fr"]
+
+[resource]
+resource_name = "tip_mat"
+cull_mode = 2
+albedo_color = Color(0.5372964, 0.5372442, 0.5372371, 1)
+roughness = 0.5

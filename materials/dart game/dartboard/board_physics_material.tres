@@ -1,0 +1,6 @@
+[gd_resource type="PhysicsMaterial" format=3 uid="uid://pfy3u58olxu2"]
+
+[resource]
+friction = 0.91
+rough = true
+absorbent = true

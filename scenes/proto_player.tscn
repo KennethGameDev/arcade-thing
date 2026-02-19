@@ -1,0 +1,56 @@
+[gd_scene load_steps=8 format=3 uid="uid://pb213jsy1a7f"]
+
+[ext_resource type="Script" uid="uid://dwbdfc7gqjrk2" path="res://scripts/proto_player.gd" id="1_2flv3"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_voqum"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_l2o7l"]
+transparency = 4
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_l2o7l"]
+top_radius = 0.2
+bottom_radius = 0.0
+height = 0.6
+radial_segments = 4
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jq1um"]
+transparency = 4
+albedo_color = Color(1, 0.13, 0.13, 1)
+
+[sub_resource type="SeparationRayShape3D" id="SeparationRayShape3D_gnew0"]
+length = 4.5
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_l2o7l"]
+
+[node name="ProtoPlayer" type="CharacterBody3D"]
+collision_layer = 2
+collision_mask = 5
+script = ExtResource("1_2flv3")
+
+[node name="Cam Anchor" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.0999999, 0)
+
+[node name="Visuals Anchor" type="Marker3D" parent="."]
+
+[node name="Mesh" type="CSGMesh3D" parent="."]
+mesh = SubResource("CapsuleMesh_voqum")
+material = SubResource("StandardMaterial3D_l2o7l")
+
+[node name="Face" type="CSGMesh3D" parent="Mesh"]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0.45610118, -0.64401627)
+mesh = SubResource("CylinderMesh_l2o7l")
+material = SubResource("StandardMaterial3D_jq1um")
+
+[node name="InteractionRange" type="Area3D" parent="Mesh"]
+collision_layer = 2
+collision_mask = 5
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Mesh/InteractionRange"]
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 0, 0, 0)
+shape = SubResource("SeparationRayShape3D_gnew0")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("CapsuleShape3D_l2o7l")
+
+[connection signal="body_entered" from="Mesh/InteractionRange" to="." method="_on_interaction_range_body_entered"]
+[connection signal="body_exited" from="Mesh/InteractionRange" to="." method="_on_interaction_range_body_exited"]

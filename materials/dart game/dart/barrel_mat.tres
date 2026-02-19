@@ -1,0 +1,7 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://7iemqik4skky"]
+
+[resource]
+resource_name = "barrel_mat"
+transparency = 4
+albedo_color = Color(0.9882353, 0.5764706, 0.3647059, 0.99607843)
+roughness = 0.39999998

@@ -1,0 +1,8 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://dwnxj6uco6ota"]
+
+[resource]
+resource_name = "shaft_mat"
+transparency = 4
+albedo_color = Color(0.47401416, 0.47396338, 0.47395658, 0.996078)
+metallic = 0.461111
+roughness = 0.355556

@@ -1,0 +1,396 @@
+[gd_scene load_steps=7 format=3 uid="uid://bm3k3vk3r2xo3"]
+
+[ext_resource type="Theme" uid="uid://xi4akvb87nfr" path="res://themes/Scoreboard_font_theme.tres" id="1_7juoy"]
+[ext_resource type="Script" uid="uid://cmu5plfqpgwrj" path="res://scripts/games/darts/scoreboard.gd" id="1_w3bbv"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_tae2i"]
+
+[sub_resource type="QuadMesh" id="QuadMesh_tae2i"]
+size = Vector2(4.128, 10.631)
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_7juoy"]
+viewport_path = NodePath("SubViewport")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_w3bbv"]
+resource_local_to_scene = true
+transparency = 1
+albedo_texture = SubResource("ViewportTexture_7juoy")
+
+[node name="Scoreboard" type="Node3D"]
+script = ExtResource("1_w3bbv")
+
+[node name="Board" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.25)
+size = Vector3(4.128, 10.631, 0.5)
+material = SubResource("StandardMaterial3D_tae2i")
+
+[node name="SubViewport" type="SubViewport" parent="."]
+transparent_bg = true
+size = Vector2i(1024, 3072)
+
+[node name="Control" type="Control" parent="SubViewport"]
+custom_minimum_size = Vector2(1024, 3072)
+layout_mode = 3
+anchors_preset = 0
+offset_right = 1024.0
+offset_bottom = 3072.0
+
+[node name="ColorRect" type="ColorRect" parent="SubViewport/Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(1, 1, 1, 0)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="SubViewport/Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = -61
+
+[node name="GameLabel" type="RichTextLabel" parent="SubViewport/Control/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+theme = ExtResource("1_7juoy")
+theme_override_colors/default_color = Color(1, 0, 0, 1)
+theme_override_font_sizes/normal_font_size = 106
+text = "Game: 301"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+
+[node name="HDivider" type="RichTextLabel" parent="SubViewport/Control/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+theme = ExtResource("1_7juoy")
+theme_override_colors/default_color = Color(1, 0, 0, 1)
+theme_override_font_sizes/normal_font_size = 106
+text = "----------------------------"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="SubViewport/Control/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="MarginContainer" type="MarginContainer" parent="SubViewport/Control/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/margin_top = 45
+
+[node name="VBoxContainer" type="VBoxContainer" parent="SubViewport/Control/VBoxContainer/HBoxContainer/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 45
+
+[node name="Player 1" type="RichTextLabel" parent="SubViewport/Control/VBoxContainer/HBoxContainer/MarginContainer/VBoxContainer"]
+clip_contents = false
+layout_mode = 2
+theme = ExtResource("1_7juoy")
+text = "Red"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+horizontal_alignment = 1
+
+[node name="ScoreRound1" type="RichTextLabel" parent="SubViewport/Control/VBoxContainer/HBoxContainer/MarginContainer/VBoxContainer"]
+clip_contents = false
+layout_mode = 2
+theme = ExtResource("1_7juoy")
+text = "10"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+horizontal_alignment = 1
+
+[node name="ScoreRound2" type="RichTextLabel" parent="SubViewport/Control/VBoxContainer/HBoxContainer/MarginContainer/VBoxContainer"]
+clip_contents = false
+layout_mode = 2
+theme = ExtResource("1_7juoy")
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+horizontal_alignment = 1
+
+[node name="ScoreRound3" type="RichTextLabel" parent="SubViewport/Control/VBoxContainer/HBoxContainer/MarginContainer/VBoxContainer"]
+clip_contents = false
+layout_mode = 2
+theme = ExtResource("1_7juoy")
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+horizontal_alignment = 1
+
+[node name="ScoreRound4" type="RichTextLabel" parent="SubViewport/Control/VBoxContainer/HBoxContainer/MarginContainer/VBoxContainer"]
+clip_contents = false
+layout_mode = 2
+theme = ExtResource("1_7juoy")
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+horizontal_alignment = 1
+
+[node name="ScoreRound5" type="RichTextLabel" parent="SubViewport/Control/VBoxContainer/HBoxContainer/MarginContainer/VBoxContainer"]
+clip_contents = false
+layout_mode = 2
+theme = ExtResource("1_7juoy")
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+horizontal_alignment = 1
+
+[node name="ScoreRound6" type="RichTextLabel" parent="SubViewport/Control/VBoxContainer/HBoxContainer/MarginContainer/VBoxContainer"]
+clip_contents = false
+layout_mode = 2
+theme = ExtResource("1_7juoy")
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+horizontal_alignment = 1
+
+[node name="ScoreRound7" type="RichTextLabel" parent="SubViewport/Control/VBoxContainer/HBoxContainer/MarginContainer/VBoxContainer"]
+clip_contents = false
+layout_mode = 2
+theme = ExtResource("1_7juoy")
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+horizontal_alignment = 1
+
+[node name="ScoreRound8" type="RichTextLabel" parent="SubViewport/Control/VBoxContainer/HBoxContainer/MarginContainer/VBoxContainer"]
+clip_contents = false
+layout_mode = 2
+theme = ExtResource("1_7juoy")
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+horizontal_alignment = 1
+
+[node name="ScoreRound9" type="RichTextLabel" parent="SubViewport/Control/VBoxContainer/HBoxContainer/MarginContainer/VBoxContainer"]
+clip_contents = false
+layout_mode = 2
+theme = ExtResource("1_7juoy")
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+horizontal_alignment = 1
+
+[node name="ScoreRound10" type="RichTextLabel" parent="SubViewport/Control/VBoxContainer/HBoxContainer/MarginContainer/VBoxContainer"]
+clip_contents = false
+layout_mode = 2
+theme = ExtResource("1_7juoy")
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+horizontal_alignment = 1
+
+[node name="ScoreRound11" type="RichTextLabel" parent="SubViewport/Control/VBoxContainer/HBoxContainer/MarginContainer/VBoxContainer"]
+clip_contents = false
+layout_mode = 2
+theme = ExtResource("1_7juoy")
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+horizontal_alignment = 1
+
+[node name="ScoreRound12" type="RichTextLabel" parent="SubViewport/Control/VBoxContainer/HBoxContainer/MarginContainer/VBoxContainer"]
+clip_contents = false
+layout_mode = 2
+theme = ExtResource("1_7juoy")
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+horizontal_alignment = 1
+
+[node name="ScoreRound13" type="RichTextLabel" parent="SubViewport/Control/VBoxContainer/HBoxContainer/MarginContainer/VBoxContainer"]
+clip_contents = false
+layout_mode = 2
+theme = ExtResource("1_7juoy")
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+horizontal_alignment = 1
+
+[node name="VDivider" type="RichTextLabel" parent="SubViewport/Control/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+theme = ExtResource("1_7juoy")
+text = "|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="MarginContainer2" type="MarginContainer" parent="SubViewport/Control/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/margin_top = 45
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="SubViewport/Control/VBoxContainer/HBoxContainer/MarginContainer2"]
+layout_mode = 2
+
+[node name="Player 2" type="RichTextLabel" parent="SubViewport/Control/VBoxContainer/HBoxContainer/MarginContainer2/VBoxContainer2"]
+clip_contents = false
+layout_mode = 2
+theme = ExtResource("1_7juoy")
+text = "Blue"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+horizontal_alignment = 1
+
+[node name="ScoreRound1" type="RichTextLabel" parent="SubViewport/Control/VBoxContainer/HBoxContainer/MarginContainer2/VBoxContainer2"]
+clip_contents = false
+layout_mode = 2
+theme = ExtResource("1_7juoy")
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+horizontal_alignment = 1
+
+[node name="ScoreRound2" type="RichTextLabel" parent="SubViewport/Control/VBoxContainer/HBoxContainer/MarginContainer2/VBoxContainer2"]
+clip_contents = false
+layout_mode = 2
+theme = ExtResource("1_7juoy")
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+horizontal_alignment = 1
+
+[node name="ScoreRound3" type="RichTextLabel" parent="SubViewport/Control/VBoxContainer/HBoxContainer/MarginContainer2/VBoxContainer2"]
+clip_contents = false
+layout_mode = 2
+theme = ExtResource("1_7juoy")
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+horizontal_alignment = 1
+
+[node name="ScoreRound4" type="RichTextLabel" parent="SubViewport/Control/VBoxContainer/HBoxContainer/MarginContainer2/VBoxContainer2"]
+clip_contents = false
+layout_mode = 2
+theme = ExtResource("1_7juoy")
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+horizontal_alignment = 1
+
+[node name="ScoreRound5" type="RichTextLabel" parent="SubViewport/Control/VBoxContainer/HBoxContainer/MarginContainer2/VBoxContainer2"]
+clip_contents = false
+layout_mode = 2
+theme = ExtResource("1_7juoy")
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+horizontal_alignment = 1
+
+[node name="ScoreRound6" type="RichTextLabel" parent="SubViewport/Control/VBoxContainer/HBoxContainer/MarginContainer2/VBoxContainer2"]
+clip_contents = false
+layout_mode = 2
+theme = ExtResource("1_7juoy")
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+horizontal_alignment = 1
+
+[node name="ScoreRound7" type="RichTextLabel" parent="SubViewport/Control/VBoxContainer/HBoxContainer/MarginContainer2/VBoxContainer2"]
+clip_contents = false
+layout_mode = 2
+theme = ExtResource("1_7juoy")
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+horizontal_alignment = 1
+
+[node name="ScoreRound8" type="RichTextLabel" parent="SubViewport/Control/VBoxContainer/HBoxContainer/MarginContainer2/VBoxContainer2"]
+clip_contents = false
+layout_mode = 2
+theme = ExtResource("1_7juoy")
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+horizontal_alignment = 1
+
+[node name="ScoreRound9" type="RichTextLabel" parent="SubViewport/Control/VBoxContainer/HBoxContainer/MarginContainer2/VBoxContainer2"]
+clip_contents = false
+layout_mode = 2
+theme = ExtResource("1_7juoy")
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+horizontal_alignment = 1
+
+[node name="ScoreRound10" type="RichTextLabel" parent="SubViewport/Control/VBoxContainer/HBoxContainer/MarginContainer2/VBoxContainer2"]
+clip_contents = false
+layout_mode = 2
+theme = ExtResource("1_7juoy")
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+horizontal_alignment = 1
+
+[node name="ScoreRound11" type="RichTextLabel" parent="SubViewport/Control/VBoxContainer/HBoxContainer/MarginContainer2/VBoxContainer2"]
+clip_contents = false
+layout_mode = 2
+theme = ExtResource("1_7juoy")
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+horizontal_alignment = 1
+
+[node name="ScoreRound12" type="RichTextLabel" parent="SubViewport/Control/VBoxContainer/HBoxContainer/MarginContainer2/VBoxContainer2"]
+clip_contents = false
+layout_mode = 2
+theme = ExtResource("1_7juoy")
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+horizontal_alignment = 1
+
+[node name="ScoreRound13" type="RichTextLabel" parent="SubViewport/Control/VBoxContainer/HBoxContainer/MarginContainer2/VBoxContainer2"]
+clip_contents = false
+layout_mode = 2
+theme = ExtResource("1_7juoy")
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+horizontal_alignment = 1
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.501)
+mesh = SubResource("QuadMesh_tae2i")
+surface_material_override/0 = SubResource("StandardMaterial3D_w3bbv")

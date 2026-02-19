@@ -1,0 +1,66 @@
+[gd_scene load_steps=9 format=3 uid="uid://cm265vbivtqny"]
+
+[ext_resource type="PackedScene" uid="uid://dqm3yphkxanuk" path="res://meshes/dart game/dart.glb" id="1_lqc12"]
+[ext_resource type="Script" uid="uid://c2ksm552koiyb" path="res://scripts/games/darts/dart.gd" id="2_p8e8g"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_p8e8g"]
+transparency = 4
+albedo_color = Color(0.537, 0.537, 0.537, 1)
+metallic = 0.461111
+roughness = 0.355556
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_uemoq"]
+transparency = 4
+albedo_color = Color(0.973, 0.292, 0.109, 1)
+roughness = 0.39999998
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_05wdj"]
+albedo_color = Color(0.25, 0.25, 0.25, 1)
+roughness = 0.5
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_p8e8g"]
+radius = 0.07421875
+height = 0.1484375
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_k3f20"]
+transparency = 4
+albedo_color = Color(0.337, 0.337, 0.337, 1)
+roughness = 0.16
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_a1jcp"]
+transparency = 4
+albedo_color = Color(0, 0, 1, 1)
+roughness = 0.16
+
+[node name="dart" node_paths=PackedStringArray("tip_mesh", "barrel_mesh", "shaft_mesh", "flight_mesh_main", "flight_mesh_secondary") groups=["Dart"] instance=ExtResource("1_lqc12")]
+script = ExtResource("2_p8e8g")
+tip_mesh = NodePath("Tip")
+barrel_mesh = NodePath("Barrel")
+shaft_mesh = NodePath("Shaft")
+flight_mesh_main = NodePath("Flight1")
+flight_mesh_secondary = NodePath("Flight2")
+flight_main_color = Color(0, 0, 1, 1)
+custom_flight_main_color = Color(0.4353825, 0.20330566, 0.60161006, 1)
+
+[node name="Shaft" parent="." index="0"]
+surface_material_override/0 = SubResource("StandardMaterial3D_p8e8g")
+
+[node name="Barrel" parent="." index="1"]
+surface_material_override/0 = SubResource("StandardMaterial3D_uemoq")
+
+[node name="Tip" parent="." index="2"]
+surface_material_override/0 = SubResource("StandardMaterial3D_05wdj")
+
+[node name="Area3D" type="Area3D" parent="Tip" index="0"]
+transform = Transform3D(0.97272205, -0.23120403, 0.018875599, 0.23105395, 0.97289145, 0.009807269, -0.020631388, -0.0051784655, 0.9997736, 0, 0, 0)
+monitorable = false
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Tip/Area3D" index="0"]
+transform = Transform3D(1, -4.1365234e-21, -1.3877788e-13, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0.0009281823, 8.9813784e-10, -0.020179749)
+shape = SubResource("CapsuleShape3D_p8e8g")
+
+[node name="Flight2" parent="." index="3"]
+surface_material_override/0 = SubResource("StandardMaterial3D_k3f20")
+
+[node name="Flight1" parent="." index="4"]
+surface_material_override/0 = SubResource("StandardMaterial3D_a1jcp")

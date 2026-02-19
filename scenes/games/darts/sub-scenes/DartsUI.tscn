@@ -1,0 +1,871 @@
+[gd_scene load_steps=24 format=3 uid="uid://cv3bd6sayxlpj"]
+
+[ext_resource type="Script" uid="uid://de3jpss66xjfh" path="res://addons/curved_lines_2d/scalable_vector_shape_2d.gd" id="1_773mb"]
+[ext_resource type="Script" uid="uid://cvpmtpn4v6ta8" path="res://scripts/ui/darts/ui_darts_reticle_controller.gd" id="1_krcqh"]
+[ext_resource type="Script" uid="uid://bd34c188t2qi4" path="res://scripts/ui/darts/ui_darts.gd" id="1_x3tni"]
+[ext_resource type="Script" uid="uid://dlbv4pit17dnu" path="res://addons/curved_lines_2d/scalable_arc.gd" id="2_krcqh"]
+[ext_resource type="Script" uid="uid://dl1t88tthmwts" path="res://addons/curved_lines_2d/scalable_arc_list.gd" id="3_jakak"]
+[ext_resource type="Script" uid="uid://dpbcxddm4sjg4" path="res://scripts/ui/darts/ui_darts_customizer.gd" id="5_urf01"]
+[ext_resource type="PackedScene" uid="uid://cm265vbivtqny" path="res://scenes/games/darts/sub-scenes/Dart.tscn" id="6_remje"]
+[ext_resource type="Theme" uid="uid://dkqd1torgobr1" path="res://themes/ui_theme.tres" id="6_urf01"]
+[ext_resource type="Texture2D" uid="uid://c2hi6wbf80hd3" path="res://icons/reset-arrow-white.svg" id="9_85me2"]
+[ext_resource type="Script" uid="uid://dfhel43tuedcd" path="res://scripts/ui/darts/ui_darts_game_rules_selector.gd" id="9_rhadf"]
+[ext_resource type="Script" uid="uid://desvh66pkg7d5" path="res://scripts/ui/darts/ui_darts_confirm_start.gd" id="10_vj21v"]
+
+[sub_resource type="Curve2D" id="Curve2D_0tjsp"]
+resource_local_to_scene = true
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 0, 0, -10.5, -4, 0, 0, 21, 0)
+}
+point_count = 2
+
+[sub_resource type="Resource" id="Resource_5dyyt"]
+resource_local_to_scene = true
+script = ExtResource("3_jakak")
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_remje"]
+content_margin_left = 8.0
+content_margin_right = 8.0
+bg_color = Color(0.559205, 0.4225549, 0.31923312, 1)
+border_width_left = 6
+border_width_top = 6
+border_width_right = 10
+border_width_bottom = 10
+border_color = Color(0.22352941, 0.15686275, 0.105882354, 1)
+border_blend = true
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_urf01"]
+content_margin_top = 8.0
+content_margin_bottom = 8.0
+bg_color = Color(0.43434894, 0.32119793, 0.23356545, 1)
+border_width_left = 10
+border_width_top = 10
+border_width_right = 8
+border_width_bottom = 8
+border_color = Color(0.22352941, 0.15686275, 0.105882354, 1)
+border_blend = true
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_g6con"]
+content_margin_top = 8.0
+content_margin_bottom = 8.0
+bg_color = Color(0.559205, 0.4225549, 0.31923312, 1)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 8
+border_width_bottom = 8
+border_color = Color(0.85562205, 0.7317137, 0.6404814, 1)
+border_blend = true
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_eltdo"]
+content_margin_top = 8.0
+content_margin_bottom = 8.0
+bg_color = Color(0.43434894, 0.32119793, 0.23356545, 1)
+border_width_left = 10
+border_width_top = 10
+border_width_right = 8
+border_width_bottom = 8
+border_color = Color(0.7310402, 0.5794418, 0.45975167, 1)
+border_blend = true
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_smlk3"]
+content_margin_top = 8.0
+content_margin_bottom = 8.0
+bg_color = Color(0.51039976, 0.38211513, 0.28296918, 1)
+border_width_left = 6
+border_width_top = 6
+border_width_right = 6
+border_width_bottom = 6
+border_color = Color(0.22352941, 0.15686275, 0.105882354, 1)
+border_blend = true
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_eve74"]
+bg_color = Color(0.541345, 0.40773976, 0.30665073, 1)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(0.22305608, 0.15717956, 0.10703228, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_remje"]
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_85me2"]
+viewport_path = NodePath("DartCustomizer/OuterMargins/Panel/InnerMargins/HBoxContainer/Panel/Player 1 Dart SubViewport")
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_lhut8"]
+viewport_path = NodePath("DartCustomizer/OuterMargins/Panel/InnerMargins/HBoxContainer/Panel2/Player 2 Dart SubViewport")
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vj21v"]
+bg_color = Color(0.07846785, 0.07846785, 0.07846785, 0.409)
+
+[node name="DartsUI" type="Control" groups=["UI"]]
+process_mode = 3
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("6_urf01")
+script = ExtResource("1_x3tni")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, -1.5142069e-07, 8.742277e-08, 0, 0.49999997, 0.86602545, -1.7484555e-07, -0.86602545, 0.49999997, 0, 26.520205, 0)
+shadow_enabled = true
+
+[node name="DartsReticleController" type="Control" parent="."]
+visible = false
+anchors_preset = 0
+script = ExtResource("1_krcqh")
+
+[node name="Segment 1" type="Node2D" parent="DartsReticleController" node_paths=PackedStringArray("line")]
+position = Vector2(30, -10.5)
+rotation = 1.5707964
+script = ExtResource("1_773mb")
+stroke_color = Color(1, 0, 0, 1)
+stroke_width = 5.0
+begin_cap_mode = 1
+end_cap_mode = 1
+line_joint_mode = 2
+line = NodePath("Stroke")
+curve = SubResource("Curve2D_0tjsp")
+update_curve_at_runtime = true
+arc_list = SubResource("Resource_5dyyt")
+
+[node name="Stroke" type="Line2D" parent="DartsReticleController/Segment 1"]
+points = PackedVector2Array(0, 0, 1.8046875, -0.5625, 6.5625, -1.5, 9.741211, -1.7578125, 13.2890625, -1.6875, 17.083008, -1.1484375, 19.033813, -0.6591797, 21, 0)
+width = 5.0
+default_color = Color(1, 0, 0, 1)
+joint_mode = 2
+begin_cap_mode = 1
+end_cap_mode = 1
+sharp_limit = 90.0
+metadata/_edit_lock_ = true
+
+[node name="Segment 2" type="Node2D" parent="DartsReticleController" node_paths=PackedStringArray("line")]
+position = Vector2(-10.5, -30)
+script = ExtResource("1_773mb")
+stroke_color = Color(1, 0, 0, 1)
+stroke_width = 5.0
+begin_cap_mode = 1
+end_cap_mode = 1
+line_joint_mode = 2
+line = NodePath("Stroke")
+curve = SubResource("Curve2D_0tjsp")
+update_curve_at_runtime = true
+arc_list = SubResource("Resource_5dyyt")
+
+[node name="Stroke" type="Line2D" parent="DartsReticleController/Segment 2"]
+points = PackedVector2Array(0, 0, 1.8046875, -0.5625, 6.5625, -1.5, 9.741211, -1.7578125, 13.2890625, -1.6875, 17.083008, -1.1484375, 19.033813, -0.6591797, 21, 0)
+width = 5.0
+default_color = Color(1, 0, 0, 1)
+joint_mode = 2
+begin_cap_mode = 1
+end_cap_mode = 1
+sharp_limit = 90.0
+metadata/_edit_lock_ = true
+
+[node name="Segment 3" type="Node2D" parent="DartsReticleController" node_paths=PackedStringArray("line")]
+position = Vector2(-30, 10.5)
+rotation = -1.5707964
+script = ExtResource("1_773mb")
+stroke_color = Color(1, 0, 0, 1)
+stroke_width = 5.0
+begin_cap_mode = 1
+end_cap_mode = 1
+line_joint_mode = 2
+line = NodePath("Stroke")
+curve = SubResource("Curve2D_0tjsp")
+update_curve_at_runtime = true
+arc_list = SubResource("Resource_5dyyt")
+
+[node name="Stroke" type="Line2D" parent="DartsReticleController/Segment 3"]
+points = PackedVector2Array(0, 0, 1.8046875, -0.5625, 6.5625, -1.5, 9.741211, -1.7578125, 13.2890625, -1.6875, 17.083008, -1.1484375, 19.033813, -0.6591797, 21, 0)
+width = 5.0
+default_color = Color(1, 0, 0, 1)
+joint_mode = 2
+begin_cap_mode = 1
+end_cap_mode = 1
+sharp_limit = 90.0
+metadata/_edit_lock_ = true
+
+[node name="Segment 4" type="Node2D" parent="DartsReticleController" node_paths=PackedStringArray("line")]
+position = Vector2(10.5, 30)
+rotation = -3.1415925
+script = ExtResource("1_773mb")
+stroke_color = Color(1, 0, 0, 1)
+stroke_width = 5.0
+begin_cap_mode = 1
+end_cap_mode = 1
+line_joint_mode = 2
+line = NodePath("Stroke")
+curve = SubResource("Curve2D_0tjsp")
+update_curve_at_runtime = true
+arc_list = SubResource("Resource_5dyyt")
+
+[node name="Stroke" type="Line2D" parent="DartsReticleController/Segment 4"]
+points = PackedVector2Array(0, 0, 1.8046875, -0.5625, 6.5625, -1.5, 9.741211, -1.7578125, 13.2890625, -1.6875, 17.083008, -1.1484375, 19.033813, -0.6591797, 21, 0)
+width = 5.0
+default_color = Color(1, 0, 0, 1)
+joint_mode = 2
+begin_cap_mode = 1
+end_cap_mode = 1
+sharp_limit = 90.0
+metadata/_edit_lock_ = true
+
+[node name="DartsGameRulesSelector" type="Control" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("9_rhadf")
+
+[node name="OuterMargins" type="MarginContainer" parent="DartsGameRulesSelector"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 160
+theme_override_constants/margin_top = 85
+theme_override_constants/margin_right = 160
+theme_override_constants/margin_bottom = 85
+
+[node name="HBoxContainer" type="HBoxContainer" parent="DartsGameRulesSelector/OuterMargins"]
+layout_mode = 2
+
+[node name="RuleSelector" type="Panel" parent="DartsGameRulesSelector/OuterMargins/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="MarginContainer" type="MarginContainer" parent="DartsGameRulesSelector/OuterMargins/HBoxContainer/RuleSelector"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 70
+theme_override_constants/margin_right = 70
+
+[node name="VBoxContainer" type="VBoxContainer" parent="DartsGameRulesSelector/OuterMargins/HBoxContainer/RuleSelector/MarginContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="OptionLine1" type="HBoxContainer" parent="DartsGameRulesSelector/OuterMargins/HBoxContainer/RuleSelector/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="Label" type="Label" parent="DartsGameRulesSelector/OuterMargins/HBoxContainer/RuleSelector/MarginContainer/VBoxContainer/OptionLine1"]
+layout_mode = 2
+size_flags_horizontal = 2
+text = "Players:"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="OptionButton" type="OptionButton" parent="DartsGameRulesSelector/OuterMargins/HBoxContainer/RuleSelector/MarginContainer/VBoxContainer/OptionLine1"]
+layout_mode = 2
+size_flags_horizontal = 10
+selected = 1
+item_count = 2
+popup/item_0/text = "1 "
+popup/item_0/id = 0
+popup/item_1/text = "2 "
+popup/item_1/id = 0
+
+[node name="OptionLine2" type="HBoxContainer" parent="DartsGameRulesSelector/OuterMargins/HBoxContainer/RuleSelector/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="Label" type="Label" parent="DartsGameRulesSelector/OuterMargins/HBoxContainer/RuleSelector/MarginContainer/VBoxContainer/OptionLine2"]
+layout_mode = 2
+size_flags_horizontal = 2
+text = "Game Type:"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="OptionButton" type="OptionButton" parent="DartsGameRulesSelector/OuterMargins/HBoxContainer/RuleSelector/MarginContainer/VBoxContainer/OptionLine2"]
+layout_mode = 2
+size_flags_horizontal = 10
+selected = 0
+allow_reselect = true
+item_count = 2
+popup/item_0/text = "Basic"
+popup/item_0/id = 0
+popup/item_1/text = "301"
+popup/item_1/id = 1
+
+[node name="ContinueButton" type="Button" parent="DartsGameRulesSelector/OuterMargins/HBoxContainer/RuleSelector/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Continue"
+
+[node name="TooltipDisplay" type="Panel" parent="DartsGameRulesSelector/OuterMargins/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="InnerMargin" type="MarginContainer" parent="DartsGameRulesSelector/OuterMargins/HBoxContainer/TooltipDisplay"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 18
+theme_override_constants/margin_right = 18
+theme_override_constants/margin_bottom = 18
+
+[node name="RichTextLabel" type="RichTextLabel" parent="DartsGameRulesSelector/OuterMargins/HBoxContainer/TooltipDisplay/InnerMargin"]
+layout_mode = 2
+bbcode_enabled = true
+text = "  [b][u]Basic Rules:[/u][/b]
+
+[ul]Each player throws three darts per turn.[/ul]
+
+[ul]The score for each dart is the value of the section it lands in.[/ul]
+
+[ul]The player with the highest score after a set number of rounds wins.[/ul]"
+
+[node name="DartCustomizer" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("5_urf01")
+
+[node name="OuterMargins" type="MarginContainer" parent="DartCustomizer"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 200
+theme_override_constants/margin_top = 75
+theme_override_constants/margin_right = 200
+theme_override_constants/margin_bottom = 75
+
+[node name="Panel" type="Panel" parent="DartCustomizer/OuterMargins"]
+layout_mode = 2
+theme = ExtResource("6_urf01")
+
+[node name="InnerMargins" type="MarginContainer" parent="DartCustomizer/OuterMargins/Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 25
+theme_override_constants/margin_top = 25
+theme_override_constants/margin_right = 25
+theme_override_constants/margin_bottom = 25
+
+[node name="HBoxContainer" type="HBoxContainer" parent="DartCustomizer/OuterMargins/Panel/InnerMargins"]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="VBoxContainer" type="VBoxContainer" parent="DartCustomizer/OuterMargins/Panel/InnerMargins/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+
+[node name="Line_1" type="HBoxContainer" parent="DartCustomizer/OuterMargins/Panel/InnerMargins/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="DartCustomizer/OuterMargins/Panel/InnerMargins/HBoxContainer/VBoxContainer/Line_1"]
+layout_mode = 2
+text = "Team Color:"
+
+[node name="OptionButton" type="OptionButton" parent="DartCustomizer/OuterMargins/Panel/InnerMargins/HBoxContainer/VBoxContainer/Line_1"]
+layout_mode = 2
+size_flags_horizontal = 10
+selected = 0
+item_count = 5
+popup/item_0/text = "Blue"
+popup/item_0/id = 0
+popup/item_1/text = "Red"
+popup/item_1/id = 1
+popup/item_2/text = "Black"
+popup/item_2/id = 2
+popup/item_3/text = "White"
+popup/item_3/id = 3
+popup/item_4/text = "Custom"
+popup/item_4/id = 4
+
+[node name="HSeparator" type="HSeparator" parent="DartCustomizer/OuterMargins/Panel/InnerMargins/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="Line_2" type="HBoxContainer" parent="DartCustomizer/OuterMargins/Panel/InnerMargins/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="DartCustomizer/OuterMargins/Panel/InnerMargins/HBoxContainer/VBoxContainer/Line_2"]
+layout_mode = 2
+text = "Customize Dart Colors:"
+
+[node name="Line_3" type="HBoxContainer" parent="DartCustomizer/OuterMargins/Panel/InnerMargins/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="DartCustomizer/OuterMargins/Panel/InnerMargins/HBoxContainer/VBoxContainer/Line_3"]
+layout_mode = 2
+text = "Same Flight Colors:"
+
+[node name="CheckBox" type="CheckBox" parent="DartCustomizer/OuterMargins/Panel/InnerMargins/HBoxContainer/VBoxContainer/Line_3"]
+layout_mode = 2
+size_flags_horizontal = 10
+size_flags_vertical = 4
+theme_override_styles/normal = SubResource("StyleBoxFlat_remje")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_urf01")
+theme_override_styles/hover = SubResource("StyleBoxFlat_g6con")
+theme_override_styles/hover_pressed = SubResource("StyleBoxFlat_eltdo")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_smlk3")
+
+[node name="Line_4" type="HBoxContainer" parent="DartCustomizer/OuterMargins/Panel/InnerMargins/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="DartCustomizer/OuterMargins/Panel/InnerMargins/HBoxContainer/VBoxContainer/Line_4"]
+layout_mode = 2
+text = "Flight 1:"
+
+[node name="ColorPickerButton" type="ColorPickerButton" parent="DartCustomizer/OuterMargins/Panel/InnerMargins/HBoxContainer/VBoxContainer/Line_4"]
+custom_minimum_size = Vector2(140, 40)
+layout_mode = 2
+size_flags_horizontal = 10
+
+[node name="Line_5" type="HBoxContainer" parent="DartCustomizer/OuterMargins/Panel/InnerMargins/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="DartCustomizer/OuterMargins/Panel/InnerMargins/HBoxContainer/VBoxContainer/Line_5"]
+layout_mode = 2
+text = "Flight 2:"
+
+[node name="ColorPickerButton" type="ColorPickerButton" parent="DartCustomizer/OuterMargins/Panel/InnerMargins/HBoxContainer/VBoxContainer/Line_5"]
+custom_minimum_size = Vector2(140, 40)
+layout_mode = 2
+size_flags_horizontal = 10
+
+[node name="Line_6" type="HBoxContainer" parent="DartCustomizer/OuterMargins/Panel/InnerMargins/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="DartCustomizer/OuterMargins/Panel/InnerMargins/HBoxContainer/VBoxContainer/Line_6"]
+layout_mode = 2
+text = "Shaft:"
+
+[node name="ColorPickerButton" type="ColorPickerButton" parent="DartCustomizer/OuterMargins/Panel/InnerMargins/HBoxContainer/VBoxContainer/Line_6"]
+custom_minimum_size = Vector2(140, 40)
+layout_mode = 2
+size_flags_horizontal = 10
+
+[node name="Line_7" type="HBoxContainer" parent="DartCustomizer/OuterMargins/Panel/InnerMargins/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="DartCustomizer/OuterMargins/Panel/InnerMargins/HBoxContainer/VBoxContainer/Line_7"]
+layout_mode = 2
+text = "Barrel:"
+
+[node name="ColorPickerButton" type="ColorPickerButton" parent="DartCustomizer/OuterMargins/Panel/InnerMargins/HBoxContainer/VBoxContainer/Line_7"]
+custom_minimum_size = Vector2(140, 40)
+layout_mode = 2
+size_flags_horizontal = 10
+
+[node name="Line_8" type="HBoxContainer" parent="DartCustomizer/OuterMargins/Panel/InnerMargins/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="DartCustomizer/OuterMargins/Panel/InnerMargins/HBoxContainer/VBoxContainer/Line_8"]
+layout_mode = 2
+text = "Tip:"
+
+[node name="ColorPickerButton" type="ColorPickerButton" parent="DartCustomizer/OuterMargins/Panel/InnerMargins/HBoxContainer/VBoxContainer/Line_8"]
+custom_minimum_size = Vector2(140, 40)
+layout_mode = 2
+size_flags_horizontal = 10
+
+[node name="HSeparator2" type="HSeparator" parent="DartCustomizer/OuterMargins/Panel/InnerMargins/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 26
+
+[node name="Line_9" type="HBoxContainer" parent="DartCustomizer/OuterMargins/Panel/InnerMargins/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="ResetButton" type="Button" parent="DartCustomizer/OuterMargins/Panel/InnerMargins/HBoxContainer/VBoxContainer/Line_9"]
+custom_minimum_size = Vector2(55, 0)
+layout_mode = 2
+icon = ExtResource("9_85me2")
+icon_alignment = 1
+expand_icon = true
+
+[node name="DoneButton" type="Button" parent="DartCustomizer/OuterMargins/Panel/InnerMargins/HBoxContainer/VBoxContainer/Line_9"]
+layout_mode = 2
+size_flags_horizontal = 10
+toggle_mode = true
+text = "Done"
+
+[node name="Panel" type="Panel" parent="DartCustomizer/OuterMargins/Panel/InnerMargins/HBoxContainer"]
+clip_contents = true
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_eve74")
+
+[node name="MarginContainer" type="MarginContainer" parent="DartCustomizer/OuterMargins/Panel/InnerMargins/HBoxContainer/Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="TransparentPanel" type="Panel" parent="DartCustomizer/OuterMargins/Panel/InnerMargins/HBoxContainer/Panel/MarginContainer"]
+clip_contents = true
+layout_mode = 2
+theme = ExtResource("6_urf01")
+theme_override_styles/panel = SubResource("StyleBoxEmpty_remje")
+
+[node name="TextureRect" type="TextureRect" parent="DartCustomizer/OuterMargins/Panel/InnerMargins/HBoxContainer/Panel/MarginContainer/TransparentPanel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("ViewportTexture_85me2")
+expand_mode = 5
+stretch_mode = 5
+
+[node name="Player 1 Dart SubViewport" type="SubViewport" parent="DartCustomizer/OuterMargins/Panel/InnerMargins/HBoxContainer/Panel"]
+transparent_bg = true
+msaa_3d = 3
+screen_space_aa = 2
+size = Vector2i(100, 512)
+
+[node name="dart" parent="DartCustomizer/OuterMargins/Panel/InnerMargins/HBoxContainer/Panel/Player 1 Dart SubViewport" instance=ExtResource("6_remje")]
+transform = Transform3D(-0.9899127, -0.14167875, 8.12298e-08, -8.6540915e-08, 3.132544e-08, -1, 0.14167875, -0.9899127, -4.3270457e-08, -2.0362387, 24.837889, 0)
+flight_secondary_color = Color(0, 0, 0, 1)
+custom_flight_secondary_color = Color(0, 0, 0, 1)
+
+[node name="Camera3D" type="Camera3D" parent="DartCustomizer/OuterMargins/Panel/InnerMargins/HBoxContainer/Panel/Player 1 Dart SubViewport"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.0362387, 26.520205, 2.740995)
+projection = 1
+fov = 78.0
+size = 3.4796484
+
+[node name="VSeparator" type="VSeparator" parent="DartCustomizer/OuterMargins/Panel/InnerMargins/HBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="DartCustomizer/OuterMargins/Panel/InnerMargins/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+
+[node name="Line1" type="HBoxContainer" parent="DartCustomizer/OuterMargins/Panel/InnerMargins/HBoxContainer/VBoxContainer2"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="DartCustomizer/OuterMargins/Panel/InnerMargins/HBoxContainer/VBoxContainer2/Line1"]
+layout_mode = 2
+text = "Team Color:"
+
+[node name="OptionButton" type="OptionButton" parent="DartCustomizer/OuterMargins/Panel/InnerMargins/HBoxContainer/VBoxContainer2/Line1"]
+layout_mode = 2
+size_flags_horizontal = 10
+item_count = 5
+popup/item_0/text = "Blue"
+popup/item_0/id = 0
+popup/item_1/text = "Red"
+popup/item_1/id = 1
+popup/item_2/text = "Black"
+popup/item_2/id = 2
+popup/item_3/text = "White"
+popup/item_3/id = 3
+popup/item_4/text = "Custom"
+popup/item_4/id = 4
+
+[node name="HSeparator" type="HSeparator" parent="DartCustomizer/OuterMargins/Panel/InnerMargins/HBoxContainer/VBoxContainer2"]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="Line2" type="HBoxContainer" parent="DartCustomizer/OuterMargins/Panel/InnerMargins/HBoxContainer/VBoxContainer2"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="DartCustomizer/OuterMargins/Panel/InnerMargins/HBoxContainer/VBoxContainer2/Line2"]
+layout_mode = 2
+text = "Customize Dart Colors:"
+
+[node name="Line3" type="HBoxContainer" parent="DartCustomizer/OuterMargins/Panel/InnerMargins/HBoxContainer/VBoxContainer2"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="DartCustomizer/OuterMargins/Panel/InnerMargins/HBoxContainer/VBoxContainer2/Line3"]
+layout_mode = 2
+text = "Same Flight Colors:"
+
+[node name="CheckBox" type="CheckBox" parent="DartCustomizer/OuterMargins/Panel/InnerMargins/HBoxContainer/VBoxContainer2/Line3"]
+layout_mode = 2
+size_flags_horizontal = 10
+size_flags_vertical = 4
+theme_override_styles/normal = SubResource("StyleBoxFlat_remje")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_urf01")
+theme_override_styles/hover = SubResource("StyleBoxFlat_g6con")
+theme_override_styles/hover_pressed = SubResource("StyleBoxFlat_eltdo")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_smlk3")
+
+[node name="Line4" type="HBoxContainer" parent="DartCustomizer/OuterMargins/Panel/InnerMargins/HBoxContainer/VBoxContainer2"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="DartCustomizer/OuterMargins/Panel/InnerMargins/HBoxContainer/VBoxContainer2/Line4"]
+layout_mode = 2
+text = "Flight 1:"
+
+[node name="ColorPickerButton" type="ColorPickerButton" parent="DartCustomizer/OuterMargins/Panel/InnerMargins/HBoxContainer/VBoxContainer2/Line4"]
+custom_minimum_size = Vector2(140, 40)
+layout_mode = 2
+size_flags_horizontal = 10
+
+[node name="Line5" type="HBoxContainer" parent="DartCustomizer/OuterMargins/Panel/InnerMargins/HBoxContainer/VBoxContainer2"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="DartCustomizer/OuterMargins/Panel/InnerMargins/HBoxContainer/VBoxContainer2/Line5"]
+layout_mode = 2
+text = "Flight 2:"
+
+[node name="ColorPickerButton" type="ColorPickerButton" parent="DartCustomizer/OuterMargins/Panel/InnerMargins/HBoxContainer/VBoxContainer2/Line5"]
+custom_minimum_size = Vector2(140, 40)
+layout_mode = 2
+size_flags_horizontal = 10
+
+[node name="Line6" type="HBoxContainer" parent="DartCustomizer/OuterMargins/Panel/InnerMargins/HBoxContainer/VBoxContainer2"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="DartCustomizer/OuterMargins/Panel/InnerMargins/HBoxContainer/VBoxContainer2/Line6"]
+layout_mode = 2
+text = "Shaft:"
+
+[node name="ColorPickerButton" type="ColorPickerButton" parent="DartCustomizer/OuterMargins/Panel/InnerMargins/HBoxContainer/VBoxContainer2/Line6"]
+custom_minimum_size = Vector2(140, 40)
+layout_mode = 2
+size_flags_horizontal = 10
+
+[node name="Line7" type="HBoxContainer" parent="DartCustomizer/OuterMargins/Panel/InnerMargins/HBoxContainer/VBoxContainer2"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="DartCustomizer/OuterMargins/Panel/InnerMargins/HBoxContainer/VBoxContainer2/Line7"]
+layout_mode = 2
+text = "Barrel:"
+
+[node name="ColorPickerButton" type="ColorPickerButton" parent="DartCustomizer/OuterMargins/Panel/InnerMargins/HBoxContainer/VBoxContainer2/Line7"]
+custom_minimum_size = Vector2(140, 40)
+layout_mode = 2
+size_flags_horizontal = 10
+
+[node name="Line8" type="HBoxContainer" parent="DartCustomizer/OuterMargins/Panel/InnerMargins/HBoxContainer/VBoxContainer2"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="DartCustomizer/OuterMargins/Panel/InnerMargins/HBoxContainer/VBoxContainer2/Line8"]
+layout_mode = 2
+text = "Tip:"
+
+[node name="ColorPickerButton" type="ColorPickerButton" parent="DartCustomizer/OuterMargins/Panel/InnerMargins/HBoxContainer/VBoxContainer2/Line8"]
+custom_minimum_size = Vector2(140, 40)
+layout_mode = 2
+size_flags_horizontal = 10
+
+[node name="HSeparator2" type="HSeparator" parent="DartCustomizer/OuterMargins/Panel/InnerMargins/HBoxContainer/VBoxContainer2"]
+layout_mode = 2
+theme_override_constants/separation = 26
+
+[node name="Line9" type="HBoxContainer" parent="DartCustomizer/OuterMargins/Panel/InnerMargins/HBoxContainer/VBoxContainer2"]
+layout_mode = 2
+
+[node name="ResetButton" type="Button" parent="DartCustomizer/OuterMargins/Panel/InnerMargins/HBoxContainer/VBoxContainer2/Line9"]
+custom_minimum_size = Vector2(55, 0)
+layout_mode = 2
+icon = ExtResource("9_85me2")
+icon_alignment = 1
+expand_icon = true
+
+[node name="DoneButton" type="Button" parent="DartCustomizer/OuterMargins/Panel/InnerMargins/HBoxContainer/VBoxContainer2/Line9"]
+layout_mode = 2
+size_flags_horizontal = 10
+toggle_mode = true
+text = "Done"
+
+[node name="Panel2" type="Panel" parent="DartCustomizer/OuterMargins/Panel/InnerMargins/HBoxContainer"]
+clip_contents = true
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_eve74")
+
+[node name="MarginContainer" type="MarginContainer" parent="DartCustomizer/OuterMargins/Panel/InnerMargins/HBoxContainer/Panel2"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="TransparentPanel" type="Panel" parent="DartCustomizer/OuterMargins/Panel/InnerMargins/HBoxContainer/Panel2/MarginContainer"]
+clip_contents = true
+layout_mode = 2
+theme = ExtResource("6_urf01")
+theme_override_styles/panel = SubResource("StyleBoxEmpty_remje")
+
+[node name="TextureRect" type="TextureRect" parent="DartCustomizer/OuterMargins/Panel/InnerMargins/HBoxContainer/Panel2/MarginContainer/TransparentPanel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("ViewportTexture_lhut8")
+expand_mode = 5
+stretch_mode = 5
+
+[node name="Player 2 Dart SubViewport" type="SubViewport" parent="DartCustomizer/OuterMargins/Panel/InnerMargins/HBoxContainer/Panel2"]
+transparent_bg = true
+msaa_3d = 3
+screen_space_aa = 2
+size = Vector2i(100, 512)
+
+[node name="dart" parent="DartCustomizer/OuterMargins/Panel/InnerMargins/HBoxContainer/Panel2/Player 2 Dart SubViewport" instance=ExtResource("6_remje")]
+transform = Transform3D(-0.9899127, -0.14167875, 8.12298e-08, -8.6540915e-08, 3.132544e-08, -1, 0.14167875, -0.9899127, -4.3270457e-08, 2.034, 24.838203, 0)
+team_color = "RED"
+flight_main_color = Color(1, 0, 0, 1)
+
+[node name="Camera3D" type="Camera3D" parent="DartCustomizer/OuterMargins/Panel/InnerMargins/HBoxContainer/Panel2/Player 2 Dart SubViewport"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.034181, 26.520205, 2.740995)
+projection = 1
+fov = 78.0
+size = 3.48
+
+[node name="DartsConfirmStart" type="Control" parent="DartCustomizer/OuterMargins"]
+visible = false
+layout_mode = 2
+script = ExtResource("10_vj21v")
+
+[node name="Panel" type="Panel" parent="DartCustomizer/OuterMargins/DartsConfirmStart"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_vj21v")
+
+[node name="OuterMargins" type="MarginContainer" parent="DartCustomizer/OuterMargins/DartsConfirmStart/Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 175
+theme_override_constants/margin_top = 150
+theme_override_constants/margin_right = 175
+theme_override_constants/margin_bottom = 150
+
+[node name="Panel" type="Panel" parent="DartCustomizer/OuterMargins/DartsConfirmStart/Panel/OuterMargins"]
+layout_mode = 2
+
+[node name="InnerMargins" type="MarginContainer" parent="DartCustomizer/OuterMargins/DartsConfirmStart/Panel/OuterMargins/Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 50
+theme_override_constants/margin_top = 25
+theme_override_constants/margin_right = 50
+theme_override_constants/margin_bottom = 25
+
+[node name="VBoxContainer" type="VBoxContainer" parent="DartCustomizer/OuterMargins/DartsConfirmStart/Panel/OuterMargins/Panel/InnerMargins"]
+layout_mode = 2
+theme_override_constants/separation = 26
+
+[node name="Label" type="Label" parent="DartCustomizer/OuterMargins/DartsConfirmStart/Panel/OuterMargins/Panel/InnerMargins/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 54
+text = "Start Game?"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="DartCustomizer/OuterMargins/DartsConfirmStart/Panel/OuterMargins/Panel/InnerMargins/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="StartGameButton" type="Button" parent="DartCustomizer/OuterMargins/DartsConfirmStart/Panel/OuterMargins/Panel/InnerMargins/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Yes"
+
+[node name="GoBackButton" type="Button" parent="DartCustomizer/OuterMargins/DartsConfirmStart/Panel/OuterMargins/Panel/InnerMargins/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "No, go back"
+
+[connection signal="pressed" from="DartsGameRulesSelector/OuterMargins/HBoxContainer/RuleSelector/MarginContainer/VBoxContainer/ContinueButton" to="DartsGameRulesSelector" method="_on_continue_button_pressed"]
+[connection signal="item_selected" from="DartCustomizer/OuterMargins/Panel/InnerMargins/HBoxContainer/VBoxContainer/Line_1/OptionButton" to="DartCustomizer" method="_on_p1_team_option_selected"]
+[connection signal="item_selected" from="DartCustomizer/OuterMargins/Panel/InnerMargins/HBoxContainer/VBoxContainer/Line_1/OptionButton" to="DartCustomizer/OuterMargins/Panel/InnerMargins/HBoxContainer/Panel/Player 1 Dart SubViewport/dart" method="_on_team_option_selected"]
+[connection signal="toggled" from="DartCustomizer/OuterMargins/Panel/InnerMargins/HBoxContainer/VBoxContainer/Line_3/CheckBox" to="DartCustomizer" method="_on_p1_use_same_colors_toggled"]
+[connection signal="toggled" from="DartCustomizer/OuterMargins/Panel/InnerMargins/HBoxContainer/VBoxContainer/Line_3/CheckBox" to="DartCustomizer/OuterMargins/Panel/InnerMargins/HBoxContainer/Panel/Player 1 Dart SubViewport/dart" method="_on_both_same_color_toggle"]
+[connection signal="color_changed" from="DartCustomizer/OuterMargins/Panel/InnerMargins/HBoxContainer/VBoxContainer/Line_4/ColorPickerButton" to="DartCustomizer" method="_on_p1_custom_main_flight_color_changed"]
+[connection signal="color_changed" from="DartCustomizer/OuterMargins/Panel/InnerMargins/HBoxContainer/VBoxContainer/Line_4/ColorPickerButton" to="DartCustomizer/OuterMargins/Panel/InnerMargins/HBoxContainer/Panel/Player 1 Dart SubViewport/dart" method="_on_flight_main_ui_color_changed"]
+[connection signal="color_changed" from="DartCustomizer/OuterMargins/Panel/InnerMargins/HBoxContainer/VBoxContainer/Line_5/ColorPickerButton" to="DartCustomizer" method="_on_p1_custom_secondary_flight_color_changed"]
+[connection signal="color_changed" from="DartCustomizer/OuterMargins/Panel/InnerMargins/HBoxContainer/VBoxContainer/Line_5/ColorPickerButton" to="DartCustomizer/OuterMargins/Panel/InnerMargins/HBoxContainer/Panel/Player 1 Dart SubViewport/dart" method="_on_flight_secondary_ui_color_changed"]
+[connection signal="color_changed" from="DartCustomizer/OuterMargins/Panel/InnerMargins/HBoxContainer/VBoxContainer/Line_6/ColorPickerButton" to="DartCustomizer" method="_on_p1_shaft_color_changed"]
+[connection signal="color_changed" from="DartCustomizer/OuterMargins/Panel/InnerMargins/HBoxContainer/VBoxContainer/Line_6/ColorPickerButton" to="DartCustomizer/OuterMargins/Panel/InnerMargins/HBoxContainer/Panel/Player 1 Dart SubViewport/dart" method="_on_shaft_ui_color_changed"]
+[connection signal="color_changed" from="DartCustomizer/OuterMargins/Panel/InnerMargins/HBoxContainer/VBoxContainer/Line_7/ColorPickerButton" to="DartCustomizer" method="_on_p1_barrel_color_changed"]
+[connection signal="color_changed" from="DartCustomizer/OuterMargins/Panel/InnerMargins/HBoxContainer/VBoxContainer/Line_7/ColorPickerButton" to="DartCustomizer/OuterMargins/Panel/InnerMargins/HBoxContainer/Panel/Player 1 Dart SubViewport/dart" method="_on_barrel_ui_color_changed"]
+[connection signal="color_changed" from="DartCustomizer/OuterMargins/Panel/InnerMargins/HBoxContainer/VBoxContainer/Line_8/ColorPickerButton" to="DartCustomizer" method="_on_p1_tip_color_changed"]
+[connection signal="color_changed" from="DartCustomizer/OuterMargins/Panel/InnerMargins/HBoxContainer/VBoxContainer/Line_8/ColorPickerButton" to="DartCustomizer/OuterMargins/Panel/InnerMargins/HBoxContainer/Panel/Player 1 Dart SubViewport/dart" method="_on_tip_ui_color_changed"]
+[connection signal="toggled" from="DartCustomizer/OuterMargins/Panel/InnerMargins/HBoxContainer/VBoxContainer/Line_9/DoneButton" to="DartCustomizer" method="_on_p1_ready_up_button_toggled"]
+[connection signal="item_selected" from="DartCustomizer/OuterMargins/Panel/InnerMargins/HBoxContainer/VBoxContainer2/Line1/OptionButton" to="DartCustomizer" method="_on_p2_team_option_selected"]
+[connection signal="item_selected" from="DartCustomizer/OuterMargins/Panel/InnerMargins/HBoxContainer/VBoxContainer2/Line1/OptionButton" to="DartCustomizer/OuterMargins/Panel/InnerMargins/HBoxContainer/Panel2/Player 2 Dart SubViewport/dart" method="_on_team_option_selected"]
+[connection signal="toggled" from="DartCustomizer/OuterMargins/Panel/InnerMargins/HBoxContainer/VBoxContainer2/Line3/CheckBox" to="DartCustomizer" method="_on_p2_use_same_colors_toggled"]
+[connection signal="toggled" from="DartCustomizer/OuterMargins/Panel/InnerMargins/HBoxContainer/VBoxContainer2/Line3/CheckBox" to="DartCustomizer/OuterMargins/Panel/InnerMargins/HBoxContainer/Panel2/Player 2 Dart SubViewport/dart" method="_on_both_same_color_toggle"]
+[connection signal="color_changed" from="DartCustomizer/OuterMargins/Panel/InnerMargins/HBoxContainer/VBoxContainer2/Line4/ColorPickerButton" to="DartCustomizer" method="_on_p2_custom_main_flight_color_changed"]
+[connection signal="color_changed" from="DartCustomizer/OuterMargins/Panel/InnerMargins/HBoxContainer/VBoxContainer2/Line4/ColorPickerButton" to="DartCustomizer/OuterMargins/Panel/InnerMargins/HBoxContainer/Panel2/Player 2 Dart SubViewport/dart" method="_on_flight_main_ui_color_changed"]
+[connection signal="color_changed" from="DartCustomizer/OuterMargins/Panel/InnerMargins/HBoxContainer/VBoxContainer2/Line5/ColorPickerButton" to="DartCustomizer" method="_on_p2_custom_secondary_flight_color_changed"]
+[connection signal="color_changed" from="DartCustomizer/OuterMargins/Panel/InnerMargins/HBoxContainer/VBoxContainer2/Line5/ColorPickerButton" to="DartCustomizer/OuterMargins/Panel/InnerMargins/HBoxContainer/Panel2/Player 2 Dart SubViewport/dart" method="_on_flight_secondary_ui_color_changed"]
+[connection signal="color_changed" from="DartCustomizer/OuterMargins/Panel/InnerMargins/HBoxContainer/VBoxContainer2/Line6/ColorPickerButton" to="DartCustomizer" method="_on_p2_shaft_color_changed"]
+[connection signal="color_changed" from="DartCustomizer/OuterMargins/Panel/InnerMargins/HBoxContainer/VBoxContainer2/Line6/ColorPickerButton" to="DartCustomizer/OuterMargins/Panel/InnerMargins/HBoxContainer/Panel2/Player 2 Dart SubViewport/dart" method="_on_shaft_ui_color_changed"]
+[connection signal="color_changed" from="DartCustomizer/OuterMargins/Panel/InnerMargins/HBoxContainer/VBoxContainer2/Line7/ColorPickerButton" to="DartCustomizer" method="_on_p2_barrel_color_changed"]
+[connection signal="color_changed" from="DartCustomizer/OuterMargins/Panel/InnerMargins/HBoxContainer/VBoxContainer2/Line7/ColorPickerButton" to="DartCustomizer/OuterMargins/Panel/InnerMargins/HBoxContainer/Panel2/Player 2 Dart SubViewport/dart" method="_on_barrel_ui_color_changed"]
+[connection signal="color_changed" from="DartCustomizer/OuterMargins/Panel/InnerMargins/HBoxContainer/VBoxContainer2/Line8/ColorPickerButton" to="DartCustomizer" method="_on_p2_tip_color_changed"]
+[connection signal="color_changed" from="DartCustomizer/OuterMargins/Panel/InnerMargins/HBoxContainer/VBoxContainer2/Line8/ColorPickerButton" to="DartCustomizer/OuterMargins/Panel/InnerMargins/HBoxContainer/Panel2/Player 2 Dart SubViewport/dart" method="_on_tip_ui_color_changed"]
+[connection signal="toggled" from="DartCustomizer/OuterMargins/Panel/InnerMargins/HBoxContainer/VBoxContainer2/Line9/DoneButton" to="DartCustomizer" method="_on_p2_ready_up_button_toggled"]
+[connection signal="pressed" from="DartCustomizer/OuterMargins/DartsConfirmStart/Panel/OuterMargins/Panel/InnerMargins/VBoxContainer/HBoxContainer/StartGameButton" to="DartCustomizer/OuterMargins/DartsConfirmStart" method="_on_start_game_button_pressed"]
+[connection signal="pressed" from="DartCustomizer/OuterMargins/DartsConfirmStart/Panel/OuterMargins/Panel/InnerMargins/VBoxContainer/HBoxContainer/GoBackButton" to="DartCustomizer/OuterMargins/DartsConfirmStart" method="_on_go_back_button_pressed"]

@@ -1,0 +1,351 @@
+[gd_scene load_steps=11 format=3 uid="uid://iag01nydi4vi"]
+
+[ext_resource type="Script" uid="uid://50w13ofiorpp" path="res://scripts/games/prize games/claw machines/claw_machine_base.gd" id="1_6gv85"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_bdmt5"]
+albedo_color = Color(0.95567447, 0.6222906, 0.47992903, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_rxnu7"]
+albedo_color = Color(0.8714004, 0.4649247, 0.463739, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3ucu5"]
+albedo_color = Color(0.9835976, 0.8269048, 0.76068664, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_dvhdt"]
+transparency = 1
+albedo_color = Color(0.8613044, 0.881864, 0.3671535, 0.896)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_aliai"]
+albedo_color = Color(0.8714004, 0.4649247, 0.463739, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5wkvd"]
+albedo_color = Color(0.3671535, 0.78939015, 0.41414726, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jn5p5"]
+transparency = 1
+albedo_color = Color(0.6405938, 0.56108564, 0.54004896, 0.68)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_i17ic"]
+transparency = 1
+albedo_color = Color(1, 1, 1, 0.15294118)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_6gv85"]
+size = Vector3(1.3435059, 2.7191772, 1.7289314)
+
+[node name="ClawMachine" type="StaticBody3D" groups=["Interactable"]]
+collision_layer = 5
+collision_mask = 2
+script = ExtResource("1_6gv85")
+
+[node name="Machine" type="Node3D" parent="."]
+
+[node name="Chassis" type="CSGBox3D" parent="Machine"]
+size = Vector3(1.3496094, 2.7263184, 1.2984009)
+material = SubResource("StandardMaterial3D_bdmt5")
+
+[node name="Controls" type="CSGBox3D" parent="Machine/Chassis"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.16040331, -0.82184863)
+size = Vector3(1.1884766, 0.20898438, 0.5241699)
+material = SubResource("StandardMaterial3D_bdmt5")
+
+[node name="Joystick" type="Node3D" parent="Machine/Chassis/Controls"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.142, 0.103, -0.05)
+
+[node name="Base" type="CSGCylinder3D" parent="Machine/Chassis/Controls/Joystick"]
+radius = 0.056152344
+height = 0.024414063
+material = SubResource("StandardMaterial3D_rxnu7")
+
+[node name="Stick" type="CSGCylinder3D" parent="Machine/Chassis/Controls/Joystick"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.03942871, 0)
+radius = 0.009277344
+height = 0.08081055
+material = SubResource("StandardMaterial3D_rxnu7")
+
+[node name="Ball" type="CSGSphere3D" parent="Machine/Chassis/Controls/Joystick"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.089408904, 0)
+radius = 0.02770783
+material = SubResource("StandardMaterial3D_3ucu5")
+
+[node name="Buttons" type="Node3D" parent="Machine/Chassis/Controls"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.114, 0.107, -0.05)
+
+[node name="Drop Claw Button" type="Node3D" parent="Machine/Chassis/Controls/Buttons"]
+
+[node name="Big Round Button" type="CSGSphere3D" parent="Machine/Chassis/Controls/Buttons/Drop Claw Button"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.007932089, 0)
+radius = 0.055706795
+radial_segments = 16
+rings = 8
+material = SubResource("StandardMaterial3D_dvhdt")
+
+[node name="Big Round Button Cutoff" type="CSGCylinder3D" parent="Machine/Chassis/Controls/Buttons/Drop Claw Button/Big Round Button"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.032348633, 0)
+operation = 2
+radius = 0.057128906
+height = 0.07495117
+sides = 16
+material = SubResource("StandardMaterial3D_aliai")
+
+[node name="Base" type="CSGCylinder3D" parent="Machine/Chassis/Controls/Buttons/Drop Claw Button"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.00024414063, 0)
+radius = 0.06298828
+height = 0.013183594
+sides = 16
+material = SubResource("StandardMaterial3D_aliai")
+
+[node name="Base Cutout" type="CSGCylinder3D" parent="Machine/Chassis/Controls/Buttons/Drop Claw Button/Base"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0025634766, 0)
+operation = 2
+radius = 0.0546875
+height = 0.013427734
+sides = 16
+material = SubResource("StandardMaterial3D_aliai")
+
+[node name="Start Game Button" type="Node3D" parent="Machine/Chassis/Controls/Buttons"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.19015256, 0, 0)
+
+[node name="Flat Round Button" type="CSGCylinder3D" parent="Machine/Chassis/Controls/Buttons/Start Game Button"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0048217773, 0)
+radius = 0.03125
+height = 0.016967773
+sides = 16
+material = SubResource("StandardMaterial3D_5wkvd")
+
+[node name="Base" type="CSGCylinder3D" parent="Machine/Chassis/Controls/Buttons/Start Game Button"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.00024414063, 0)
+radius = 0.037597656
+height = 0.013183594
+sides = 16
+material = SubResource("StandardMaterial3D_aliai")
+
+[node name="Base Cutout" type="CSGCylinder3D" parent="Machine/Chassis/Controls/Buttons/Start Game Button/Base"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0025634766, 0)
+operation = 2
+radius = 0.032714844
+height = 0.013427734
+sides = 16
+material = SubResource("StandardMaterial3D_aliai")
+
+[node name="Interior Cutout" type="CSGBox3D" parent="Machine/Chassis"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.47425842, 0)
+operation = 2
+size = Vector3(1.1357422, 1.6410828, 1.0700684)
+material = SubResource("StandardMaterial3D_bdmt5")
+
+[node name="Chute Cutout 1" type="CSGBox3D" parent="Machine/Chassis"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.29467773, -0.68404293, -0.30047607)
+operation = 2
+size = Vector3(0.5463867, 1.0549297, 0.4691162)
+
+[node name="Chute Cutout 2" type="CSGBox3D" parent="Machine/Chassis"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.29467773, -0.94261307, -0.56004333)
+operation = 2
+size = Vector3(0.5463867, 0.5381162, 0.28671265)
+
+[node name="Chute Door" type="CSGBox3D" parent="Machine/Chassis"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.29467773, -0.93991995, -0.6428896)
+size = Vector3(0.53515625, 0.53273, 0.009471893)
+material = SubResource("StandardMaterial3D_jn5p5")
+
+[node name="Window Cutout 1" type="CSGBox3D" parent="Machine/Chassis"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.65026855, -0.607666)
+operation = 2
+size = Vector3(1.1357422, 1.1047363, 0.35595703)
+material = SubResource("StandardMaterial3D_bdmt5")
+
+[node name="Window Cutout 2" type="CSGBox3D" parent="Machine/Chassis"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.651062, -0.06137085)
+operation = 2
+size = Vector3(1.5583496, 1.1031494, 0.94732666)
+material = SubResource("StandardMaterial3D_bdmt5")
+
+[node name="Front Window" type="CSGBox3D" parent="Machine/Chassis"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00035095215, 0.6498001, -0.62096024)
+size = Vector3(1.134613, 1.1034393, 0.009471893)
+material = SubResource("StandardMaterial3D_i17ic")
+
+[node name="Left Window" type="CSGBox3D" parent="Machine/Chassis"]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0.63739944, 0.6512016, -0.0617342)
+size = Vector3(0.946188, 1.1010361, 0.009471893)
+material = SubResource("StandardMaterial3D_i17ic")
+
+[node name="Right Window" type="CSGBox3D" parent="Machine/Chassis"]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -0.64324176, 0.6512016, -0.0617342)
+size = Vector3(0.946188, 1.1010361, 0.009471893)
+material = SubResource("StandardMaterial3D_i17ic")
+
+[node name="Chute Guard 1" type="CSGBox3D" parent="Machine/Chassis"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.01958552, -0.22511005, -0.30090332)
+size = Vector3(0.0047912598, 0.24597168, 0.47045898)
+
+[node name="Chute Guard 2" type="CSGBox3D" parent="Machine/Chassis"]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0.29300258, -0.22511005, -0.06422742)
+size = Vector3(0.0047912598, 0.24597168, 0.5514984)
+
+[node name="SpotLight3D" type="SpotLight3D" parent="Machine/Chassis"]
+transform = Transform3D(1, 0, 0, 0, 0.25634, 0.9665867, 0, -0.9665867, 0.25634, 0, 1.1919333, 0.39974856)
+spot_range = 2.104655
+spot_angle = 76.51732
+
+[node name="Claw" type="Node3D" parent="Machine"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.2424686, 0)
+
+[node name="Tracks R_L" type="Node3D" parent="Machine/Claw"]
+
+[node name="Rod 1" type="CSGBox3D" parent="Machine/Claw/Tracks R_L"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.02)
+size = Vector3(1.1381226, 0.004272461, 0.004333496)
+
+[node name="Rod 2" type="CSGBox3D" parent="Machine/Claw/Tracks R_L"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.001, 0, 0.02)
+size = Vector3(1.1381226, 0.004272461, 0.004333496)
+
+[node name="Tracks F_B" type="Node3D" parent="Machine/Claw"]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0, 0, 0)
+
+[node name="Rod 1" type="CSGBox3D" parent="Machine/Claw/Tracks F_B"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.02)
+size = Vector3(1.1381226, 0.004272461, 0.004333496)
+
+[node name="Rod 2" type="CSGBox3D" parent="Machine/Claw/Tracks F_B"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.001, 0, 0.02)
+size = Vector3(1.1381226, 0.004272461, 0.004333496)
+
+[node name="Claw Assembly" type="Node3D" parent="Machine/Claw"]
+
+[node name="Base" type="CSGBox3D" parent="Machine/Claw/Claw Assembly"]
+size = Vector3(0.083984375, 0.026367188, 0.08886719)
+
+[node name="Stem" type="CSGBox3D" parent="Machine/Claw/Claw Assembly"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.11819458, 0)
+size = Vector3(0.0078125, 0.22711182, 0.0078125)
+
+[node name="Fingers" type="Node3D" parent="Machine/Claw/Claw Assembly"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.2315973, 0)
+
+[node name="Thumb" type="Node3D" parent="Machine/Claw/Claw Assembly/Fingers"]
+transform = Transform3D(0.99999994, 0, 0, 0, 0.99999994, 0, 0, 0, 1, 0, 0, 0)
+
+[node name="Segment 1" type="CSGBox3D" parent="Machine/Claw/Claw Assembly/Fingers/Thumb"]
+transform = Transform3D(0.7210207, 0.69290763, 0, -0.69290763, 0.7210207, 0, 0, 0, 1, -0.054452777, -0.054099917, 0)
+size = Vector3(0.0048828125, 0.15478516, 0.0048828125)
+
+[node name="Segment 2" type="CSGBox3D" parent="Machine/Claw/Claw Assembly/Fingers/Thumb/Segment 1"]
+transform = Transform3D(0.4732895, -0.8809073, 0, 0.8809073, 0.4732895, 0, 0, 0, 1, 0.06607419, -0.11163977, 0)
+size = Vector3(0.0048828125, 0.14624023, 0.0048828125)
+
+[node name="Segment 3" type="CSGBox3D" parent="Machine/Claw/Claw Assembly/Fingers/Thumb/Segment 1/Segment 2"]
+transform = Transform3D(0.9786383, 0.20558938, 0, -0.20558938, 0.9786383, 0, 0, 0, 1, 0.013495125, -0.07411116, 2.9802322e-08)
+size = Vector3(0.025405884, 0.0075683594, 0.0048828125)
+
+[node name="Index" type="Node3D" parent="Machine/Claw/Claw Assembly/Fingers"]
+transform = Transform3D(-0.50421107, 0, -0.8635804, 0, 1, 0, 0.8635804, 0, -0.50421107, 0, 0, 0)
+
+[node name="Segment 1" type="CSGBox3D" parent="Machine/Claw/Claw Assembly/Fingers/Index"]
+transform = Transform3D(0.7210207, 0.69290763, 0, -0.69290763, 0.7210207, 0, 0, 0, 1, -0.054452777, -0.054099917, 0)
+size = Vector3(0.0048828125, 0.15478516, 0.0048828125)
+
+[node name="Segment 2" type="CSGBox3D" parent="Machine/Claw/Claw Assembly/Fingers/Index/Segment 1"]
+transform = Transform3D(0.4732895, -0.8809073, 0, 0.8809073, 0.4732895, 0, 0, 0, 1, 0.06607419, -0.11163977, 0)
+size = Vector3(0.0048828125, 0.14624023, 0.0048828125)
+
+[node name="Segment 3" type="CSGBox3D" parent="Machine/Claw/Claw Assembly/Fingers/Index/Segment 1/Segment 2"]
+transform = Transform3D(0.9786383, 0.20558938, 0, -0.20558938, 0.9786383, 0, 0, 0, 1, 0.013495125, -0.07411116, 2.9802322e-08)
+size = Vector3(0.025405884, 0.0075683594, 0.0048828125)
+
+[node name="Middle" type="Node3D" parent="Machine/Claw/Claw Assembly/Fingers"]
+transform = Transform3D(-0.5521553, 0, 0.83374125, 0, 1, 0, -0.83374125, 0, -0.55215544, 0, 0, 0)
+
+[node name="Segment 1" type="CSGBox3D" parent="Machine/Claw/Claw Assembly/Fingers/Middle"]
+transform = Transform3D(0.7210207, 0.69290763, 0, -0.69290763, 0.7210207, 0, 0, 0, 1, -0.054452777, -0.054099917, 0)
+size = Vector3(0.0048828125, 0.15478516, 0.0048828125)
+
+[node name="Segment 2" type="CSGBox3D" parent="Machine/Claw/Claw Assembly/Fingers/Middle/Segment 1"]
+transform = Transform3D(0.4732895, -0.8809073, 0, 0.8809073, 0.4732895, 0, 0, 0, 1, 0.06607419, -0.11163977, 0)
+size = Vector3(0.0048828125, 0.14624023, 0.0048828125)
+
+[node name="Segment 3" type="CSGBox3D" parent="Machine/Claw/Claw Assembly/Fingers/Middle/Segment 1/Segment 2"]
+transform = Transform3D(0.9786383, 0.20558938, 0, -0.20558938, 0.9786383, 0, 0, 0, 1, 0.013495125, -0.07411116, 2.9802322e-08)
+size = Vector3(0.025405884, 0.0075683594, 0.0048828125)
+
+[node name="Decorations" type="Node3D" parent="Machine"]
+
+[node name="Decoration 01" type="CSGSphere3D" parent="Machine/Decorations"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.17893079, -0.2981795, -0.24239537)
+radius = 0.122216925
+
+[node name="Decoration 02" type="CSGSphere3D" parent="Machine/Decorations"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.29023218, -0.29817957, 0.15232396)
+radius = 0.122216925
+
+[node name="Decoration 03" type="CSGSphere3D" parent="Machine/Decorations"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.47440338, -0.22456783, 0.35056925)
+radius = 0.122216925
+
+[node name="Decoration 04" type="CSGSphere3D" parent="Machine/Decorations"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.14192328, -0.2981795, -0.031497538)
+radius = 0.122216925
+
+[node name="Decoration 05" type="CSGSphere3D" parent="Machine/Decorations"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.10989308, -0.2981795, 0.19934845)
+radius = 0.122216925
+
+[node name="Decoration 06" type="CSGSphere3D" parent="Machine/Decorations"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.4271999, -0.2981795, 0.032279193)
+radius = 0.122216925
+
+[node name="Decoration 07" type="CSGSphere3D" parent="Machine/Decorations"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.08694053, -0.29817957, 0.08762914)
+radius = 0.122216925
+
+[node name="Decoration 08" type="CSGSphere3D" parent="Machine/Decorations"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.019849718, -0.2981795, 0.30945897)
+radius = 0.122216925
+
+[node name="Decoration 09" type="CSGSphere3D" parent="Machine/Decorations"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.37724245, -0.2981795, -0.17838043)
+radius = 0.122216925
+
+[node name="Decoration 10" type="CSGSphere3D" parent="Machine/Decorations"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.10210568, -0.17109692, -0.4000838)
+radius = 0.122216925
+
+[node name="Decoration 11" type="CSGSphere3D" parent="Machine/Decorations"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.16260578, -0.18162137, 0.22125474)
+radius = 0.122216925
+
+[node name="Decoration 12" type="CSGSphere3D" parent="Machine/Decorations"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.12040794, -0.21151936, 0.47303888)
+radius = 0.122216925
+
+[node name="Decoration 13" type="CSGSphere3D" parent="Machine/Decorations"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.45655888, -0.28157544, 0.29951555)
+radius = 0.122216925
+
+[node name="Decoration 14" type="CSGSphere3D" parent="Machine/Decorations"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.33464396, -0.2981795, 0.18295765)
+radius = 0.122216925
+
+[node name="Decoration 15" type="CSGSphere3D" parent="Machine/Decorations"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.24998976, -0.2981795, -0.45309687)
+radius = 0.122216925
+
+[node name="Decoration 16" type="CSGSphere3D" parent="Machine/Decorations"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.47029674, -0.2981795, -0.44146994)
+radius = 0.122216925
+
+[node name="Decoration 17" type="CSGSphere3D" parent="Machine/Decorations"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.27047622, -0.2981795, 0.37355512)
+radius = 0.122216925
+
+[node name="Decoration 18" type="CSGSphere3D" parent="Machine/Decorations"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.28010893, -0.2981795, 0.386501)
+radius = 0.122216925
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0024528503, -0.21734345)
+shape = SubResource("BoxShape3D_6gv85")
+
+[node name="Camera Anchor" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.3841858e-07, 0.39650398, -0.9021813)
