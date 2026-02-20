@@ -6,9 +6,9 @@ extends CharacterBody3D
 @export var DECELL: float = 0.25
 @export var SPEED: float = 5.0
 
-var player_cam: PlayerCamera
+var player_cam: CameraController
 
-@onready var cam_anchor: Marker3D = $"Cam Anchor"
+@export var cam_anchor: Marker3D
 @onready var mesh: CSGMesh3D = $Mesh
 
 @onready var interaction_range: Area3D = $Mesh/InteractionRange
@@ -56,7 +56,7 @@ func _physics_process(delta):
 
 func handle_locomotion():
 	# Get the camera's direction
-	var camera_transform_y: float = GameManager.camera_ref.rotator.global_transform.basis.get_euler().y
+	var camera_transform_y: float = GameManager.camera_ref.handles.global_transform.basis.get_euler().y
 	# Get the input direction and handle the movement/deceleration.
 	var input: Vector2 = Input.get_vector("left", "right", "forward", "back")
 	var input_dir: Vector3 = Vector3(input.x, 0, input.y)

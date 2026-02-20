@@ -6,7 +6,7 @@ extends Node
 	#"ranked games": {},
 	#"booths": {}
 #}
-var current_game: Interactable
+var current_interactable: Interactable
 var current_game_name: String
 
 var current_ui: Control
@@ -17,7 +17,7 @@ var upper_limit: float
 var lower_limit: float
 
 var player_ref: Player
-var camera_ref: PlayerCamera
+var camera_ref: CameraController
 enum GameModes {MEANDER_MODE, CLAW_MACHINE_MODE}
 
 
@@ -29,7 +29,10 @@ func _process(_delta):
 	pass
 
 
-func change_game_mode(new_mode: int, new_game: Interactable = null):
-	current_game = new_game
+func change_game_mode(new_mode: int, new_interactable: Interactable = null):
+	current_interactable = new_interactable
 	player_ref.change_control_mode(new_mode)
-	camera_ref.change_camera_mode(new_mode)
+	if current_interactable:
+		camera_ref.change_camera_mode(new_mode, current_interactable.camera_anchor)
+	else:
+		camera_ref.change_camera_mode(new_mode, player_ref.cam_anchor)

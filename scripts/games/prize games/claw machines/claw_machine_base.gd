@@ -1,7 +1,6 @@
 extends ArcadeGame
 
 @export var debug_message: String
-@onready var camera_anchor = $"Camera Anchor"
 
 
 func _ready():

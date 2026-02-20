@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://ckonmmgrmb36y" path="res://scripts/arcade.gd" id="1_84opf"]
 [ext_resource type="PackedScene" uid="uid://iag01nydi4vi" path="res://scenes/games/prize games/claw machine/ClawMachine.tscn" id="1_tie2s"]
 [ext_resource type="PackedScene" uid="uid://pb213jsy1a7f" path="res://scenes/proto_player.tscn" id="2_84opf"]
-[ext_resource type="PackedScene" uid="uid://drceaq1lxg5k6" path="res://scenes/camera/player_cam.tscn" id="3_xm7at"]
+[ext_resource type="PackedScene" uid="uid://drceaq1lxg5k6" path="res://scenes/camera/camera_controller.tscn" id="3_xm7at"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_adccw"]
 sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
