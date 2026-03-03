@@ -2,6 +2,8 @@ class_name Interactable
 extends Node
 
 var category: String
+var camera_distance: float
+@export var camera_anchor: Marker3D
 
 
 func _ready():
@@ -17,8 +19,8 @@ func interact():
 
 
 func show_details():
-	prints(name, "Hovered")
+	pass
 
 
 func hide_details():
-	prints(name, "Un-hovered")
+	pass

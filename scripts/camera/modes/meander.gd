@@ -7,14 +7,16 @@ var controller_sense: float = 0.03
 var input_rotation: Vector3
 var perspective: int = 1
 var default_spring_length: float = 4
+var current_spring_length: float
+var camera_anchor_offset_transform: Transform3D
 
 
 func _ready():
-	pass
+	camera_anchor_offset_transform = GameManager.player_ref.cam_anchor.get_global_transform_interpolated()
 
 
 func _input(event: InputEvent) -> void:
-	if current_cam_mode == "Meander Mode":
+	if finished_cam_transition:
 		if event is InputEventMouseMotion and Input.get_mouse_mode() != 0:
 			mouse_input.x += -event.relative.x * mouse_sens
 			mouse_input.y += -event.relative.y * mouse_sens
@@ -28,9 +30,10 @@ func _input(event: InputEvent) -> void:
 
 
 func process(delta):
-	process_inputs()
-	handle_inputs()
-	handle_camera_view(delta)
+	if finished_cam_transition:
+		process_inputs()
+		handle_inputs()
+		handle_camera_view(delta)
 	
 	mouse_input = Vector2.ZERO
 
@@ -53,6 +56,8 @@ func handle_inputs():
 	handles.rotation.x = input_rotation.x
 	handles.rotate(Vector3.UP, input_rotation.y)
 	GameManager.player_ref.mesh.rotate(Vector3.UP, input_rotation.y)
+	GameManager.player_ref.cam_anchor.rotation.x = input_rotation.x
+	GameManager.player_ref.cam_anchor.rotate(Vector3.UP, input_rotation.y)
 
 
 func handle_camera_view(delta: float):
@@ -80,6 +85,9 @@ func handle_camera_view(delta: float):
 			else:
 				spring_arm.spring_length = lerpf(spring_arm.spring_length, default_spring_length, delta * 10)
 	
+	# Save the current length of the spring
+	current_spring_length = spring_arm.spring_length
+	
 	# Player becomes transparent if the camera is pushed too close to it.
 	handle_camera_too_close()
 	
@@ -92,6 +100,8 @@ func handle_camera_view(delta: float):
 	# If not: Lock camera position to the new anchor position.
 	else:
 		handles.global_position = camera_anchor_pos - Vector3(0, camera_vertical_offset, 0)
+	
+	camera_anchor_offset_transform = Transform3D(GameManager.player_ref.cam_anchor.get_global_transform_interpolated().basis, camera_anchor_pos - Vector3(0, camera_vertical_offset, 0))
 
 
 func handle_camera_too_close():

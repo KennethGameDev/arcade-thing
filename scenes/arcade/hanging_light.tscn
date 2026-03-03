@@ -1,0 +1,59 @@
+[gd_scene load_steps=6 format=3 uid="uid://biotmdpiehybf"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xm7at"]
+albedo_color = Color(0.7121294, 0.7121294, 0.71212935, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_r1wa2"]
+albedo_color = Color(0.7121294, 0.7121294, 0.71212935, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_qhghr"]
+emission_enabled = true
+emission = Color(0.9515795, 0.95157963, 0.9515795, 1)
+emission_energy_multiplier = 1.96
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_knd62"]
+albedo_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_wrj5e"]
+albedo_color = Color(0, 0, 0, 1)
+
+[node name="Hanging Light" type="Node3D"]
+
+[node name="Base" type="CSGCylinder3D" parent="."]
+height = 0.0625
+material = SubResource("StandardMaterial3D_xm7at")
+
+[node name="Stem" type="CSGCylinder3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.2515116, 0)
+radius = 0.020507813
+height = 2.5179443
+material = SubResource("StandardMaterial3D_r1wa2")
+
+[node name="Ball" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -3.031534, 0)
+
+[node name="CSGSphere3D" type="CSGSphere3D" parent="Ball"]
+material = SubResource("StandardMaterial3D_qhghr")
+
+[node name="CSGSphere3D2" type="CSGSphere3D" parent="Ball"]
+radius = 0.57604504
+material = SubResource("StandardMaterial3D_knd62")
+
+[node name="CSGSphere3D3" type="CSGSphere3D" parent="Ball/CSGSphere3D2"]
+operation = 2
+radius = 0.5245666
+material = SubResource("StandardMaterial3D_wrj5e")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Ball/CSGSphere3D2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.45584393, 0)
+operation = 2
+size = Vector3(1.545166, 0.9230957, 1.4384766)
+
+[node name="SpotLight3D" type="SpotLight3D" parent="Ball"]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, -0.28126717, 0)
+light_energy = 4.0
+light_indirect_energy = 4.0
+light_volumetric_fog_energy = 4.0
+shadow_enabled = true
+spot_range = 20.148268
+spot_angle = 59.62341

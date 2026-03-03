@@ -4,7 +4,6 @@ extends Interactable
 var arc_game_name: StringName
 var arc_game_type: StringName
 var play_cost: float
-@export var camera_anchor: Marker3D
 
 
 func _ready():

@@ -1,0 +1,27 @@
+[gd_scene load_steps=6 format=3 uid="uid://bonhemtxbopnt"]
+
+[ext_resource type="Script" uid="uid://c620sw6oa0q5i" path="res://scripts/player_start.gd" id="1_hro80"]
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_hro80"]
+top_radius = 0.0
+bottom_radius = 0.25
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_wrgyn"]
+albedo_color = Color(1, 0, 0, 1)
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_hro80"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4m7id"]
+albedo_color = Color(1, 0.09803922, 0, 1)
+
+[node name="PlayerStart" type="Node3D" groups=["Player Start"]]
+script = ExtResource("1_hro80")
+
+[node name="direction" type="CSGMesh3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, -1.2021679)
+mesh = SubResource("CylinderMesh_hro80")
+material = SubResource("StandardMaterial3D_wrgyn")
+
+[node name="body" type="CSGMesh3D" parent="."]
+mesh = SubResource("CapsuleMesh_hro80")
+material = SubResource("StandardMaterial3D_4m7id")

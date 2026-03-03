@@ -13,7 +13,7 @@ var p2_darts: Array[Dart]
 
 
 func _initialize_game():
-	print(debug_message)
+	pass
 
 
 func _ready():

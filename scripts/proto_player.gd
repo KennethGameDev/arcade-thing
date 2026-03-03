@@ -19,7 +19,7 @@ var control_mode: String
 
 
 func _ready():
-	GameManager.player_ref = self
+	pass
 
 
 func _input(event):
@@ -41,15 +41,16 @@ func _input(event):
 func _physics_process(delta):
 	match control_mode:
 		"meander":
-			# Add the gravity.
-			if not is_on_floor():
-				velocity += get_gravity() * delta
-			
-			#handle_run(delta)
-			
-			handle_locomotion()
-			
-			move_and_slide()
+			if GameManager.camera_ref.finished_cam_transition:
+				# Add the gravity.
+				if not is_on_floor():
+					velocity += get_gravity() * delta
+				
+				#handle_run(delta)
+				
+				handle_locomotion()
+				
+				move_and_slide()
 		"claw machine":
 			pass
 
