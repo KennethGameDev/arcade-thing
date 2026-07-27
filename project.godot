@@ -18,11 +18,15 @@ curved_lines_2d/line_begin_cap=1
 curved_lines_2d/add_fill_enabled=false
 curved_lines_2d/stroke_color=Color(1, 0, 0, 1)
 
+[animation]
+
+compatibility/default_parent_skeleton_in_mesh_instance_3d=true
+
 [application]
 
 config/name="arcade thing (4.5)"
 run/main_scene="uid://cesmlm6lleomr"
-config/features=PackedStringArray("4.5", "Forward Plus")
+config/features=PackedStringArray("4.6", "Forward Plus")
 config/icon="res://icon.svg"
 
 [autoload]
