@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://drceaq1lxg5k6"]
+[gd_scene load_steps=5 format=3 uid="uid://drceaq1lxg5k6"]
 
 [ext_resource type="Script" uid="uid://ds4rekdpxvoa1" path="res://scripts/camera/camera_controller.gd" id="1_qeasw"]
-[ext_resource type="Script" uid="uid://japcgwoknv15" path="res://scripts/camera/modes/meander.gd" id="2_ljmae"]
-[ext_resource type="Script" uid="uid://dt5vtuoesjrx1" path="res://scripts/camera/modes/claw_machine.gd" id="3_wvqlt"]
+[ext_resource type="Script" uid="uid://japcgwoknv15" path="res://scripts/camera/modes/meander_cam_mode.gd" id="2_ljmae"]
+[ext_resource type="Script" uid="uid://b3y1avwrc28ve" path="res://scripts/camera/modes/card_refill_cam_mode.gd" id="3_on1vn"]
+[ext_resource type="Script" uid="uid://dt5vtuoesjrx1" path="res://scripts/camera/modes/claw_machine_cam_mode.gd" id="3_wvqlt"]
 
 [node name="Cam Controller" type="Node3D" node_paths=PackedStringArray("handles", "spring_arm", "camera", "camera_modes")]
 process_mode = 3
@@ -11,6 +12,7 @@ handles = NodePath("Handles")
 spring_arm = NodePath("Handles/SpringArm3D")
 camera = NodePath("Handles/SpringArm3D/Camera3D")
 camera_modes = {
+"Card Refill Mode": NodePath("Card Refill Mode"),
 "Claw Machine Mode": NodePath("Claw Machine Mode"),
 "Meander Mode": NodePath("Meander Mode")
 }
@@ -25,6 +27,9 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 3.5)
 
 [node name="Meander Mode" type="Node3D" parent="."]
 script = ExtResource("2_ljmae")
+
+[node name="Card Refill Mode" type="Node3D" parent="."]
+script = ExtResource("3_on1vn")
 
 [node name="Claw Machine Mode" type="Node3D" parent="."]
 script = ExtResource("3_wvqlt")

@@ -4,18 +4,19 @@ extends Node
 var category: String
 var camera_distance: float
 @export var camera_anchor: Marker3D
+@export var player_position: Marker3D
 
 
 func _ready():
 	pass
 
 
-func _process(_delta):
+func process(_delta):
 	pass
 
 
 func interact():
-	pass
+	initialize()
 
 
 func show_details():
@@ -23,4 +24,8 @@ func show_details():
 
 
 func hide_details():
+	pass
+
+
+func initialize():
 	pass

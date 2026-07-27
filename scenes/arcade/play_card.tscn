@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://jvxp6oguw34w"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3uqyp"]
+albedo_color = Color(1, 0, 0.11764706, 1)
+
+[node name="PlayCard" type="Node3D"]
+
+[node name="CSGBox3D" type="CSGBox3D" parent="."]
+size = Vector3(0.20117188, 0.12597656, 0.009521484)
+material = SubResource("StandardMaterial3D_3uqyp")

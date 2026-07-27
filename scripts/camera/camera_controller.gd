@@ -40,6 +40,8 @@ func change_camera_mode(new_mode: int, new_cam_anchor: Marker3D):
 	match new_mode:
 		GameManager.GameModes.MEANDER_MODE:
 			current_cam_mode = "Meander Mode"
+		GameManager.GameModes.CARD_REFILL_MODE:
+			current_cam_mode = "Card Refill Mode"
 		GameManager.GameModes.CLAW_MACHINE_MODE:
 			current_cam_mode = "Claw Machine Mode"
 	initialize_camera_modes()

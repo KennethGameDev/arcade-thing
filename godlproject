@@ -1,0 +1,9 @@
+description=
+icon=icon.svg
+name=arcade thing (4.5)
+tags=
+
+[version]
+isMono=false
+repo=/godotengine/godot-builds
+tagName=4.5.2-stable

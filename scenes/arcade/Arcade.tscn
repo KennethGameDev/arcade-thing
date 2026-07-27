@@ -1,8 +1,10 @@
-[gd_scene load_steps=45 format=3 uid="uid://cesmlm6lleomr"]
+[gd_scene load_steps=52 format=3 uid="uid://cesmlm6lleomr"]
 
-[ext_resource type="Script" uid="uid://ckonmmgrmb36y" path="res://scripts/arcade.gd" id="1_84opf"]
-[ext_resource type="PackedScene" uid="uid://bonhemtxbopnt" path="res://scenes/player_start.tscn" id="2_tie2s"]
-[ext_resource type="PackedScene" uid="uid://biotmdpiehybf" path="res://scenes/arcade/hanging_light.tscn" id="4_xm7at"]
+[ext_resource type="Script" uid="uid://ckonmmgrmb36y" path="res://scripts/arcade/arcade.gd" id="1_x56v0"]
+[ext_resource type="PackedScene" uid="uid://bonhemtxbopnt" path="res://scenes/player_start.tscn" id="2_ixbdb"]
+[ext_resource type="PackedScene" uid="uid://biotmdpiehybf" path="res://scenes/arcade/hanging_light.tscn" id="3_eb06h"]
+[ext_resource type="Script" uid="uid://cqbe4kjgmeeg8" path="res://scripts/spawner.gd" id="3_ixbdb"]
+[ext_resource type="PackedScene" uid="uid://dxlunn7wgfpw" path="res://scenes/arcade/card_refill_station.tscn" id="4_obbyk"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_adccw"]
 sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
@@ -33,6 +35,13 @@ albedo_color = Color(0.12591085, 0.12591085, 0.12591082, 1)
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_l8cw3"]
 albedo_color = Color(0.41981313, 0.41981313, 0.4198131, 1)
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ykdqj"]
+albedo_color = Color(0.7088303, 0.45266998, 0.34002912, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_qugpt"]
+albedo_color = Color(0.3515629, 0.3515629, 0.35156286, 1)
+metallic = 0.46
+
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_lcy6h"]
 albedo_color = Color(0.41981313, 0.41981313, 0.4198131, 1)
 
@@ -49,13 +58,6 @@ albedo_color = Color(0.41981313, 0.41981313, 0.4198131, 1)
 albedo_color = Color(0.9791352, 0.65259683, 0.5480917, 1)
 metallic = 0.38
 metallic_specular = 0.83
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ykdqj"]
-albedo_color = Color(0.7088303, 0.45266998, 0.34002912, 1)
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_qugpt"]
-albedo_color = Color(0.3515629, 0.3515629, 0.35156286, 1)
-metallic = 0.46
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_t2qhg"]
 albedo_color = Color(0.06502983, 0.49230528, 9.048581e-06, 1)
@@ -94,9 +96,9 @@ metallic_specular = 1.0
 albedo_color = Color(0.07683582, 0.07683582, 0.07683582, 1)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_lr4s1"]
-emission_enabled = true
-emission = Color(0.7708395, 0.77083945, 0.77083945, 1)
-emission_energy_multiplier = 0.43
+albedo_color = Color(0, 0, 0, 1)
+metallic = 1.0
+metallic_specular = 1.0
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_84opf"]
 albedo_color = Color(0.0885599, 0.0885599, 0.0885599, 1)
@@ -157,8 +159,30 @@ albedo_color = Color(0.09019608, 1, 1, 0.4)
 transparency = 1
 albedo_color = Color(0.15294118, 0.45882353, 1, 0.4862745)
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_qg221"]
+albedo_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_nhcos"]
+emission_enabled = true
+emission = Color(0.8862616, 0.88626146, 0.8862615, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_exsln"]
+albedo_color = Color(0.46618086, 0.4661808, 0.4661808, 1)
+metallic = 1.0
+metallic_specular = 0.64
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_w38l8"]
+albedo_color = Color(0, 0, 0, 1)
+metallic = 1.0
+metallic_specular = 0.81
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_sfuxl"]
+albedo_color = Color(0, 0, 0, 1)
+metallic = 1.0
+metallic_specular = 0.81
+
 [node name="Arcade" type="Node3D"]
-script = ExtResource("1_84opf")
+script = ExtResource("1_x56v0")
 
 [node name="Sky&Lighting" type="Node" parent="."]
 
@@ -169,1214 +193,1364 @@ environment = SubResource("Environment_me10n")
 transform = Transform3D(-0.8660254, -0.43301278, 0.25, 0, 0.49999997, 0.86602545, -0.50000006, 0.75, -0.43301266, 0, 0, 0)
 shadow_enabled = true
 
-[node name="PlayerStart" parent="." instance=ExtResource("2_tie2s")]
-transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 37.187202, 1.1933591, -17.628162)
+[node name="PlayerStart" parent="." instance=ExtResource("2_ixbdb")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 37.187202, 0.1933595, -17.628162)
 
-[node name="Building Blockout" type="Node3D" parent="."]
+[node name="@Node3D@22193" type="Node3D" parent="PlayerStart"]
+script = ExtResource("3_ixbdb")
 
-[node name="Floor" type="Node3D" parent="Building Blockout"]
+[node name="Mesh" type="Node3D" parent="."]
 
-[node name="Carpet" type="CSGBox3D" parent="Building Blockout/Floor"]
+[node name="Building Blockout" type="Node3D" parent="Mesh"]
+
+[node name="Floor" type="Node3D" parent="Mesh/Building Blockout"]
+
+[node name="Carpet" type="CSGBox3D" parent="Mesh/Building Blockout/Floor"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.794861, 0, -22.536194)
 use_collision = true
 size = Vector3(99.402466, 0.38671875, 116.28308)
 material = SubResource("StandardMaterial3D_hb7i7")
 
-[node name="Rug" type="Node3D" parent="Building Blockout/Floor"]
+[node name="Rug" type="Node3D" parent="Mesh/Building Blockout/Floor"]
 
-[node name="Rug Path 01" type="CSGBox3D" parent="Building Blockout/Floor/Rug"]
+[node name="Rug Path 01" type="CSGBox3D" parent="Mesh/Building Blockout/Floor/Rug"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.503544, 0.176, -17.618)
 size = Vector3(57.89746, 0.09716797, 3.9453125)
 material = SubResource("StandardMaterial3D_tie2s")
 
-[node name="Rug Path 04" type="CSGBox3D" parent="Building Blockout/Floor/Rug"]
+[node name="Rug Path 04" type="CSGBox3D" parent="Mesh/Building Blockout/Floor/Rug"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.9000206, 0.176, 22.7739)
 size = Vector3(73.913574, 0.09716797, 4.241699)
 material = SubResource("StandardMaterial3D_tie2s")
 
-[node name="Rug Path 02" type="CSGBox3D" parent="Building Blockout/Floor/Rug"]
+[node name="Rug Path 02" type="CSGBox3D" parent="Mesh/Building Blockout/Floor/Rug"]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -15.465039, 0.176, 2.4708338)
 size = Vector3(36.34375, 0.09716797, 3.9453125)
 material = SubResource("StandardMaterial3D_tie2s")
 
-[node name="Rug Path 12" type="CSGBox3D" parent="Building Blockout/Floor/Rug"]
+[node name="Rug Path 12" type="CSGBox3D" parent="Mesh/Building Blockout/Floor/Rug"]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -15.465039, 0.176, -23.84628)
 size = Vector3(8.586121, 0.09716797, 3.9453125)
 material = SubResource("StandardMaterial3D_tie2s")
 
-[node name="Rug Path 06" type="CSGBox3D" parent="Building Blockout/Floor/Rug"]
+[node name="Rug Path 06" type="CSGBox3D" parent="Mesh/Building Blockout/Floor/Rug"]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -36.87437, 0.176, -1.8922033)
 size = Vector3(45.07129, 0.09716797, 3.9453125)
 material = SubResource("StandardMaterial3D_tie2s")
 
-[node name="Rug Path 07" type="CSGBox3D" parent="Building Blockout/Floor/Rug"]
+[node name="Rug Path 07" type="CSGBox3D" parent="Mesh/Building Blockout/Floor/Rug"]
 transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, -26.17503, 0.176, 2.4708347)
 size = Vector3(17.39331, 0.09716797, 3.9453125)
 material = SubResource("StandardMaterial3D_tie2s")
 
-[node name="Rug Path 08" type="CSGBox3D" parent="Building Blockout/Floor/Rug"]
+[node name="Rug Path 08" type="CSGBox3D" parent="Mesh/Building Blockout/Floor/Rug"]
 transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, -28.132484, 0.176, -26.279196)
 size = Vector3(21.447044, 0.09716797, 3.6542969)
 material = SubResource("StandardMaterial3D_tie2s")
 
-[node name="Rug Path 13" type="CSGBox3D" parent="Building Blockout/Floor/Rug"]
+[node name="Rug Path 13" type="CSGBox3D" parent="Mesh/Building Blockout/Floor/Rug"]
 transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, -48.34458, 0.176, -20.994322)
 size = Vector3(19.124157, 0.09716797, 4.397934)
 material = SubResource("StandardMaterial3D_tie2s")
 
-[node name="Rug Path 05" type="CSGBox3D" parent="Building Blockout/Floor/Rug"]
+[node name="Rug Path 05" type="CSGBox3D" parent="Mesh/Building Blockout/Floor/Rug"]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 14.122958, 0.176, 2.4708338)
 size = Vector3(36.34375, 0.09716797, 3.9453125)
 material = SubResource("StandardMaterial3D_tie2s")
 
-[node name="Rug Path 03" type="CSGBox3D" parent="Building Blockout/Floor/Rug"]
+[node name="Rug Path 03" type="CSGBox3D" parent="Mesh/Building Blockout/Floor/Rug"]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 33.032528, 0.176, 2.4633417)
 size = Vector3(36.328766, 0.09716797, 3.9453125)
 material = SubResource("StandardMaterial3D_tie2s")
 
-[node name="BowlingAlley" type="Node3D" parent="Building Blockout/Floor"]
+[node name="BowlingAlley" type="Node3D" parent="Mesh/Building Blockout/Floor"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.568085, 0, -58.726456)
 
-[node name="Stairs" type="Node3D" parent="Building Blockout/Floor/BowlingAlley"]
+[node name="Stairs" type="Node3D" parent="Mesh/Building Blockout/Floor/BowlingAlley"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.2874184, 0, 35.174397)
 
-[node name="Stair01" type="CSGMesh3D" parent="Building Blockout/Floor/BowlingAlley/Stairs"]
+[node name="Stair01" type="CSGMesh3D" parent="Mesh/Building Blockout/Floor/BowlingAlley/Stairs"]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 1.3080463, 1.634939, 1.3665485)
 use_collision = true
 collision_mask = 3
 mesh = SubResource("PrismMesh_tie2s")
 material = SubResource("StandardMaterial3D_rohu8")
 
-[node name="Stair03" type="CSGMesh3D" parent="Building Blockout/Floor/BowlingAlley/Stairs"]
+[node name="Stair03" type="CSGMesh3D" parent="Mesh/Building Blockout/Floor/BowlingAlley/Stairs"]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -18.537218, 1.634939, 1.3665485)
 use_collision = true
 collision_mask = 3
 mesh = SubResource("PrismMesh_tie2s")
 material = SubResource("StandardMaterial3D_rohu8")
 
-[node name="Stair02" type="CSGMesh3D" parent="Building Blockout/Floor/BowlingAlley/Stairs"]
+[node name="Stair02" type="CSGMesh3D" parent="Mesh/Building Blockout/Floor/BowlingAlley/Stairs"]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 20.941956, 1.634939, 1.3665485)
 use_collision = true
 collision_mask = 3
 mesh = SubResource("PrismMesh_tie2s")
 material = SubResource("StandardMaterial3D_rohu8")
 
-[node name="Fence" type="Node3D" parent="Building Blockout/Floor/BowlingAlley/Stairs"]
+[node name="Fence" type="Node3D" parent="Mesh/Building Blockout/Floor/BowlingAlley/Stairs"]
 
-[node name="Fence01" type="CSGBox3D" parent="Building Blockout/Floor/BowlingAlley/Stairs/Fence"]
+[node name="Fence01" type="CSGBox3D" parent="Mesh/Building Blockout/Floor/BowlingAlley/Stairs/Fence"]
 transform = Transform3D(1, 0, 0, 0, 0.8730071, -0.48770717, 0, 0.48770717, 0.8730071, -20.680994, 2.2425485, 1.3773689)
 use_collision = true
 collision_mask = 3
 size = Vector3(0.2006836, 1.1977539, 5.5160427)
 material = SubResource("StandardMaterial3D_l8cw3")
 
-[node name="Fence02" type="CSGBox3D" parent="Building Blockout/Floor/BowlingAlley/Stairs/Fence"]
+[node name="Fence02" type="CSGBox3D" parent="Mesh/Building Blockout/Floor/BowlingAlley/Stairs/Fence"]
 transform = Transform3D(1, 0, 0, 0, 0.8730071, -0.48770717, 0, 0.48770717, 0.8730071, -16.433815, 2.2425485, 1.3773689)
 use_collision = true
 collision_mask = 3
 size = Vector3(0.2006836, 1.1977539, 5.5160427)
 material = SubResource("StandardMaterial3D_l8cw3")
 
-[node name="Fence03" type="CSGBox3D" parent="Building Blockout/Floor/BowlingAlley/Stairs/Fence"]
+[node name="Fence03" type="CSGBox3D" parent="Mesh/Building Blockout/Floor/BowlingAlley/Stairs/Fence"]
 transform = Transform3D(1, 0, 0, 0, 0.8730071, -0.48770717, 0, 0.48770717, 0.8730071, -0.7834015, 2.2425485, 1.3773689)
 use_collision = true
 collision_mask = 3
 size = Vector3(0.2006836, 1.1977539, 5.5160427)
 material = SubResource("StandardMaterial3D_l8cw3")
 
-[node name="Fence04" type="CSGBox3D" parent="Building Blockout/Floor/BowlingAlley/Stairs/Fence"]
+[node name="Fence04" type="CSGBox3D" parent="Mesh/Building Blockout/Floor/BowlingAlley/Stairs/Fence"]
 transform = Transform3D(1, 0, 0, 0, 0.8730071, -0.48770717, 0, 0.48770717, 0.8730071, 3.3592358, 2.2425485, 1.3773689)
 use_collision = true
 collision_mask = 3
 size = Vector3(0.2006836, 1.1977539, 5.5160427)
 material = SubResource("StandardMaterial3D_l8cw3")
 
-[node name="Fence05" type="CSGBox3D" parent="Building Blockout/Floor/BowlingAlley/Stairs/Fence"]
+[node name="Fence05" type="CSGBox3D" parent="Mesh/Building Blockout/Floor/BowlingAlley/Stairs/Fence"]
 transform = Transform3D(1, 0, 0, 0, 0.8730071, -0.48770717, 0, 0.48770717, 0.8730071, 18.944126, 2.2425485, 1.3773689)
 use_collision = true
 collision_mask = 3
 size = Vector3(0.2006836, 1.1977539, 5.5160427)
 material = SubResource("StandardMaterial3D_l8cw3")
 
-[node name="Fence06" type="CSGBox3D" parent="Building Blockout/Floor/BowlingAlley/Stairs/Fence"]
+[node name="Fence06" type="CSGBox3D" parent="Mesh/Building Blockout/Floor/BowlingAlley/Stairs/Fence"]
 transform = Transform3D(1, 0, 0, 0, 0.8730071, -0.48770717, 0, 0.48770717, 0.8730071, 22.97641, 2.2425485, 1.3773689)
 use_collision = true
 collision_mask = 3
 size = Vector3(0.2006836, 1.1977539, 5.5160427)
 material = SubResource("StandardMaterial3D_l8cw3")
 
-[node name="Platform" type="Node3D" parent="Building Blockout/Floor/BowlingAlley"]
+[node name="Platform" type="Node3D" parent="Mesh/Building Blockout/Floor/BowlingAlley"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 27.655602)
 
-[node name="Box" type="CSGBox3D" parent="Building Blockout/Floor/BowlingAlley/Platform"]
+[node name="LoungePlatform" type="CSGBox3D" parent="Mesh/Building Blockout/Floor/BowlingAlley/Platform"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.4043064, 1.6399841, 1.5577698)
 use_collision = true
 collision_mask = 3
 size = Vector3(43.79597, 2.8932495, 9.465988)
 material = SubResource("StandardMaterial3D_rohu8")
 
-[node name="Fence" type="Node3D" parent="Building Blockout/Floor/BowlingAlley/Platform"]
+[node name="LanePlatform" type="CSGBox3D" parent="Mesh/Building Blockout/Floor/BowlingAlley/Platform"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.4406843, 1.6058593, -26.3395)
+use_collision = true
+collision_mask = 3
+size = Vector3(43.70703, 2.825, 46.344437)
+material = SubResource("StandardMaterial3D_ykdqj")
+
+[node name="Gutter01" type="CSGCylinder3D" parent="Mesh/Building Blockout/Floor/BowlingAlley/Platform/LanePlatform"]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, -20.063454, 1.4725718, -2.2734756)
+operation = 2
+height = 38.013428
+material = SubResource("StandardMaterial3D_qugpt")
+
+[node name="Gutter02" type="CSGCylinder3D" parent="Mesh/Building Blockout/Floor/BowlingAlley/Platform/LanePlatform"]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, -14.96097, 1.4725718, -2.2734756)
+operation = 2
+height = 38.013428
+material = SubResource("StandardMaterial3D_qugpt")
+
+[node name="Gutter03" type="CSGCylinder3D" parent="Mesh/Building Blockout/Floor/BowlingAlley/Platform/LanePlatform"]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, -13.054129, 1.4725718, -2.2734756)
+operation = 2
+height = 38.013428
+material = SubResource("StandardMaterial3D_qugpt")
+
+[node name="Gutter04" type="CSGCylinder3D" parent="Mesh/Building Blockout/Floor/BowlingAlley/Platform/LanePlatform"]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, -7.9516444, 1.4725718, -2.2734756)
+operation = 2
+height = 38.013428
+material = SubResource("StandardMaterial3D_qugpt")
+
+[node name="Gutter05" type="CSGCylinder3D" parent="Mesh/Building Blockout/Floor/BowlingAlley/Platform/LanePlatform"]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, -6.190646, 1.4725718, -2.2734756)
+operation = 2
+height = 38.013428
+material = SubResource("StandardMaterial3D_qugpt")
+
+[node name="Gutter06" type="CSGCylinder3D" parent="Mesh/Building Blockout/Floor/BowlingAlley/Platform/LanePlatform"]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, -1.0881624, 1.4725718, -2.2734756)
+operation = 2
+height = 38.013428
+material = SubResource("StandardMaterial3D_qugpt")
+
+[node name="Gutter07" type="CSGCylinder3D" parent="Mesh/Building Blockout/Floor/BowlingAlley/Platform/LanePlatform"]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0.81867886, 1.4725718, -2.2734756)
+operation = 2
+height = 38.013428
+material = SubResource("StandardMaterial3D_qugpt")
+
+[node name="Gutter08" type="CSGCylinder3D" parent="Mesh/Building Blockout/Floor/BowlingAlley/Platform/LanePlatform"]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 5.9211626, 1.4725718, -2.2734756)
+operation = 2
+height = 38.013428
+material = SubResource("StandardMaterial3D_qugpt")
+
+[node name="Gutter09" type="CSGCylinder3D" parent="Mesh/Building Blockout/Floor/BowlingAlley/Platform/LanePlatform"]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 7.652194, 1.4725718, -2.2734756)
+operation = 2
+height = 38.013428
+material = SubResource("StandardMaterial3D_qugpt")
+
+[node name="Gutter10" type="CSGCylinder3D" parent="Mesh/Building Blockout/Floor/BowlingAlley/Platform/LanePlatform"]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 12.754678, 1.4725718, -2.2734756)
+operation = 2
+height = 38.013428
+material = SubResource("StandardMaterial3D_qugpt")
+
+[node name="Gutter11" type="CSGCylinder3D" parent="Mesh/Building Blockout/Floor/BowlingAlley/Platform/LanePlatform"]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 14.661519, 1.4725718, -2.2734756)
+operation = 2
+height = 38.013428
+material = SubResource("StandardMaterial3D_qugpt")
+
+[node name="Gutter12" type="CSGCylinder3D" parent="Mesh/Building Blockout/Floor/BowlingAlley/Platform/LanePlatform"]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 19.764004, 1.4725718, -2.2734756)
+operation = 2
+height = 38.013428
+material = SubResource("StandardMaterial3D_qugpt")
+
+[node name="Fence" type="Node3D" parent="Mesh/Building Blockout/Floor/BowlingAlley/Platform"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.017944, 0)
 
-[node name="Fence01" type="CSGBox3D" parent="Building Blockout/Floor/BowlingAlley/Platform/Fence"]
+[node name="Fence01" type="CSGBox3D" parent="Mesh/Building Blockout/Floor/BowlingAlley/Platform/Fence"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -19.389364, 0.5988772, 0.98254395)
 use_collision = true
 collision_mask = 3
 size = Vector3(0.2006836, 1.1977539, 10.534424)
 material = SubResource("StandardMaterial3D_lcy6h")
 
-[node name="Fence02" type="CSGBox3D" parent="Building Blockout/Floor/BowlingAlley/Platform/Fence"]
+[node name="Fence02" type="CSGBox3D" parent="Mesh/Building Blockout/Floor/BowlingAlley/Platform/Fence"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 24.260014, 0.5988772, 0.8912964)
 use_collision = true
 collision_mask = 3
 size = Vector3(0.2006836, 1.1977539, 10.716919)
 material = SubResource("StandardMaterial3D_2ep68")
 
-[node name="Fence03" type="CSGBox3D" parent="Building Blockout/Floor/BowlingAlley/Platform/Fence"]
+[node name="Fence03" type="CSGBox3D" parent="Mesh/Building Blockout/Floor/BowlingAlley/Platform/Fence"]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 12.436455, 0.5988772, 6.2006474)
 use_collision = true
 collision_mask = 3
 size = Vector3(0.2006836, 1.1977539, 15.787491)
 material = SubResource("StandardMaterial3D_6ecyb")
 
-[node name="Fence04" type="CSGBox3D" parent="Building Blockout/Floor/BowlingAlley/Platform/Fence"]
+[node name="Fence04" type="CSGBox3D" parent="Mesh/Building Blockout/Floor/BowlingAlley/Platform/Fence"]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -7.324135, 0.5988772, 6.2006474)
 use_collision = true
 collision_mask = 3
 size = Vector3(0.2006836, 1.1977539, 15.889717)
 material = SubResource("StandardMaterial3D_33dru")
 
-[node name="Lanes" type="Node3D" parent="Building Blockout/Floor/BowlingAlley/Platform"]
+[node name="Lanes" type="Node3D" parent="Mesh/Building Blockout/Floor/BowlingAlley/Platform"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.8005476, 0, -27.105347)
 
-[node name="Lane1" type="CSGBox3D" parent="Building Blockout/Floor/BowlingAlley/Platform/Lanes"]
+[node name="Lane1" type="CSGBox3D" parent="Mesh/Building Blockout/Floor/BowlingAlley/Platform/Lanes"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -17.87876, 3.0213125, -1.584053)
 use_collision = true
 collision_mask = 3
 size = Vector3(3.8339844, 0.110839844, 38.16211)
 material = SubResource("StandardMaterial3D_hoo68")
 
-[node name="Lane2" type="CSGBox3D" parent="Building Blockout/Floor/BowlingAlley/Platform/Lanes"]
+[node name="Lane2" type="CSGBox3D" parent="Mesh/Building Blockout/Floor/BowlingAlley/Platform/Lanes"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.869434, 3.0213125, -1.584053)
 use_collision = true
 collision_mask = 3
 size = Vector3(3.8339844, 0.110839844, 38.16211)
 material = SubResource("StandardMaterial3D_hoo68")
 
-[node name="Lane3" type="CSGBox3D" parent="Building Blockout/Floor/BowlingAlley/Platform/Lanes"]
+[node name="Lane3" type="CSGBox3D" parent="Mesh/Building Blockout/Floor/BowlingAlley/Platform/Lanes"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.005952, 3.0213125, -1.584053)
 use_collision = true
 collision_mask = 3
 size = Vector3(3.8339844, 0.110839844, 38.16211)
 material = SubResource("StandardMaterial3D_hoo68")
 
-[node name="Lane4" type="CSGBox3D" parent="Building Blockout/Floor/BowlingAlley/Platform/Lanes"]
+[node name="Lane4" type="CSGBox3D" parent="Mesh/Building Blockout/Floor/BowlingAlley/Platform/Lanes"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.0033731, 3.0213125, -1.584053)
 use_collision = true
 collision_mask = 3
 size = Vector3(3.8339844, 0.110839844, 38.16211)
 material = SubResource("StandardMaterial3D_hoo68")
 
-[node name="Lane5" type="CSGBox3D" parent="Building Blockout/Floor/BowlingAlley/Platform/Lanes"]
+[node name="Lane5" type="CSGBox3D" parent="Mesh/Building Blockout/Floor/BowlingAlley/Platform/Lanes"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.836888, 3.0213125, -1.584053)
 use_collision = true
 collision_mask = 3
 size = Vector3(3.8339844, 0.110839844, 38.16211)
 material = SubResource("StandardMaterial3D_hoo68")
 
-[node name="Lane6" type="CSGBox3D" parent="Building Blockout/Floor/BowlingAlley/Platform/Lanes"]
+[node name="Lane6" type="CSGBox3D" parent="Mesh/Building Blockout/Floor/BowlingAlley/Platform/Lanes"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16.846214, 3.0213125, -1.584053)
 use_collision = true
 collision_mask = 3
 size = Vector3(3.8339844, 0.110839844, 38.16211)
 material = SubResource("StandardMaterial3D_hoo68")
 
-[node name="Base" type="CSGBox3D" parent="Building Blockout/Floor/BowlingAlley/Platform/Lanes"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.35986328, 1.6058593, 0.76584625)
-use_collision = true
-collision_mask = 3
-size = Vector3(43.70703, 2.825, 46.344437)
-material = SubResource("StandardMaterial3D_ykdqj")
-
-[node name="Gutter01" type="CSGCylinder3D" parent="Building Blockout/Floor/BowlingAlley/Platform/Lanes/Base"]
-transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, -20.063454, 1.4725718, -2.2734756)
-operation = 2
-height = 38.013428
-material = SubResource("StandardMaterial3D_qugpt")
-
-[node name="Gutter02" type="CSGCylinder3D" parent="Building Blockout/Floor/BowlingAlley/Platform/Lanes/Base"]
-transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, -14.96097, 1.4725718, -2.2734756)
-operation = 2
-height = 38.013428
-material = SubResource("StandardMaterial3D_qugpt")
-
-[node name="Gutter03" type="CSGCylinder3D" parent="Building Blockout/Floor/BowlingAlley/Platform/Lanes/Base"]
-transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, -13.054129, 1.4725718, -2.2734756)
-operation = 2
-height = 38.013428
-material = SubResource("StandardMaterial3D_qugpt")
-
-[node name="Gutter04" type="CSGCylinder3D" parent="Building Blockout/Floor/BowlingAlley/Platform/Lanes/Base"]
-transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, -7.9516444, 1.4725718, -2.2734756)
-operation = 2
-height = 38.013428
-material = SubResource("StandardMaterial3D_qugpt")
-
-[node name="Gutter05" type="CSGCylinder3D" parent="Building Blockout/Floor/BowlingAlley/Platform/Lanes/Base"]
-transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, -6.190646, 1.4725718, -2.2734756)
-operation = 2
-height = 38.013428
-material = SubResource("StandardMaterial3D_qugpt")
-
-[node name="Gutter06" type="CSGCylinder3D" parent="Building Blockout/Floor/BowlingAlley/Platform/Lanes/Base"]
-transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, -1.0881624, 1.4725718, -2.2734756)
-operation = 2
-height = 38.013428
-material = SubResource("StandardMaterial3D_qugpt")
-
-[node name="Gutter07" type="CSGCylinder3D" parent="Building Blockout/Floor/BowlingAlley/Platform/Lanes/Base"]
-transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0.81867886, 1.4725718, -2.2734756)
-operation = 2
-height = 38.013428
-material = SubResource("StandardMaterial3D_qugpt")
-
-[node name="Gutter08" type="CSGCylinder3D" parent="Building Blockout/Floor/BowlingAlley/Platform/Lanes/Base"]
-transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 5.9211626, 1.4725718, -2.2734756)
-operation = 2
-height = 38.013428
-material = SubResource("StandardMaterial3D_qugpt")
-
-[node name="Gutter09" type="CSGCylinder3D" parent="Building Blockout/Floor/BowlingAlley/Platform/Lanes/Base"]
-transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 7.652194, 1.4725718, -2.2734756)
-operation = 2
-height = 38.013428
-material = SubResource("StandardMaterial3D_qugpt")
-
-[node name="Gutter10" type="CSGCylinder3D" parent="Building Blockout/Floor/BowlingAlley/Platform/Lanes/Base"]
-transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 12.754678, 1.4725718, -2.2734756)
-operation = 2
-height = 38.013428
-material = SubResource("StandardMaterial3D_qugpt")
-
-[node name="Gutter11" type="CSGCylinder3D" parent="Building Blockout/Floor/BowlingAlley/Platform/Lanes/Base"]
-transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 14.661519, 1.4725718, -2.2734756)
-operation = 2
-height = 38.013428
-material = SubResource("StandardMaterial3D_qugpt")
-
-[node name="Gutter12" type="CSGCylinder3D" parent="Building Blockout/Floor/BowlingAlley/Platform/Lanes/Base"]
-transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 19.764004, 1.4725718, -2.2734756)
-operation = 2
-height = 38.013428
-material = SubResource("StandardMaterial3D_qugpt")
-
-[node name="Seating" type="Node3D" parent="Building Blockout/Floor/BowlingAlley/Platform"]
+[node name="Seating" type="Node3D" parent="Mesh/Building Blockout/Floor/BowlingAlley/Platform"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.626688, 3.086609, 2.0244942)
 
-[node name="Bench01" type="CSGBox3D" parent="Building Blockout/Floor/BowlingAlley/Platform/Seating"]
+[node name="Bench01" type="CSGBox3D" parent="Mesh/Building Blockout/Floor/BowlingAlley/Platform/Seating"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14.1814575, 0.7585449, -1.9015503)
 use_collision = true
 collision_mask = 3
 size = Vector3(12.035736, 1.5170898, 6.027954)
 material = SubResource("StandardMaterial3D_t2qhg")
 
-[node name="Cutout01" type="CSGBox3D" parent="Building Blockout/Floor/BowlingAlley/Platform/Seating/Bench01"]
+[node name="Cutout01" type="CSGBox3D" parent="Mesh/Building Blockout/Floor/BowlingAlley/Platform/Seating/Bench01"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.38482666, -0.35716248)
 operation = 2
 size = Vector3(10.869141, 1.2589111, 5.620819)
 material = SubResource("StandardMaterial3D_g6w6c")
 
-[node name="Cutout02" type="CSGBox3D" parent="Building Blockout/Floor/BowlingAlley/Platform/Seating/Bench01"]
+[node name="Cutout02" type="CSGBox3D" parent="Mesh/Building Blockout/Floor/BowlingAlley/Platform/Seating/Bench01"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.42362976, -0.6853981)
 operation = 2
 size = Vector3(9.314209, 0.7678528, 4.813072)
 material = SubResource("StandardMaterial3D_t2qhg")
 
-[node name="Cutout03" type="CSGBox3D" parent="Building Blockout/Floor/BowlingAlley/Platform/Seating/Bench01"]
+[node name="Cutout03" type="CSGBox3D" parent="Mesh/Building Blockout/Floor/BowlingAlley/Platform/Seating/Bench01"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.10336304, 2.3645496)
 operation = 2
 size = Vector3(4.373047, 1.8218384, 1.8557549)
 material = SubResource("StandardMaterial3D_t2qhg")
 
-[node name="Bench02" type="CSGBox3D" parent="Building Blockout/Floor/BowlingAlley/Platform/Seating"]
+[node name="Bench02" type="CSGBox3D" parent="Mesh/Building Blockout/Floor/BowlingAlley/Platform/Seating"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.19887066, 0.7585449, -1.9015503)
 use_collision = true
 collision_mask = 3
 size = Vector3(12.035736, 1.5170898, 6.027954)
 material = SubResource("StandardMaterial3D_t2qhg")
 
-[node name="Cutout01" type="CSGBox3D" parent="Building Blockout/Floor/BowlingAlley/Platform/Seating/Bench02"]
+[node name="Cutout01" type="CSGBox3D" parent="Mesh/Building Blockout/Floor/BowlingAlley/Platform/Seating/Bench02"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.38482666, -0.35716248)
 operation = 2
 size = Vector3(10.869141, 1.2589111, 5.620819)
 material = SubResource("StandardMaterial3D_g6w6c")
 
-[node name="Cutout02" type="CSGBox3D" parent="Building Blockout/Floor/BowlingAlley/Platform/Seating/Bench02"]
+[node name="Cutout02" type="CSGBox3D" parent="Mesh/Building Blockout/Floor/BowlingAlley/Platform/Seating/Bench02"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.42362976, -0.6853981)
 operation = 2
 size = Vector3(9.314209, 0.7678528, 4.813072)
 material = SubResource("StandardMaterial3D_t2qhg")
 
-[node name="Cutout03" type="CSGBox3D" parent="Building Blockout/Floor/BowlingAlley/Platform/Seating/Bench02"]
+[node name="Cutout03" type="CSGBox3D" parent="Mesh/Building Blockout/Floor/BowlingAlley/Platform/Seating/Bench02"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.10336304, 2.3645496)
 operation = 2
 size = Vector3(4.373047, 1.8218384, 1.8557549)
 material = SubResource("StandardMaterial3D_t2qhg")
 
-[node name="Bench03" type="CSGBox3D" parent="Building Blockout/Floor/BowlingAlley/Platform/Seating"]
+[node name="Bench03" type="CSGBox3D" parent="Mesh/Building Blockout/Floor/BowlingAlley/Platform/Seating"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.537956, 0.7585449, -1.9015503)
 use_collision = true
 collision_mask = 3
 size = Vector3(12.035736, 1.5170898, 6.027954)
 material = SubResource("StandardMaterial3D_t2qhg")
 
-[node name="Cutout01" type="CSGBox3D" parent="Building Blockout/Floor/BowlingAlley/Platform/Seating/Bench03"]
+[node name="Cutout01" type="CSGBox3D" parent="Mesh/Building Blockout/Floor/BowlingAlley/Platform/Seating/Bench03"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.38482666, -0.35716248)
 operation = 2
 size = Vector3(10.869141, 1.2589111, 5.620819)
 material = SubResource("StandardMaterial3D_g6w6c")
 
-[node name="Cutout02" type="CSGBox3D" parent="Building Blockout/Floor/BowlingAlley/Platform/Seating/Bench03"]
+[node name="Cutout02" type="CSGBox3D" parent="Mesh/Building Blockout/Floor/BowlingAlley/Platform/Seating/Bench03"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.42362976, -0.6853981)
 operation = 2
 size = Vector3(9.314209, 0.7678528, 4.813072)
 material = SubResource("StandardMaterial3D_t2qhg")
 
-[node name="Cutout03" type="CSGBox3D" parent="Building Blockout/Floor/BowlingAlley/Platform/Seating/Bench03"]
+[node name="Cutout03" type="CSGBox3D" parent="Mesh/Building Blockout/Floor/BowlingAlley/Platform/Seating/Bench03"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.10336304, 2.3645496)
 operation = 2
 size = Vector3(4.373047, 1.8218384, 1.8557549)
 material = SubResource("StandardMaterial3D_t2qhg")
 
-[node name="Tables" type="Node3D" parent="Building Blockout/Floor/BowlingAlley/Platform"]
+[node name="Tables" type="Node3D" parent="Mesh/Building Blockout/Floor/BowlingAlley/Platform"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.2824764, 3.0866091, 0)
 
-[node name="Table01" type="Node3D" parent="Building Blockout/Floor/BowlingAlley/Platform/Tables"]
+[node name="Table01" type="Node3D" parent="Mesh/Building Blockout/Floor/BowlingAlley/Platform/Tables"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -17.298775, 0, -0.58696365)
 
-[node name="Stem" type="CSGBox3D" parent="Building Blockout/Floor/BowlingAlley/Platform/Tables/Table01"]
+[node name="Stem" type="CSGBox3D" parent="Mesh/Building Blockout/Floor/BowlingAlley/Platform/Tables/Table01"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.4521482, 0)
 use_collision = true
 collision_mask = 3
 size = Vector3(0.23217773, 0.9042969, 1)
 material = SubResource("StandardMaterial3D_tjqh3")
 
-[node name="Table" type="CSGBox3D" parent="Building Blockout/Floor/BowlingAlley/Platform/Tables/Table01/Stem"]
+[node name="Table" type="CSGBox3D" parent="Mesh/Building Blockout/Floor/BowlingAlley/Platform/Tables/Table01/Stem"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.45692825, 0)
 size = Vector3(1.9248047, 0.14648438, 4.330078)
 material = SubResource("StandardMaterial3D_ffnvm")
 
-[node name="Table02" type="Node3D" parent="Building Blockout/Floor/BowlingAlley/Platform/Tables"]
+[node name="Table02" type="Node3D" parent="Mesh/Building Blockout/Floor/BowlingAlley/Platform/Tables"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.35939, 0, -0.58696365)
 
-[node name="Stem" type="CSGBox3D" parent="Building Blockout/Floor/BowlingAlley/Platform/Tables/Table02"]
+[node name="Stem" type="CSGBox3D" parent="Mesh/Building Blockout/Floor/BowlingAlley/Platform/Tables/Table02"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.4521482, 0)
 use_collision = true
 collision_mask = 3
 size = Vector3(0.23217773, 0.9042969, 1)
 material = SubResource("StandardMaterial3D_tjqh3")
 
-[node name="Table" type="CSGBox3D" parent="Building Blockout/Floor/BowlingAlley/Platform/Tables/Table02/Stem"]
+[node name="Table" type="CSGBox3D" parent="Mesh/Building Blockout/Floor/BowlingAlley/Platform/Tables/Table02/Stem"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.45692825, 0)
 size = Vector3(1.9248047, 0.14648438, 4.330078)
 material = SubResource("StandardMaterial3D_tjqh3")
 
-[node name="Table03" type="Node3D" parent="Building Blockout/Floor/BowlingAlley/Platform/Tables"]
+[node name="Table03" type="Node3D" parent="Mesh/Building Blockout/Floor/BowlingAlley/Platform/Tables"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.1800747, 0, -0.58696365)
 
-[node name="Stem" type="CSGBox3D" parent="Building Blockout/Floor/BowlingAlley/Platform/Tables/Table03"]
+[node name="Stem" type="CSGBox3D" parent="Mesh/Building Blockout/Floor/BowlingAlley/Platform/Tables/Table03"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.4521482, 0)
 use_collision = true
 collision_mask = 3
 size = Vector3(0.23217773, 0.9042969, 1)
 material = SubResource("StandardMaterial3D_tjqh3")
 
-[node name="Table" type="CSGBox3D" parent="Building Blockout/Floor/BowlingAlley/Platform/Tables/Table03/Stem"]
+[node name="Table" type="CSGBox3D" parent="Mesh/Building Blockout/Floor/BowlingAlley/Platform/Tables/Table03/Stem"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.45692825, 0)
 size = Vector3(1.9248047, 0.14648438, 4.330078)
 material = SubResource("StandardMaterial3D_tjqh3")
 
-[node name="Table04" type="Node3D" parent="Building Blockout/Floor/BowlingAlley/Platform/Tables"]
+[node name="Table04" type="Node3D" parent="Mesh/Building Blockout/Floor/BowlingAlley/Platform/Tables"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.593958, 0, -0.58696365)
 
-[node name="Stem" type="CSGBox3D" parent="Building Blockout/Floor/BowlingAlley/Platform/Tables/Table04"]
+[node name="Stem" type="CSGBox3D" parent="Mesh/Building Blockout/Floor/BowlingAlley/Platform/Tables/Table04"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.4521482, 0)
 use_collision = true
 collision_mask = 3
 size = Vector3(0.23217773, 0.9042969, 1)
 material = SubResource("StandardMaterial3D_tjqh3")
 
-[node name="Table" type="CSGBox3D" parent="Building Blockout/Floor/BowlingAlley/Platform/Tables/Table04/Stem"]
+[node name="Table" type="CSGBox3D" parent="Mesh/Building Blockout/Floor/BowlingAlley/Platform/Tables/Table04/Stem"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.45692825, 0)
 size = Vector3(1.9248047, 0.14648438, 4.330078)
 material = SubResource("StandardMaterial3D_tjqh3")
 
-[node name="Table05" type="Node3D" parent="Building Blockout/Floor/BowlingAlley/Platform/Tables"]
+[node name="Table05" type="Node3D" parent="Mesh/Building Blockout/Floor/BowlingAlley/Platform/Tables"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.484398, 0, -0.58696365)
 
-[node name="Stem" type="CSGBox3D" parent="Building Blockout/Floor/BowlingAlley/Platform/Tables/Table05"]
+[node name="Stem" type="CSGBox3D" parent="Mesh/Building Blockout/Floor/BowlingAlley/Platform/Tables/Table05"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.4521482, 0)
 use_collision = true
 collision_mask = 3
 size = Vector3(0.23217773, 0.9042969, 1)
 material = SubResource("StandardMaterial3D_tjqh3")
 
-[node name="Table" type="CSGBox3D" parent="Building Blockout/Floor/BowlingAlley/Platform/Tables/Table05/Stem"]
+[node name="Table" type="CSGBox3D" parent="Mesh/Building Blockout/Floor/BowlingAlley/Platform/Tables/Table05/Stem"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.45692825, 0)
 size = Vector3(1.9248047, 0.14648438, 4.330078)
 material = SubResource("StandardMaterial3D_tjqh3")
 
-[node name="Table06" type="Node3D" parent="Building Blockout/Floor/BowlingAlley/Platform/Tables"]
+[node name="Table06" type="Node3D" parent="Mesh/Building Blockout/Floor/BowlingAlley/Platform/Tables"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 17.338005, 0, -0.58696365)
 
-[node name="Stem" type="CSGBox3D" parent="Building Blockout/Floor/BowlingAlley/Platform/Tables/Table06"]
+[node name="Stem" type="CSGBox3D" parent="Mesh/Building Blockout/Floor/BowlingAlley/Platform/Tables/Table06"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.4521482, 0)
 use_collision = true
 collision_mask = 3
 size = Vector3(0.23217773, 0.9042969, 1)
 material = SubResource("StandardMaterial3D_tjqh3")
 
-[node name="Table" type="CSGBox3D" parent="Building Blockout/Floor/BowlingAlley/Platform/Tables/Table06/Stem"]
+[node name="Table" type="CSGBox3D" parent="Mesh/Building Blockout/Floor/BowlingAlley/Platform/Tables/Table06/Stem"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.45692825, 0)
 size = Vector3(1.9248047, 0.14648438, 4.330078)
 material = SubResource("StandardMaterial3D_tjqh3")
 
-[node name="Game Terminals" type="Node3D" parent="Building Blockout/Floor/BowlingAlley/Platform"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.3778248, 3.086609, -6.653797)
+[node name="Ball Return" type="Node3D" parent="Mesh/Building Blockout/Floor/BowlingAlley/Platform"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.0183563, -8.653694)
 
-[node name="Terminal01" type="Node3D" parent="Building Blockout/Floor/BowlingAlley/Platform/Game Terminals"]
+[node name="Return01" type="Node3D" parent="Mesh/Building Blockout/Floor/BowlingAlley/Platform/Ball Return"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.573264, 0, 0)
+
+[node name="Ejector" type="CSGMesh3D" parent="Mesh/Building Blockout/Floor/BowlingAlley/Platform/Ball Return/Return01"]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0, 0.757504, -0.044044495)
+use_collision = true
+collision_mask = 3
+mesh = SubResource("PrismMesh_84opf")
+material = SubResource("StandardMaterial3D_ghcvg")
+
+[node name="Hole" type="CSGSphere3D" parent="Mesh/Building Blockout/Floor/BowlingAlley/Platform/Ball Return/Return01/Ejector"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.0215797, 0.27332497, -1.1920929e-06)
+operation = 2
+radius = 0.39681488
+material = SubResource("StandardMaterial3D_g1n7i")
+
+[node name="Ball Catcher" type="CSGBox3D" parent="Mesh/Building Blockout/Floor/BowlingAlley/Platform/Ball Return/Return01"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.37006044, 2.356598)
+use_collision = true
+collision_mask = 3
+size = Vector3(0.71118164, 0.7401123, 3.0315552)
+material = SubResource("StandardMaterial3D_i75f5")
+
+[node name="Round-Out" type="CSGCylinder3D" parent="Mesh/Building Blockout/Floor/BowlingAlley/Platform/Ball Return/Return01/Ball Catcher"]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0.6437764, -0.056518555)
+operation = 2
+radius = 0.40234375
+height = 2.9924316
+sides = 14
+material = SubResource("StandardMaterial3D_i75f5")
+
+[node name="Cut Out" type="CSGBox3D" parent="Mesh/Building Blockout/Floor/BowlingAlley/Platform/Ball Return/Return01/Ball Catcher"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.038589478)
+operation = 2
+size = Vector3(0.30273438, 0.875, 2.9543762)
+material = SubResource("StandardMaterial3D_i75f5")
+
+[node name="Cut Out3" type="CSGBox3D" parent="Mesh/Building Blockout/Floor/BowlingAlley/Platform/Ball Return/Return01/Ball Catcher"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.13510132, 0.01618576)
+operation = 2
+size = Vector3(0.30273438, 0.60479736, 3.2049026)
+material = SubResource("StandardMaterial3D_i75f5")
+
+[node name="Cut Out2" type="CSGBox3D" parent="Mesh/Building Blockout/Floor/BowlingAlley/Platform/Ball Return/Return01/Ball Catcher"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.1328125, 0.056835175)
+operation = 2
+size = Vector3(0.8125, 0.609375, 2.710518)
+material = SubResource("StandardMaterial3D_i75f5")
+
+[node name="Return02" type="Node3D" parent="Mesh/Building Blockout/Floor/BowlingAlley/Platform/Ball Return"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.3688955, 0, 0)
+
+[node name="Ejector" type="CSGMesh3D" parent="Mesh/Building Blockout/Floor/BowlingAlley/Platform/Ball Return/Return02"]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0, 0.757504, -0.044044495)
+use_collision = true
+collision_mask = 3
+mesh = SubResource("PrismMesh_84opf")
+material = SubResource("StandardMaterial3D_ghcvg")
+
+[node name="Hole" type="CSGSphere3D" parent="Mesh/Building Blockout/Floor/BowlingAlley/Platform/Ball Return/Return02/Ejector"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.0215797, 0.27332497, -1.1920929e-06)
+operation = 2
+radius = 0.39681488
+material = SubResource("StandardMaterial3D_g1n7i")
+
+[node name="Ball Catcher" type="CSGBox3D" parent="Mesh/Building Blockout/Floor/BowlingAlley/Platform/Ball Return/Return02"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.37006044, 2.356598)
+use_collision = true
+collision_mask = 3
+size = Vector3(0.71118164, 0.7401123, 3.0315552)
+material = SubResource("StandardMaterial3D_i75f5")
+
+[node name="Round-Out" type="CSGCylinder3D" parent="Mesh/Building Blockout/Floor/BowlingAlley/Platform/Ball Return/Return02/Ball Catcher"]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0.6437764, -0.056518555)
+operation = 2
+radius = 0.40234375
+height = 2.9924316
+sides = 14
+material = SubResource("StandardMaterial3D_i75f5")
+
+[node name="Cut Out" type="CSGBox3D" parent="Mesh/Building Blockout/Floor/BowlingAlley/Platform/Ball Return/Return02/Ball Catcher"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.038589478)
+operation = 2
+size = Vector3(0.30273438, 0.875, 2.9543762)
+material = SubResource("StandardMaterial3D_i75f5")
+
+[node name="Cut Out3" type="CSGBox3D" parent="Mesh/Building Blockout/Floor/BowlingAlley/Platform/Ball Return/Return02/Ball Catcher"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.13510132, 0.01618576)
+operation = 2
+size = Vector3(0.30273438, 0.60479736, 3.2049026)
+material = SubResource("StandardMaterial3D_i75f5")
+
+[node name="Cut Out2" type="CSGBox3D" parent="Mesh/Building Blockout/Floor/BowlingAlley/Platform/Ball Return/Return02/Ball Catcher"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.1328125, 0.056835175)
+operation = 2
+size = Vector3(0.8125, 0.609375, 2.710518)
+material = SubResource("StandardMaterial3D_i75f5")
+
+[node name="Return03" type="Node3D" parent="Mesh/Building Blockout/Floor/BowlingAlley/Platform/Ball Return"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16.232237, 0, 0)
+
+[node name="Ejector" type="CSGMesh3D" parent="Mesh/Building Blockout/Floor/BowlingAlley/Platform/Ball Return/Return03"]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0, 0.757504, -0.044044495)
+use_collision = true
+collision_mask = 3
+mesh = SubResource("PrismMesh_84opf")
+material = SubResource("StandardMaterial3D_ghcvg")
+
+[node name="Hole" type="CSGSphere3D" parent="Mesh/Building Blockout/Floor/BowlingAlley/Platform/Ball Return/Return03/Ejector"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.0215797, 0.27332497, -1.1920929e-06)
+operation = 2
+radius = 0.39681488
+material = SubResource("StandardMaterial3D_g1n7i")
+
+[node name="Ball Catcher" type="CSGBox3D" parent="Mesh/Building Blockout/Floor/BowlingAlley/Platform/Ball Return/Return03"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.37006044, 2.356598)
+use_collision = true
+collision_mask = 3
+size = Vector3(0.71118164, 0.7401123, 3.0315552)
+material = SubResource("StandardMaterial3D_i75f5")
+
+[node name="Round-Out" type="CSGCylinder3D" parent="Mesh/Building Blockout/Floor/BowlingAlley/Platform/Ball Return/Return03/Ball Catcher"]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0.6437764, -0.056518555)
+operation = 2
+radius = 0.40234375
+height = 2.9924316
+sides = 14
+material = SubResource("StandardMaterial3D_i75f5")
+
+[node name="Cut Out" type="CSGBox3D" parent="Mesh/Building Blockout/Floor/BowlingAlley/Platform/Ball Return/Return03/Ball Catcher"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.038589478)
+operation = 2
+size = Vector3(0.30273438, 0.875, 2.9543762)
+material = SubResource("StandardMaterial3D_i75f5")
+
+[node name="Cut Out3" type="CSGBox3D" parent="Mesh/Building Blockout/Floor/BowlingAlley/Platform/Ball Return/Return03/Ball Catcher"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.13510132, 0.01618576)
+operation = 2
+size = Vector3(0.30273438, 0.60479736, 3.2049026)
+material = SubResource("StandardMaterial3D_i75f5")
+
+[node name="Cut Out2" type="CSGBox3D" parent="Mesh/Building Blockout/Floor/BowlingAlley/Platform/Ball Return/Return03/Ball Catcher"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.1328125, 0.056835175)
+operation = 2
+size = Vector3(0.8125, 0.609375, 2.710518)
+material = SubResource("StandardMaterial3D_i75f5")
+
+[node name="TVs" type="Node3D" parent="Mesh/Building Blockout/Floor/BowlingAlley"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 11.379688, 19.373993)
+
+[node name="TV01" type="Node3D" parent="Mesh/Building Blockout/Floor/BowlingAlley/TVs"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15.095734, 0.45870018, 0)
+
+[node name="Mount01" type="CSGBox3D" parent="Mesh/Building Blockout/Floor/BowlingAlley/TVs/TV01"]
+transform = Transform3D(1, 0, 0, 0, 0.9544593, 0.2983412, 0, -0.2983412, 0.9544593, -1.0107765, 0.22882557, -0.2528839)
+use_collision = true
+size = Vector3(0.21459961, 2.4780273, 0.22070313)
+material = SubResource("StandardMaterial3D_y04ch")
+
+[node name="Mount02" type="CSGBox3D" parent="Mesh/Building Blockout/Floor/BowlingAlley/TVs/TV01"]
+transform = Transform3D(1, 0, 0, 0, 0.9544593, 0.2983412, 0, -0.2983412, 0.9544593, 0.9965942, 0.22882557, -0.2528839)
+use_collision = true
+size = Vector3(0.21459961, 2.4780273, 0.22070313)
+material = SubResource("StandardMaterial3D_y04ch")
+
+[node name="TVFrame" type="CSGBox3D" parent="Mesh/Building Blockout/Floor/BowlingAlley/TVs/TV01"]
+transform = Transform3D(1, 0, 0, 0, 0.9654863, -0.26045394, 0, 0.26045394, 0.9654863, 0, -1.1578445, 0.14207077)
+use_collision = true
+size = Vector3(5.2871094, 3.5630188, 0.38328552)
+material = SubResource("StandardMaterial3D_l1ksi")
+
+[node name="Screen" type="CSGBox3D" parent="Mesh/Building Blockout/Floor/BowlingAlley/TVs/TV01/TVFrame"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.4305115e-05, 0.20920563)
+operation = 2
+size = Vector3(4.9941406, 3.2509766, 0.08386946)
+material = SubResource("StandardMaterial3D_lr4s1")
+
+[node name="TV02" type="Node3D" parent="Mesh/Building Blockout/Floor/BowlingAlley/TVs"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.047085, 0.45870018, 0)
+
+[node name="Mount01" type="CSGBox3D" parent="Mesh/Building Blockout/Floor/BowlingAlley/TVs/TV02"]
+transform = Transform3D(1, 0, 0, 0, 0.9544593, 0.2983412, 0, -0.2983412, 0.9544593, -1.0107765, 0.22882557, -0.2528839)
+use_collision = true
+size = Vector3(0.21459961, 2.4780273, 0.22070313)
+material = SubResource("StandardMaterial3D_y04ch")
+
+[node name="Mount02" type="CSGBox3D" parent="Mesh/Building Blockout/Floor/BowlingAlley/TVs/TV02"]
+transform = Transform3D(1, 0, 0, 0, 0.9544593, 0.2983412, 0, -0.2983412, 0.9544593, 0.9965942, 0.22882557, -0.2528839)
+use_collision = true
+size = Vector3(0.21459961, 2.4780273, 0.22070313)
+material = SubResource("StandardMaterial3D_y04ch")
+
+[node name="TVFrame" type="CSGBox3D" parent="Mesh/Building Blockout/Floor/BowlingAlley/TVs/TV02"]
+transform = Transform3D(1, 0, 0, 0, 0.9654863, -0.26045394, 0, 0.26045394, 0.9654863, 0, -1.1578445, 0.14207077)
+use_collision = true
+size = Vector3(5.2871094, 3.5630188, 0.38328552)
+material = SubResource("StandardMaterial3D_l1ksi")
+
+[node name="Screen" type="CSGBox3D" parent="Mesh/Building Blockout/Floor/BowlingAlley/TVs/TV02/TVFrame"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.4305115e-05, 0.20920563)
+operation = 2
+size = Vector3(4.9941406, 3.2509766, 0.08386946)
+material = SubResource("StandardMaterial3D_lr4s1")
+
+[node name="TV03" type="Node3D" parent="Mesh/Building Blockout/Floor/BowlingAlley/TVs"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.2438908, 0.45870018, 0)
+
+[node name="Mount01" type="CSGBox3D" parent="Mesh/Building Blockout/Floor/BowlingAlley/TVs/TV03"]
+transform = Transform3D(1, 0, 0, 0, 0.9544593, 0.2983412, 0, -0.2983412, 0.9544593, -1.0107765, 0.22882557, -0.2528839)
+use_collision = true
+size = Vector3(0.21459961, 2.4780273, 0.22070313)
+material = SubResource("StandardMaterial3D_y04ch")
+
+[node name="Mount02" type="CSGBox3D" parent="Mesh/Building Blockout/Floor/BowlingAlley/TVs/TV03"]
+transform = Transform3D(1, 0, 0, 0, 0.9544593, 0.2983412, 0, -0.2983412, 0.9544593, 0.9965942, 0.22882557, -0.2528839)
+use_collision = true
+size = Vector3(0.21459961, 2.4780273, 0.22070313)
+material = SubResource("StandardMaterial3D_y04ch")
+
+[node name="TVFrame" type="CSGBox3D" parent="Mesh/Building Blockout/Floor/BowlingAlley/TVs/TV03"]
+transform = Transform3D(1, 0, 0, 0, 0.9654863, -0.26045394, 0, 0.26045394, 0.9654863, 0, -1.1578445, 0.14207077)
+use_collision = true
+size = Vector3(5.2871094, 3.5630188, 0.38328552)
+material = SubResource("StandardMaterial3D_l1ksi")
+
+[node name="Screen" type="CSGBox3D" parent="Mesh/Building Blockout/Floor/BowlingAlley/TVs/TV03/TVFrame"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.4305115e-05, 0.20920563)
+operation = 2
+size = Vector3(4.9941406, 3.2509766, 0.08386946)
+material = SubResource("StandardMaterial3D_lr4s1")
+
+[node name="TV04" type="Node3D" parent="Mesh/Building Blockout/Floor/BowlingAlley/TVs"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.74802, 0.45870018, 0)
+
+[node name="Mount01" type="CSGBox3D" parent="Mesh/Building Blockout/Floor/BowlingAlley/TVs/TV04"]
+transform = Transform3D(1, 0, 0, 0, 0.9544593, 0.2983412, 0, -0.2983412, 0.9544593, -1.0107765, 0.22882557, -0.2528839)
+use_collision = true
+size = Vector3(0.21459961, 2.4780273, 0.22070313)
+material = SubResource("StandardMaterial3D_y04ch")
+
+[node name="Mount02" type="CSGBox3D" parent="Mesh/Building Blockout/Floor/BowlingAlley/TVs/TV04"]
+transform = Transform3D(1, 0, 0, 0, 0.9544593, 0.2983412, 0, -0.2983412, 0.9544593, 0.9965942, 0.22882557, -0.2528839)
+use_collision = true
+size = Vector3(0.21459961, 2.4780273, 0.22070313)
+material = SubResource("StandardMaterial3D_y04ch")
+
+[node name="TVFrame" type="CSGBox3D" parent="Mesh/Building Blockout/Floor/BowlingAlley/TVs/TV04"]
+transform = Transform3D(1, 0, 0, 0, 0.9654863, -0.26045394, 0, 0.26045394, 0.9654863, 0, -1.1578445, 0.14207077)
+use_collision = true
+size = Vector3(5.2871094, 3.5630188, 0.38328552)
+material = SubResource("StandardMaterial3D_l1ksi")
+
+[node name="Screen" type="CSGBox3D" parent="Mesh/Building Blockout/Floor/BowlingAlley/TVs/TV04/TVFrame"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.4305115e-05, 0.20920563)
+operation = 2
+size = Vector3(4.9941406, 3.2509766, 0.08386946)
+material = SubResource("StandardMaterial3D_lr4s1")
+
+[node name="TV05" type="Node3D" parent="Mesh/Building Blockout/Floor/BowlingAlley/TVs"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.619286, 0.45870018, 0)
+
+[node name="Mount01" type="CSGBox3D" parent="Mesh/Building Blockout/Floor/BowlingAlley/TVs/TV05"]
+transform = Transform3D(1, 0, 0, 0, 0.9544593, 0.2983412, 0, -0.2983412, 0.9544593, -1.0107765, 0.22882557, -0.2528839)
+use_collision = true
+size = Vector3(0.21459961, 2.4780273, 0.22070313)
+material = SubResource("StandardMaterial3D_y04ch")
+
+[node name="Mount02" type="CSGBox3D" parent="Mesh/Building Blockout/Floor/BowlingAlley/TVs/TV05"]
+transform = Transform3D(1, 0, 0, 0, 0.9544593, 0.2983412, 0, -0.2983412, 0.9544593, 0.9965942, 0.22882557, -0.2528839)
+use_collision = true
+size = Vector3(0.21459961, 2.4780273, 0.22070313)
+material = SubResource("StandardMaterial3D_y04ch")
+
+[node name="TVFrame" type="CSGBox3D" parent="Mesh/Building Blockout/Floor/BowlingAlley/TVs/TV05"]
+transform = Transform3D(1, 0, 0, 0, 0.9654863, -0.26045394, 0, 0.26045394, 0.9654863, 0, -1.1578445, 0.14207077)
+use_collision = true
+size = Vector3(5.2871094, 3.5630188, 0.38328552)
+material = SubResource("StandardMaterial3D_l1ksi")
+
+[node name="Screen" type="CSGBox3D" parent="Mesh/Building Blockout/Floor/BowlingAlley/TVs/TV05/TVFrame"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.4305115e-05, 0.20920563)
+operation = 2
+size = Vector3(4.9941406, 3.2509766, 0.08386946)
+material = SubResource("StandardMaterial3D_lr4s1")
+
+[node name="TV06" type="Node3D" parent="Mesh/Building Blockout/Floor/BowlingAlley/TVs"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 19.667194, 0.45870018, 0)
+
+[node name="Mount01" type="CSGBox3D" parent="Mesh/Building Blockout/Floor/BowlingAlley/TVs/TV06"]
+transform = Transform3D(1, 0, 0, 0, 0.9544593, 0.2983412, 0, -0.2983412, 0.9544593, -1.0107765, 0.22882557, -0.2528839)
+use_collision = true
+size = Vector3(0.21459961, 2.4780273, 0.22070313)
+material = SubResource("StandardMaterial3D_y04ch")
+
+[node name="Mount02" type="CSGBox3D" parent="Mesh/Building Blockout/Floor/BowlingAlley/TVs/TV06"]
+transform = Transform3D(1, 0, 0, 0, 0.9544593, 0.2983412, 0, -0.2983412, 0.9544593, 0.9965942, 0.22882557, -0.2528839)
+use_collision = true
+size = Vector3(0.21459961, 2.4780273, 0.22070313)
+material = SubResource("StandardMaterial3D_y04ch")
+
+[node name="TVFrame" type="CSGBox3D" parent="Mesh/Building Blockout/Floor/BowlingAlley/TVs/TV06"]
+transform = Transform3D(1, 0, 0, 0, 0.9654863, -0.26045394, 0, 0.26045394, 0.9654863, 0, -1.1578445, 0.14207077)
+use_collision = true
+size = Vector3(5.2871094, 3.5630188, 0.38328552)
+material = SubResource("StandardMaterial3D_l1ksi")
+
+[node name="Screen" type="CSGBox3D" parent="Mesh/Building Blockout/Floor/BowlingAlley/TVs/TV06/TVFrame"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.4305115e-05, 0.20920563)
+operation = 2
+size = Vector3(4.9941406, 3.2509766, 0.08386946)
+material = SubResource("StandardMaterial3D_lr4s1")
+
+[node name="Walls" type="Node3D" parent="Mesh/Building Blockout"]
+
+[node name="Node3D" type="Node3D" parent="Mesh/Building Blockout/Walls"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.2963567, 6.3823547, -35.57653)
+
+[node name="Segment01" type="CSGBox3D" parent="Mesh/Building Blockout/Walls/Node3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -26.380829, 0.10064697, 0.09183502)
+size = Vector3(49.794067, 13.358582, 0.37109375)
+
+[node name="Segment02" type="CSGBox3D" parent="Mesh/Building Blockout/Walls/Node3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 45.12215, 0.10064697, 0.09183502)
+size = Vector3(6.0290833, 13.358582, 0.37109375)
+
+[node name="Segment03" type="CSGBox3D" parent="Mesh/Building Blockout/Walls/Node3D"]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 42.238285, 0.10064697, -22.396355)
+size = Vector3(45.20204, 13.358582, 0.37109375)
+
+[node name="Segment04" type="CSGBox3D" parent="Mesh/Building Blockout/Walls/Node3D"]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -1.6371074, 0.10064697, -22.396355)
+size = Vector3(45.20204, 13.358582, 0.37109375)
+
+[node name="Segment05" type="CSGBox3D" parent="Mesh/Building Blockout/Walls/Node3D"]
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 20.269499, 0.10064697, -44.913162)
+size = Vector3(44.05094, 13.358582, 0.37109375)
+
+[node name="South" type="CSGBox3D" parent="Mesh/Building Blockout/Walls"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.8203125, 6.4626465, 35.523464)
+size = Vector3(99.58203, 13.325684, 0.21228027)
+
+[node name="East" type="CSGBox3D" parent="Mesh/Building Blockout/Walls"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 40.784454, 6.4568787, 0)
+size = Vector3(0.27722168, 13.304382, 71.413086)
+
+[node name="Main Entrance Cutout" type="CSGBox3D" parent="Mesh/Building Blockout/Walls/East"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -4.4043007, -17.618343)
+operation = 2
+size = Vector3(1, 4.6703796, 5.083008)
+
+[node name="West" type="CSGBox3D" parent="Mesh/Building Blockout/Walls"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -58.52394, 6.4831543, 0)
+size = Vector3(0.32006836, 13.36084, 71.31445)
+
+[node name="Roof" type="Node3D" parent="Mesh/Building Blockout"]
+
+[node name="Top" type="CSGBox3D" parent="Mesh/Building Blockout/Roof"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.018005, 13.163565, -23.441711)
+use_collision = true
+size = Vector3(99.848755, 0.38671875, 118.09412)
+material = SubResource("StandardMaterial3D_84opf")
+
+[node name="Lights" type="Node3D" parent="Mesh/Building Blockout/Roof"]
+
+[node name="Hanging Light" parent="Mesh/Building Blockout/Roof/Lights" instance=ExtResource("3_eb06h")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 34.659843, 12.966294, -23.64961)
+
+[node name="Hanging Light2" parent="Mesh/Building Blockout/Roof/Lights" instance=ExtResource("3_eb06h")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20.989334, 12.966294, -23.64961)
+
+[node name="Hanging Light3" parent="Mesh/Building Blockout/Roof/Lights" instance=ExtResource("3_eb06h")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.2240696, 12.966294, -23.64961)
+
+[node name="Hanging Light4" parent="Mesh/Building Blockout/Roof/Lights" instance=ExtResource("3_eb06h")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.4464397, 12.966294, -23.64961)
+
+[node name="Hanging Light31" parent="Mesh/Building Blockout/Roof/Lights" instance=ExtResource("3_eb06h")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 26.770847, 12.966294, -51.096054)
+
+[node name="Hanging Light32" parent="Mesh/Building Blockout/Roof/Lights" instance=ExtResource("3_eb06h")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.005582, 12.966294, -51.096054)
+
+[node name="Hanging Light33" parent="Mesh/Building Blockout/Roof/Lights" instance=ExtResource("3_eb06h")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.6649275, 12.966294, -51.096054)
+
+[node name="Hanging Light34" parent="Mesh/Building Blockout/Roof/Lights" instance=ExtResource("3_eb06h")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 26.770847, 12.966294, -67.57468)
+
+[node name="Hanging Light35" parent="Mesh/Building Blockout/Roof/Lights" instance=ExtResource("3_eb06h")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.005582, 12.966294, -67.57468)
+
+[node name="Hanging Light36" parent="Mesh/Building Blockout/Roof/Lights" instance=ExtResource("3_eb06h")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.6649275, 12.966294, -67.57468)
+
+[node name="Hanging Light5" parent="Mesh/Building Blockout/Roof/Lights" instance=ExtResource("3_eb06h")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20.151093, 12.966294, -23.64961)
+
+[node name="Hanging Light6" parent="Mesh/Building Blockout/Roof/Lights" instance=ExtResource("3_eb06h")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -33.8216, 12.966294, -23.64961)
+
+[node name="Hanging Light7" parent="Mesh/Building Blockout/Roof/Lights" instance=ExtResource("3_eb06h")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 34.659843, 12.966294, -6.2588034)
+
+[node name="Hanging Light8" parent="Mesh/Building Blockout/Roof/Lights" instance=ExtResource("3_eb06h")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20.989334, 12.966294, -6.2588034)
+
+[node name="Hanging Light9" parent="Mesh/Building Blockout/Roof/Lights" instance=ExtResource("3_eb06h")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.2240696, 12.966294, -6.2588034)
+
+[node name="Hanging Light10" parent="Mesh/Building Blockout/Roof/Lights" instance=ExtResource("3_eb06h")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.4464397, 12.966294, -6.2588034)
+
+[node name="Hanging Light11" parent="Mesh/Building Blockout/Roof/Lights" instance=ExtResource("3_eb06h")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20.151093, 12.966294, -6.2588034)
+
+[node name="Hanging Light12" parent="Mesh/Building Blockout/Roof/Lights" instance=ExtResource("3_eb06h")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -33.8216, 12.966294, -6.2588034)
+
+[node name="Hanging Light13" parent="Mesh/Building Blockout/Roof/Lights" instance=ExtResource("3_eb06h")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 34.659843, 12.966294, 10.84271)
+
+[node name="Hanging Light14" parent="Mesh/Building Blockout/Roof/Lights" instance=ExtResource("3_eb06h")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20.989334, 12.966294, 10.84271)
+
+[node name="Hanging Light15" parent="Mesh/Building Blockout/Roof/Lights" instance=ExtResource("3_eb06h")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.2240696, 12.966294, 10.84271)
+
+[node name="Hanging Light16" parent="Mesh/Building Blockout/Roof/Lights" instance=ExtResource("3_eb06h")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.4464397, 12.966294, 10.84271)
+
+[node name="Hanging Light17" parent="Mesh/Building Blockout/Roof/Lights" instance=ExtResource("3_eb06h")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20.151093, 12.966294, 10.84271)
+
+[node name="Hanging Light18" parent="Mesh/Building Blockout/Roof/Lights" instance=ExtResource("3_eb06h")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -33.8216, 12.966294, 10.84271)
+
+[node name="Hanging Light19" parent="Mesh/Building Blockout/Roof/Lights" instance=ExtResource("3_eb06h")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 34.659843, 12.966294, 27.818401)
+
+[node name="Hanging Light20" parent="Mesh/Building Blockout/Roof/Lights" instance=ExtResource("3_eb06h")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20.989334, 12.966294, 27.818401)
+
+[node name="Hanging Light21" parent="Mesh/Building Blockout/Roof/Lights" instance=ExtResource("3_eb06h")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.2240696, 12.966294, 27.818401)
+
+[node name="Hanging Light22" parent="Mesh/Building Blockout/Roof/Lights" instance=ExtResource("3_eb06h")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.4464397, 12.966294, 27.818401)
+
+[node name="Hanging Light23" parent="Mesh/Building Blockout/Roof/Lights" instance=ExtResource("3_eb06h")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20.151093, 12.966294, 27.818401)
+
+[node name="Hanging Light24" parent="Mesh/Building Blockout/Roof/Lights" instance=ExtResource("3_eb06h")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -33.8216, 12.966294, 27.818401)
+
+[node name="Hanging Light25" parent="Mesh/Building Blockout/Roof/Lights" instance=ExtResource("3_eb06h")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -48.65209, 12.966294, -6.2588034)
+
+[node name="Hanging Light26" parent="Mesh/Building Blockout/Roof/Lights" instance=ExtResource("3_eb06h")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -48.65209, 12.966294, 10.84271)
+
+[node name="Hanging Light27" parent="Mesh/Building Blockout/Roof/Lights" instance=ExtResource("3_eb06h")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -48.65209, 12.966294, 27.818401)
+
+[node name="Games" type="Node3D" parent="."]
+
+[node name="Pize Games" type="Node3D" parent="Games"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.26799, 0, -0.3279972)
+
+[node name="Claw Machines" type="Node3D" parent="Games/Pize Games"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.274164, 0, 0)
+
+[node name="AreaBlockout" type="CSGBox3D" parent="Games/Pize Games/Claw Machines"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.863015, 1.8278809, 2.3647242)
+material_override = SubResource("StandardMaterial3D_xm7at")
+size = Vector3(7.455261, 3.269043, 32.633514)
+
+[node name="AreaBlockout2" type="CSGBox3D" parent="Games/Pize Games/Claw Machines"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.13356, 1.8278594, 2.3647242)
+material_override = SubResource("StandardMaterial3D_xm7at")
+size = Vector3(7.494, 3.269, 32.634)
+
+[node name="Dropper Machines" type="Node3D" parent="Games/Pize Games"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.274164, 0, 0)
+
+[node name="AreaBlockout" type="CSGBox3D" parent="Games/Pize Games/Dropper Machines"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.8708057, 1.7636414, -14.693441)
+material_override = SubResource("StandardMaterial3D_r1wa2")
+size = Vector3(7.298279, 3.140564, 1)
+
+[node name="AreaBlockout5" type="CSGBox3D" parent="Games/Pize Games/Dropper Machines"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.995496, 1.7636414, 2.2869663)
+material_override = SubResource("StandardMaterial3D_r1wa2")
+size = Vector3(2.802719, 3.140564, 34.960815)
+
+[node name="AreaBlockout2" type="CSGBox3D" parent="Games/Pize Games/Dropper Machines"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.1033764, 1.7636414, -14.693441)
+material_override = SubResource("StandardMaterial3D_r1wa2")
+size = Vector3(7.298279, 3.140564, 1)
+
+[node name="AreaBlockout3" type="CSGBox3D" parent="Games/Pize Games/Dropper Machines"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.8708057, 1.7636414, 19.321095)
+material_override = SubResource("StandardMaterial3D_r1wa2")
+size = Vector3(7.298279, 3.140564, 1)
+
+[node name="AreaBlockout4" type="CSGBox3D" parent="Games/Pize Games/Dropper Machines"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.1033764, 1.7636414, 19.321095)
+material_override = SubResource("StandardMaterial3D_r1wa2")
+size = Vector3(7.298279, 3.140564, 1)
+
+[node name="Lottery Games" type="Node3D" parent="Games"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -28.0709, -1.9073486e-06, 3.1161232)
+
+[node name="Coin Toss Machines" type="Node3D" parent="Games/Lottery Games"]
+
+[node name="AreaBlockout" type="CSGBox3D" parent="Games/Lottery Games/Coin Toss Machines"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.418911, 1.8278614, -8.565302)
+material_override = SubResource("StandardMaterial3D_qhghr")
+size = Vector3(6.180441, 3.269, 10.120424)
+
+[node name="AreaBlockout2" type="CSGBox3D" parent="Games/Lottery Games/Coin Toss Machines"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.4028645, 1.8278614, -22.531134)
+material_override = SubResource("StandardMaterial3D_qhghr")
+size = Vector3(6.212535, 3.269, 9.455879)
+
+[node name="Ticket-Scoring Machines" type="Node3D" parent="Games/Lottery Games"]
+
+[node name="AreaBlockout" type="CSGBox3D" parent="Games/Lottery Games/Ticket-Scoring Machines"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.136797, 1.8278614, 8.213888)
+material_override = SubResource("StandardMaterial3D_knd62")
+size = Vector3(6.744671, 3.269, 15.627722)
+
+[node name="AreaBlockout2" type="CSGBox3D" parent="Games/Lottery Games/Ticket-Scoring Machines"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.687994, 1.8278613, 8.213888)
+material_override = SubResource("StandardMaterial3D_knd62")
+size = Vector3(6.744671, 3.269, 15.627722)
+
+[node name="Ranked Games" type="Node3D" parent="Games"]
+
+[node name="Pinball Machines" type="Node3D" parent="Games/Ranked Games"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.338942, 0, -22.542496)
+
+[node name="AreaBlockout" type="CSGBox3D" parent="Games/Ranked Games/Pinball Machines"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.636038, 1.828, 0)
+material_override = SubResource("StandardMaterial3D_wrj5e")
+size = Vector3(15.451, 3.269, 4.118207)
+
+[node name="AreaBlockout2" type="CSGBox3D" parent="Games/Ranked Games/Pinball Machines"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.045841, 1.828, 0)
+material_override = SubResource("StandardMaterial3D_wrj5e")
+size = Vector3(15.451, 3.269, 4.118207)
+
+[node name="Dart Boards" type="Node3D" parent="Games/Ranked Games"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.359275, 0, 33.789967)
+
+[node name="AreaBlockout" type="CSGBox3D" parent="Games/Ranked Games/Dart Boards"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0044555664, 1.8278593, 0.5292969)
+size = Vector3(8.482, 3.269, 2.059)
+material = SubResource("StandardMaterial3D_pdcxv")
+
+[node name="Skeeball Machines" type="Node3D" parent="Games/Ranked Games"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.134, 0, 33.263)
+
+[node name="AreaBlockout" type="CSGBox3D" parent="Games/Ranked Games/Skeeball Machines"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.8278594, 0)
+material_override = SubResource("StandardMaterial3D_a70lm")
+size = Vector3(13.990213, 3.269, 4.118207)
+
+[node name="BBGun Machines" type="Node3D" parent="Games/Ranked Games"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14.083, 0, 33.263)
+
+[node name="AreaBlockout" type="CSGBox3D" parent="Games/Ranked Games/BBGun Machines"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.7890205, 1.8278594, 0)
+material_override = SubResource("StandardMaterial3D_5a1wu")
+size = Vector3(13.990213, 3.269, 4.118207)
+
+[node name="Racing Game Machines" type="Node3D" parent="Games/Ranked Games"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20.701115, 0, 0)
+
+[node name="AreaBlockout" type="CSGBox3D" parent="Games/Ranked Games/Racing Game Machines"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.2054558, 1.8278594, 3.4034452)
+size = Vector3(8.226294, 3.269, 24.166082)
+material = SubResource("StandardMaterial3D_feulc")
+
+[node name="AreaBlockout3" type="CSGBox3D" parent="Games/Ranked Games/Racing Game Machines"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -51.379982, 1.8278594, -12.259487)
+size = Vector3(6.842639, 3.269, 23.644566)
+material = SubResource("StandardMaterial3D_feulc")
+
+[node name="AreaBlockout2" type="CSGBox3D" parent="Games/Ranked Games/Racing Game Machines"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.068436, 1.8278594, 30.050398)
+size = Vector3(21.176142, 3.269, 8.302407)
+material = SubResource("StandardMaterial3D_feulc")
+
+[node name="Fighting Game Machines" type="Node3D" parent="Games/Ranked Games"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -25.372944, 0, -30.13255)
+
+[node name="AreaBlockout" type="CSGBox3D" parent="Games/Ranked Games/Fighting Game Machines"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.8678284, 1.8278594, -1.7103729)
+size = Vector3(28.527403, 3.269, 6.784853)
+material = SubResource("StandardMaterial3D_bdh6h")
+
+[node name="Rail Shooter Machines" type="Node3D" parent="Games/Ranked Games"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -45.97587, 0, 28.066574)
+
+[node name="AreaBlockout" type="CSGBox3D" parent="Games/Ranked Games/Rail Shooter Machines"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.72839355, 1.8278594, 4.2197533)
+size = Vector3(22.548, 3.269, 6.028133)
+material = SubResource("StandardMaterial3D_t3pw6")
+
+[node name="AreaBlockout2" type="CSGBox3D" parent="Games/Ranked Games/Rail Shooter Machines"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.611488, 1.8278594, -5.95726)
+size = Vector3(6.7818127, 3.269, 14.021682)
+material = SubResource("StandardMaterial3D_t3pw6")
+
+[node name="Rythym Game Machines" type="Node3D" parent="Games/Ranked Games"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -41.70631, 0, -9.456133)
+
+[node name="AreaBlockout" type="CSGBox3D" parent="Games/Ranked Games/Rythym Game Machines"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.3361435, 1.8278596, 6.2469177)
+size = Vector3(6.415, 3.269, 26.659)
+material = SubResource("StandardMaterial3D_nnljs")
+
+[node name="AreaBlockout2" type="CSGBox3D" parent="Games/Ranked Games/Rythym Game Machines"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13.235241, 1.8278599, 6.2469177)
+size = Vector3(6.415, 3.269, 26.659)
+material = SubResource("StandardMaterial3D_nnljs")
+
+[node name="Bowling" type="Node3D" parent="Games/Ranked Games"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.901954, 3.0183582, -35.384674)
+
+[node name="Game Terminals" type="Node3D" parent="Games/Ranked Games/Bowling"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.043955803, 0.068250656, -2.3399773)
+
+[node name="Terminal01" type="Node3D" parent="Games/Ranked Games/Bowling/Game Terminals"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14.877266, 0, 2.1604843)
 
-[node name="Stem" type="CSGBox3D" parent="Building Blockout/Floor/BowlingAlley/Platform/Game Terminals/Terminal01"]
+[node name="Stem" type="CSGBox3D" parent="Games/Ranked Games/Bowling/Game Terminals/Terminal01"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
 use_collision = true
 collision_mask = 3
 size = Vector3(0.22436523, 1, 0.17553711)
 material = SubResource("StandardMaterial3D_tjqh3")
 
-[node name="Panel" type="CSGBox3D" parent="Building Blockout/Floor/BowlingAlley/Platform/Game Terminals/Terminal01/Stem"]
+[node name="Panel" type="CSGBox3D" parent="Games/Ranked Games/Bowling/Game Terminals/Terminal01/Stem"]
 transform = Transform3D(1, 0, 0, 0, 0.86048424, -0.509477, 0, 0.509477, 0.86048424, 0, 0.5442977, -0.046863556)
 size = Vector3(1.0566406, 0.110961914, 0.8417969)
 material = SubResource("StandardMaterial3D_tjqh3")
 
-[node name="Terminal02" type="Node3D" parent="Building Blockout/Floor/BowlingAlley/Platform/Game Terminals"]
+[node name="Terminal02" type="Node3D" parent="Games/Ranked Games/Bowling/Game Terminals"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13.010852, 0, 2.1604843)
 
-[node name="Stem" type="CSGBox3D" parent="Building Blockout/Floor/BowlingAlley/Platform/Game Terminals/Terminal02"]
+[node name="Stem" type="CSGBox3D" parent="Games/Ranked Games/Bowling/Game Terminals/Terminal02"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
 use_collision = true
 collision_mask = 3
 size = Vector3(0.22436523, 1, 0.17553711)
 material = SubResource("StandardMaterial3D_tjqh3")
 
-[node name="Panel" type="CSGBox3D" parent="Building Blockout/Floor/BowlingAlley/Platform/Game Terminals/Terminal02/Stem"]
+[node name="Panel" type="CSGBox3D" parent="Games/Ranked Games/Bowling/Game Terminals/Terminal02/Stem"]
 transform = Transform3D(1, 0, 0, 0, 0.86048424, -0.509477, 0, 0.509477, 0.86048424, 0, 0.5442977, -0.046863556)
 size = Vector3(1.0566406, 0.110961914, 0.8417969)
 material = SubResource("StandardMaterial3D_tjqh3")
 
-[node name="Terminal03" type="Node3D" parent="Building Blockout/Floor/BowlingAlley/Platform/Game Terminals"]
+[node name="Terminal03" type="Node3D" parent="Games/Ranked Games/Bowling/Game Terminals"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.0338984, 0, 2.1604843)
 
-[node name="Stem" type="CSGBox3D" parent="Building Blockout/Floor/BowlingAlley/Platform/Game Terminals/Terminal03"]
+[node name="Stem" type="CSGBox3D" parent="Games/Ranked Games/Bowling/Game Terminals/Terminal03"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
 use_collision = true
 collision_mask = 3
 size = Vector3(0.22436523, 1, 0.17553711)
 material = SubResource("StandardMaterial3D_tjqh3")
 
-[node name="Panel" type="CSGBox3D" parent="Building Blockout/Floor/BowlingAlley/Platform/Game Terminals/Terminal03/Stem"]
+[node name="Panel" type="CSGBox3D" parent="Games/Ranked Games/Bowling/Game Terminals/Terminal03/Stem"]
 transform = Transform3D(1, 0, 0, 0, 0.86048424, -0.509477, 0, 0.509477, 0.86048424, 0, 0.5442977, -0.046863556)
 size = Vector3(1.0566406, 0.110961914, 0.8417969)
 material = SubResource("StandardMaterial3D_tjqh3")
 
-[node name="Terminal04" type="Node3D" parent="Building Blockout/Floor/BowlingAlley/Platform/Game Terminals"]
+[node name="Terminal04" type="Node3D" parent="Games/Ranked Games/Bowling/Game Terminals"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.4222775, 0, 2.1604843)
 
-[node name="Stem" type="CSGBox3D" parent="Building Blockout/Floor/BowlingAlley/Platform/Game Terminals/Terminal04"]
+[node name="Stem" type="CSGBox3D" parent="Games/Ranked Games/Bowling/Game Terminals/Terminal04"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.6045341, 0.5, 0)
 use_collision = true
 collision_mask = 3
 size = Vector3(0.22436523, 1, 0.17553711)
 material = SubResource("StandardMaterial3D_tjqh3")
 
-[node name="Panel" type="CSGBox3D" parent="Building Blockout/Floor/BowlingAlley/Platform/Game Terminals/Terminal04/Stem"]
+[node name="Panel" type="CSGBox3D" parent="Games/Ranked Games/Bowling/Game Terminals/Terminal04/Stem"]
 transform = Transform3D(1, 0, 0, 0, 0.86048424, -0.509477, 0, 0.509477, 0.86048424, 0, 0.5442977, -0.046863556)
 size = Vector3(1.0566406, 0.110961914, 0.8417969)
 material = SubResource("StandardMaterial3D_tjqh3")
 
-[node name="Terminal05" type="Node3D" parent="Building Blockout/Floor/BowlingAlley/Platform/Game Terminals"]
+[node name="Terminal05" type="Node3D" parent="Games/Ranked Games/Bowling/Game Terminals"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.825081, 0, 2.1604843)
 
-[node name="Stem" type="CSGBox3D" parent="Building Blockout/Floor/BowlingAlley/Platform/Game Terminals/Terminal05"]
+[node name="Stem" type="CSGBox3D" parent="Games/Ranked Games/Bowling/Game Terminals/Terminal05"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
 use_collision = true
 collision_mask = 3
 size = Vector3(0.22436523, 1, 0.17553711)
 material = SubResource("StandardMaterial3D_tjqh3")
 
-[node name="Panel" type="CSGBox3D" parent="Building Blockout/Floor/BowlingAlley/Platform/Game Terminals/Terminal05/Stem"]
+[node name="Panel" type="CSGBox3D" parent="Games/Ranked Games/Bowling/Game Terminals/Terminal05/Stem"]
 transform = Transform3D(1, 0, 0, 0, 0.86048424, -0.509477, 0, 0.509477, 0.86048424, 0, 0.5442977, -0.046863556)
 size = Vector3(1.0566406, 0.110961914, 0.8417969)
 material = SubResource("StandardMaterial3D_tjqh3")
 
-[node name="Terminal06" type="Node3D" parent="Building Blockout/Floor/BowlingAlley/Platform/Game Terminals"]
+[node name="Terminal06" type="Node3D" parent="Games/Ranked Games/Bowling/Game Terminals"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15.20001, 0, 2.1604843)
 
-[node name="Stem" type="CSGBox3D" parent="Building Blockout/Floor/BowlingAlley/Platform/Game Terminals/Terminal06"]
+[node name="Stem" type="CSGBox3D" parent="Games/Ranked Games/Bowling/Game Terminals/Terminal06"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5034752, 0.5, 0)
 use_collision = true
 collision_mask = 3
 size = Vector3(0.22436523, 1, 0.17553711)
 material = SubResource("StandardMaterial3D_tjqh3")
 
-[node name="Panel" type="CSGBox3D" parent="Building Blockout/Floor/BowlingAlley/Platform/Game Terminals/Terminal06/Stem"]
+[node name="Panel" type="CSGBox3D" parent="Games/Ranked Games/Bowling/Game Terminals/Terminal06/Stem"]
 transform = Transform3D(1, 0, 0, 0, 0.86048424, -0.509477, 0, 0.509477, 0.86048424, 0, 0.5442977, -0.046863556)
 size = Vector3(1.0566406, 0.110961914, 0.8417969)
 material = SubResource("StandardMaterial3D_tjqh3")
 
-[node name="Ball Return" type="Node3D" parent="Building Blockout/Floor/BowlingAlley/Platform"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.0183563, -8.653694)
-
-[node name="Return01" type="Node3D" parent="Building Blockout/Floor/BowlingAlley/Platform/Ball Return"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.573264, 0, 0)
-
-[node name="Ejector" type="CSGMesh3D" parent="Building Blockout/Floor/BowlingAlley/Platform/Ball Return/Return01"]
-transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0, 0.757504, -0.044044495)
-use_collision = true
-collision_mask = 3
-mesh = SubResource("PrismMesh_84opf")
-material = SubResource("StandardMaterial3D_ghcvg")
-
-[node name="Hole" type="CSGSphere3D" parent="Building Blockout/Floor/BowlingAlley/Platform/Ball Return/Return01/Ejector"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.0215797, 0.27332497, -1.1920929e-06)
-operation = 2
-radius = 0.39681488
-material = SubResource("StandardMaterial3D_g1n7i")
-
-[node name="Ball Catcher" type="CSGBox3D" parent="Building Blockout/Floor/BowlingAlley/Platform/Ball Return/Return01"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.37006044, 2.356598)
-use_collision = true
-collision_mask = 3
-size = Vector3(0.71118164, 0.7401123, 3.0315552)
-material = SubResource("StandardMaterial3D_i75f5")
-
-[node name="Round-Out" type="CSGCylinder3D" parent="Building Blockout/Floor/BowlingAlley/Platform/Ball Return/Return01/Ball Catcher"]
-transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0.6437764, -0.056518555)
-operation = 2
-radius = 0.40234375
-height = 2.9924316
-sides = 14
-material = SubResource("StandardMaterial3D_i75f5")
-
-[node name="Cut Out" type="CSGBox3D" parent="Building Blockout/Floor/BowlingAlley/Platform/Ball Return/Return01/Ball Catcher"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.038589478)
-operation = 2
-size = Vector3(0.30273438, 0.875, 2.9543762)
-material = SubResource("StandardMaterial3D_i75f5")
-
-[node name="Cut Out3" type="CSGBox3D" parent="Building Blockout/Floor/BowlingAlley/Platform/Ball Return/Return01/Ball Catcher"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.13510132, 0.01618576)
-operation = 2
-size = Vector3(0.30273438, 0.60479736, 3.2049026)
-material = SubResource("StandardMaterial3D_i75f5")
-
-[node name="Cut Out2" type="CSGBox3D" parent="Building Blockout/Floor/BowlingAlley/Platform/Ball Return/Return01/Ball Catcher"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.1328125, 0.056835175)
-operation = 2
-size = Vector3(0.8125, 0.609375, 2.710518)
-material = SubResource("StandardMaterial3D_i75f5")
-
-[node name="Return02" type="Node3D" parent="Building Blockout/Floor/BowlingAlley/Platform/Ball Return"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.3688955, 0, 0)
-
-[node name="Ejector" type="CSGMesh3D" parent="Building Blockout/Floor/BowlingAlley/Platform/Ball Return/Return02"]
-transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0, 0.757504, -0.044044495)
-use_collision = true
-collision_mask = 3
-mesh = SubResource("PrismMesh_84opf")
-material = SubResource("StandardMaterial3D_ghcvg")
-
-[node name="Hole" type="CSGSphere3D" parent="Building Blockout/Floor/BowlingAlley/Platform/Ball Return/Return02/Ejector"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.0215797, 0.27332497, -1.1920929e-06)
-operation = 2
-radius = 0.39681488
-material = SubResource("StandardMaterial3D_g1n7i")
-
-[node name="Ball Catcher" type="CSGBox3D" parent="Building Blockout/Floor/BowlingAlley/Platform/Ball Return/Return02"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.37006044, 2.356598)
-use_collision = true
-collision_mask = 3
-size = Vector3(0.71118164, 0.7401123, 3.0315552)
-material = SubResource("StandardMaterial3D_i75f5")
-
-[node name="Round-Out" type="CSGCylinder3D" parent="Building Blockout/Floor/BowlingAlley/Platform/Ball Return/Return02/Ball Catcher"]
-transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0.6437764, -0.056518555)
-operation = 2
-radius = 0.40234375
-height = 2.9924316
-sides = 14
-material = SubResource("StandardMaterial3D_i75f5")
-
-[node name="Cut Out" type="CSGBox3D" parent="Building Blockout/Floor/BowlingAlley/Platform/Ball Return/Return02/Ball Catcher"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.038589478)
-operation = 2
-size = Vector3(0.30273438, 0.875, 2.9543762)
-material = SubResource("StandardMaterial3D_i75f5")
-
-[node name="Cut Out3" type="CSGBox3D" parent="Building Blockout/Floor/BowlingAlley/Platform/Ball Return/Return02/Ball Catcher"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.13510132, 0.01618576)
-operation = 2
-size = Vector3(0.30273438, 0.60479736, 3.2049026)
-material = SubResource("StandardMaterial3D_i75f5")
-
-[node name="Cut Out2" type="CSGBox3D" parent="Building Blockout/Floor/BowlingAlley/Platform/Ball Return/Return02/Ball Catcher"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.1328125, 0.056835175)
-operation = 2
-size = Vector3(0.8125, 0.609375, 2.710518)
-material = SubResource("StandardMaterial3D_i75f5")
-
-[node name="Return03" type="Node3D" parent="Building Blockout/Floor/BowlingAlley/Platform/Ball Return"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16.232237, 0, 0)
-
-[node name="Ejector" type="CSGMesh3D" parent="Building Blockout/Floor/BowlingAlley/Platform/Ball Return/Return03"]
-transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0, 0.757504, -0.044044495)
-use_collision = true
-collision_mask = 3
-mesh = SubResource("PrismMesh_84opf")
-material = SubResource("StandardMaterial3D_ghcvg")
-
-[node name="Hole" type="CSGSphere3D" parent="Building Blockout/Floor/BowlingAlley/Platform/Ball Return/Return03/Ejector"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.0215797, 0.27332497, -1.1920929e-06)
-operation = 2
-radius = 0.39681488
-material = SubResource("StandardMaterial3D_g1n7i")
-
-[node name="Ball Catcher" type="CSGBox3D" parent="Building Blockout/Floor/BowlingAlley/Platform/Ball Return/Return03"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.37006044, 2.356598)
-use_collision = true
-collision_mask = 3
-size = Vector3(0.71118164, 0.7401123, 3.0315552)
-material = SubResource("StandardMaterial3D_i75f5")
-
-[node name="Round-Out" type="CSGCylinder3D" parent="Building Blockout/Floor/BowlingAlley/Platform/Ball Return/Return03/Ball Catcher"]
-transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0.6437764, -0.056518555)
-operation = 2
-radius = 0.40234375
-height = 2.9924316
-sides = 14
-material = SubResource("StandardMaterial3D_i75f5")
-
-[node name="Cut Out" type="CSGBox3D" parent="Building Blockout/Floor/BowlingAlley/Platform/Ball Return/Return03/Ball Catcher"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.038589478)
-operation = 2
-size = Vector3(0.30273438, 0.875, 2.9543762)
-material = SubResource("StandardMaterial3D_i75f5")
-
-[node name="Cut Out3" type="CSGBox3D" parent="Building Blockout/Floor/BowlingAlley/Platform/Ball Return/Return03/Ball Catcher"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.13510132, 0.01618576)
-operation = 2
-size = Vector3(0.30273438, 0.60479736, 3.2049026)
-material = SubResource("StandardMaterial3D_i75f5")
-
-[node name="Cut Out2" type="CSGBox3D" parent="Building Blockout/Floor/BowlingAlley/Platform/Ball Return/Return03/Ball Catcher"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.1328125, 0.056835175)
-operation = 2
-size = Vector3(0.8125, 0.609375, 2.710518)
-material = SubResource("StandardMaterial3D_i75f5")
-
-[node name="TVs" type="Node3D" parent="Building Blockout/Floor/BowlingAlley"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 11.379688, 19.373993)
-
-[node name="TV01" type="Node3D" parent="Building Blockout/Floor/BowlingAlley/TVs"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15.095734, 0.45870018, 0)
-
-[node name="Mount01" type="CSGBox3D" parent="Building Blockout/Floor/BowlingAlley/TVs/TV01"]
-transform = Transform3D(1, 0, 0, 0, 0.9544593, 0.2983412, 0, -0.2983412, 0.9544593, -1.0107765, 0.22882557, -0.2528839)
-use_collision = true
-size = Vector3(0.21459961, 2.4780273, 0.22070313)
-material = SubResource("StandardMaterial3D_y04ch")
-
-[node name="Mount02" type="CSGBox3D" parent="Building Blockout/Floor/BowlingAlley/TVs/TV01"]
-transform = Transform3D(1, 0, 0, 0, 0.9544593, 0.2983412, 0, -0.2983412, 0.9544593, 0.9965942, 0.22882557, -0.2528839)
-use_collision = true
-size = Vector3(0.21459961, 2.4780273, 0.22070313)
-material = SubResource("StandardMaterial3D_y04ch")
-
-[node name="TVFrame" type="CSGBox3D" parent="Building Blockout/Floor/BowlingAlley/TVs/TV01"]
-transform = Transform3D(1, 0, 0, 0, 0.9654863, -0.26045394, 0, 0.26045394, 0.9654863, 0, -1.1578445, 0.14207077)
-use_collision = true
-size = Vector3(5.2871094, 3.5630188, 0.38328552)
-material = SubResource("StandardMaterial3D_l1ksi")
-
-[node name="Screen" type="CSGBox3D" parent="Building Blockout/Floor/BowlingAlley/TVs/TV01/TVFrame"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.4305115e-05, 0.20920563)
-operation = 2
-size = Vector3(4.9941406, 3.2509766, 0.08386946)
-material = SubResource("StandardMaterial3D_lr4s1")
-
-[node name="TV02" type="Node3D" parent="Building Blockout/Floor/BowlingAlley/TVs"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.047085, 0.45870018, 0)
-
-[node name="Mount01" type="CSGBox3D" parent="Building Blockout/Floor/BowlingAlley/TVs/TV02"]
-transform = Transform3D(1, 0, 0, 0, 0.9544593, 0.2983412, 0, -0.2983412, 0.9544593, -1.0107765, 0.22882557, -0.2528839)
-use_collision = true
-size = Vector3(0.21459961, 2.4780273, 0.22070313)
-material = SubResource("StandardMaterial3D_y04ch")
-
-[node name="Mount02" type="CSGBox3D" parent="Building Blockout/Floor/BowlingAlley/TVs/TV02"]
-transform = Transform3D(1, 0, 0, 0, 0.9544593, 0.2983412, 0, -0.2983412, 0.9544593, 0.9965942, 0.22882557, -0.2528839)
-use_collision = true
-size = Vector3(0.21459961, 2.4780273, 0.22070313)
-material = SubResource("StandardMaterial3D_y04ch")
-
-[node name="TVFrame" type="CSGBox3D" parent="Building Blockout/Floor/BowlingAlley/TVs/TV02"]
-transform = Transform3D(1, 0, 0, 0, 0.9654863, -0.26045394, 0, 0.26045394, 0.9654863, 0, -1.1578445, 0.14207077)
-use_collision = true
-size = Vector3(5.2871094, 3.5630188, 0.38328552)
-material = SubResource("StandardMaterial3D_l1ksi")
-
-[node name="Screen" type="CSGBox3D" parent="Building Blockout/Floor/BowlingAlley/TVs/TV02/TVFrame"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.4305115e-05, 0.20920563)
-operation = 2
-size = Vector3(4.9941406, 3.2509766, 0.08386946)
-material = SubResource("StandardMaterial3D_lr4s1")
-
-[node name="TV03" type="Node3D" parent="Building Blockout/Floor/BowlingAlley/TVs"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.2438908, 0.45870018, 0)
-
-[node name="Mount01" type="CSGBox3D" parent="Building Blockout/Floor/BowlingAlley/TVs/TV03"]
-transform = Transform3D(1, 0, 0, 0, 0.9544593, 0.2983412, 0, -0.2983412, 0.9544593, -1.0107765, 0.22882557, -0.2528839)
-use_collision = true
-size = Vector3(0.21459961, 2.4780273, 0.22070313)
-material = SubResource("StandardMaterial3D_y04ch")
-
-[node name="Mount02" type="CSGBox3D" parent="Building Blockout/Floor/BowlingAlley/TVs/TV03"]
-transform = Transform3D(1, 0, 0, 0, 0.9544593, 0.2983412, 0, -0.2983412, 0.9544593, 0.9965942, 0.22882557, -0.2528839)
-use_collision = true
-size = Vector3(0.21459961, 2.4780273, 0.22070313)
-material = SubResource("StandardMaterial3D_y04ch")
-
-[node name="TVFrame" type="CSGBox3D" parent="Building Blockout/Floor/BowlingAlley/TVs/TV03"]
-transform = Transform3D(1, 0, 0, 0, 0.9654863, -0.26045394, 0, 0.26045394, 0.9654863, 0, -1.1578445, 0.14207077)
-use_collision = true
-size = Vector3(5.2871094, 3.5630188, 0.38328552)
-material = SubResource("StandardMaterial3D_l1ksi")
-
-[node name="Screen" type="CSGBox3D" parent="Building Blockout/Floor/BowlingAlley/TVs/TV03/TVFrame"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.4305115e-05, 0.20920563)
-operation = 2
-size = Vector3(4.9941406, 3.2509766, 0.08386946)
-material = SubResource("StandardMaterial3D_lr4s1")
-
-[node name="TV04" type="Node3D" parent="Building Blockout/Floor/BowlingAlley/TVs"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.74802, 0.45870018, 0)
-
-[node name="Mount01" type="CSGBox3D" parent="Building Blockout/Floor/BowlingAlley/TVs/TV04"]
-transform = Transform3D(1, 0, 0, 0, 0.9544593, 0.2983412, 0, -0.2983412, 0.9544593, -1.0107765, 0.22882557, -0.2528839)
-use_collision = true
-size = Vector3(0.21459961, 2.4780273, 0.22070313)
-material = SubResource("StandardMaterial3D_y04ch")
-
-[node name="Mount02" type="CSGBox3D" parent="Building Blockout/Floor/BowlingAlley/TVs/TV04"]
-transform = Transform3D(1, 0, 0, 0, 0.9544593, 0.2983412, 0, -0.2983412, 0.9544593, 0.9965942, 0.22882557, -0.2528839)
-use_collision = true
-size = Vector3(0.21459961, 2.4780273, 0.22070313)
-material = SubResource("StandardMaterial3D_y04ch")
-
-[node name="TVFrame" type="CSGBox3D" parent="Building Blockout/Floor/BowlingAlley/TVs/TV04"]
-transform = Transform3D(1, 0, 0, 0, 0.9654863, -0.26045394, 0, 0.26045394, 0.9654863, 0, -1.1578445, 0.14207077)
-use_collision = true
-size = Vector3(5.2871094, 3.5630188, 0.38328552)
-material = SubResource("StandardMaterial3D_l1ksi")
-
-[node name="Screen" type="CSGBox3D" parent="Building Blockout/Floor/BowlingAlley/TVs/TV04/TVFrame"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.4305115e-05, 0.20920563)
-operation = 2
-size = Vector3(4.9941406, 3.2509766, 0.08386946)
-material = SubResource("StandardMaterial3D_lr4s1")
-
-[node name="TV05" type="Node3D" parent="Building Blockout/Floor/BowlingAlley/TVs"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.619286, 0.45870018, 0)
-
-[node name="Mount01" type="CSGBox3D" parent="Building Blockout/Floor/BowlingAlley/TVs/TV05"]
-transform = Transform3D(1, 0, 0, 0, 0.9544593, 0.2983412, 0, -0.2983412, 0.9544593, -1.0107765, 0.22882557, -0.2528839)
-use_collision = true
-size = Vector3(0.21459961, 2.4780273, 0.22070313)
-material = SubResource("StandardMaterial3D_y04ch")
-
-[node name="Mount02" type="CSGBox3D" parent="Building Blockout/Floor/BowlingAlley/TVs/TV05"]
-transform = Transform3D(1, 0, 0, 0, 0.9544593, 0.2983412, 0, -0.2983412, 0.9544593, 0.9965942, 0.22882557, -0.2528839)
-use_collision = true
-size = Vector3(0.21459961, 2.4780273, 0.22070313)
-material = SubResource("StandardMaterial3D_y04ch")
-
-[node name="TVFrame" type="CSGBox3D" parent="Building Blockout/Floor/BowlingAlley/TVs/TV05"]
-transform = Transform3D(1, 0, 0, 0, 0.9654863, -0.26045394, 0, 0.26045394, 0.9654863, 0, -1.1578445, 0.14207077)
-use_collision = true
-size = Vector3(5.2871094, 3.5630188, 0.38328552)
-material = SubResource("StandardMaterial3D_l1ksi")
-
-[node name="Screen" type="CSGBox3D" parent="Building Blockout/Floor/BowlingAlley/TVs/TV05/TVFrame"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.4305115e-05, 0.20920563)
-operation = 2
-size = Vector3(4.9941406, 3.2509766, 0.08386946)
-material = SubResource("StandardMaterial3D_lr4s1")
-
-[node name="TV06" type="Node3D" parent="Building Blockout/Floor/BowlingAlley/TVs"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 19.667194, 0.45870018, 0)
-
-[node name="Mount01" type="CSGBox3D" parent="Building Blockout/Floor/BowlingAlley/TVs/TV06"]
-transform = Transform3D(1, 0, 0, 0, 0.9544593, 0.2983412, 0, -0.2983412, 0.9544593, -1.0107765, 0.22882557, -0.2528839)
-use_collision = true
-size = Vector3(0.21459961, 2.4780273, 0.22070313)
-material = SubResource("StandardMaterial3D_y04ch")
-
-[node name="Mount02" type="CSGBox3D" parent="Building Blockout/Floor/BowlingAlley/TVs/TV06"]
-transform = Transform3D(1, 0, 0, 0, 0.9544593, 0.2983412, 0, -0.2983412, 0.9544593, 0.9965942, 0.22882557, -0.2528839)
-use_collision = true
-size = Vector3(0.21459961, 2.4780273, 0.22070313)
-material = SubResource("StandardMaterial3D_y04ch")
-
-[node name="TVFrame" type="CSGBox3D" parent="Building Blockout/Floor/BowlingAlley/TVs/TV06"]
-transform = Transform3D(1, 0, 0, 0, 0.9654863, -0.26045394, 0, 0.26045394, 0.9654863, 0, -1.1578445, 0.14207077)
-use_collision = true
-size = Vector3(5.2871094, 3.5630188, 0.38328552)
-material = SubResource("StandardMaterial3D_l1ksi")
-
-[node name="Screen" type="CSGBox3D" parent="Building Blockout/Floor/BowlingAlley/TVs/TV06/TVFrame"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.4305115e-05, 0.20920563)
-operation = 2
-size = Vector3(4.9941406, 3.2509766, 0.08386946)
-material = SubResource("StandardMaterial3D_lr4s1")
-
-[node name="Walls" type="Node3D" parent="Building Blockout"]
-
-[node name="Node3D" type="Node3D" parent="Building Blockout/Walls"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.2963567, 6.3823547, -35.57653)
-
-[node name="Segment01" type="CSGBox3D" parent="Building Blockout/Walls/Node3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -26.380829, 0.10064697, 0.09183502)
-size = Vector3(49.794067, 13.358582, 0.37109375)
-
-[node name="Segment02" type="CSGBox3D" parent="Building Blockout/Walls/Node3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 45.12215, 0.10064697, 0.09183502)
-size = Vector3(6.0290833, 13.358582, 0.37109375)
-
-[node name="Segment03" type="CSGBox3D" parent="Building Blockout/Walls/Node3D"]
-transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 42.238285, 0.10064697, -22.396355)
-size = Vector3(45.20204, 13.358582, 0.37109375)
-
-[node name="Segment04" type="CSGBox3D" parent="Building Blockout/Walls/Node3D"]
-transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -1.6371074, 0.10064697, -22.396355)
-size = Vector3(45.20204, 13.358582, 0.37109375)
-
-[node name="Segment05" type="CSGBox3D" parent="Building Blockout/Walls/Node3D"]
-transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 20.269499, 0.10064697, -44.913162)
-size = Vector3(44.05094, 13.358582, 0.37109375)
-
-[node name="South" type="CSGBox3D" parent="Building Blockout/Walls"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.8203125, 6.4626465, 35.523464)
-size = Vector3(99.58203, 13.325684, 0.21228027)
-
-[node name="East" type="CSGBox3D" parent="Building Blockout/Walls"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 40.784454, 6.4568787, 0)
-size = Vector3(0.27722168, 13.304382, 71.413086)
-
-[node name="Main Entrance Cutout" type="CSGBox3D" parent="Building Blockout/Walls/East"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -4.4043007, -17.618343)
-operation = 2
-size = Vector3(1, 4.6703796, 5.083008)
-
-[node name="West" type="CSGBox3D" parent="Building Blockout/Walls"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -58.52394, 6.4831543, 0)
-size = Vector3(0.32006836, 13.36084, 71.31445)
-
-[node name="Roof" type="Node3D" parent="Building Blockout"]
-
-[node name="Top" type="CSGBox3D" parent="Building Blockout/Roof"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.018005, 13.163565, -23.441711)
-use_collision = true
-size = Vector3(99.848755, 0.38671875, 118.09412)
-material = SubResource("StandardMaterial3D_84opf")
-
-[node name="Lights" type="Node3D" parent="Building Blockout/Roof"]
-
-[node name="Hanging Light" parent="Building Blockout/Roof/Lights" instance=ExtResource("4_xm7at")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 34.659843, 12.966294, -23.64961)
-
-[node name="Hanging Light2" parent="Building Blockout/Roof/Lights" instance=ExtResource("4_xm7at")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20.989334, 12.966294, -23.64961)
-
-[node name="Hanging Light3" parent="Building Blockout/Roof/Lights" instance=ExtResource("4_xm7at")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.2240696, 12.966294, -23.64961)
-
-[node name="Hanging Light4" parent="Building Blockout/Roof/Lights" instance=ExtResource("4_xm7at")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.4464397, 12.966294, -23.64961)
-
-[node name="Hanging Light31" parent="Building Blockout/Roof/Lights" instance=ExtResource("4_xm7at")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 26.770847, 12.966294, -51.096054)
-
-[node name="Hanging Light32" parent="Building Blockout/Roof/Lights" instance=ExtResource("4_xm7at")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.005582, 12.966294, -51.096054)
-
-[node name="Hanging Light33" parent="Building Blockout/Roof/Lights" instance=ExtResource("4_xm7at")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.6649275, 12.966294, -51.096054)
-
-[node name="Hanging Light34" parent="Building Blockout/Roof/Lights" instance=ExtResource("4_xm7at")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 26.770847, 12.966294, -67.57468)
-
-[node name="Hanging Light35" parent="Building Blockout/Roof/Lights" instance=ExtResource("4_xm7at")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.005582, 12.966294, -67.57468)
-
-[node name="Hanging Light36" parent="Building Blockout/Roof/Lights" instance=ExtResource("4_xm7at")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.6649275, 12.966294, -67.57468)
-
-[node name="Hanging Light5" parent="Building Blockout/Roof/Lights" instance=ExtResource("4_xm7at")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20.151093, 12.966294, -23.64961)
-
-[node name="Hanging Light6" parent="Building Blockout/Roof/Lights" instance=ExtResource("4_xm7at")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -33.8216, 12.966294, -23.64961)
-
-[node name="Hanging Light7" parent="Building Blockout/Roof/Lights" instance=ExtResource("4_xm7at")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 34.659843, 12.966294, -6.2588034)
-
-[node name="Hanging Light8" parent="Building Blockout/Roof/Lights" instance=ExtResource("4_xm7at")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20.989334, 12.966294, -6.2588034)
-
-[node name="Hanging Light9" parent="Building Blockout/Roof/Lights" instance=ExtResource("4_xm7at")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.2240696, 12.966294, -6.2588034)
-
-[node name="Hanging Light10" parent="Building Blockout/Roof/Lights" instance=ExtResource("4_xm7at")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.4464397, 12.966294, -6.2588034)
-
-[node name="Hanging Light11" parent="Building Blockout/Roof/Lights" instance=ExtResource("4_xm7at")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20.151093, 12.966294, -6.2588034)
-
-[node name="Hanging Light12" parent="Building Blockout/Roof/Lights" instance=ExtResource("4_xm7at")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -33.8216, 12.966294, -6.2588034)
-
-[node name="Hanging Light13" parent="Building Blockout/Roof/Lights" instance=ExtResource("4_xm7at")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 34.659843, 12.966294, 10.84271)
-
-[node name="Hanging Light14" parent="Building Blockout/Roof/Lights" instance=ExtResource("4_xm7at")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20.989334, 12.966294, 10.84271)
-
-[node name="Hanging Light15" parent="Building Blockout/Roof/Lights" instance=ExtResource("4_xm7at")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.2240696, 12.966294, 10.84271)
-
-[node name="Hanging Light16" parent="Building Blockout/Roof/Lights" instance=ExtResource("4_xm7at")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.4464397, 12.966294, 10.84271)
-
-[node name="Hanging Light17" parent="Building Blockout/Roof/Lights" instance=ExtResource("4_xm7at")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20.151093, 12.966294, 10.84271)
-
-[node name="Hanging Light18" parent="Building Blockout/Roof/Lights" instance=ExtResource("4_xm7at")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -33.8216, 12.966294, 10.84271)
-
-[node name="Hanging Light19" parent="Building Blockout/Roof/Lights" instance=ExtResource("4_xm7at")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 34.659843, 12.966294, 27.818401)
-
-[node name="Hanging Light20" parent="Building Blockout/Roof/Lights" instance=ExtResource("4_xm7at")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20.989334, 12.966294, 27.818401)
-
-[node name="Hanging Light21" parent="Building Blockout/Roof/Lights" instance=ExtResource("4_xm7at")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.2240696, 12.966294, 27.818401)
-
-[node name="Hanging Light22" parent="Building Blockout/Roof/Lights" instance=ExtResource("4_xm7at")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.4464397, 12.966294, 27.818401)
-
-[node name="Hanging Light23" parent="Building Blockout/Roof/Lights" instance=ExtResource("4_xm7at")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20.151093, 12.966294, 27.818401)
-
-[node name="Hanging Light24" parent="Building Blockout/Roof/Lights" instance=ExtResource("4_xm7at")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -33.8216, 12.966294, 27.818401)
-
-[node name="Hanging Light25" parent="Building Blockout/Roof/Lights" instance=ExtResource("4_xm7at")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -48.65209, 12.966294, -6.2588034)
-
-[node name="Hanging Light26" parent="Building Blockout/Roof/Lights" instance=ExtResource("4_xm7at")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -48.65209, 12.966294, 10.84271)
-
-[node name="Hanging Light27" parent="Building Blockout/Roof/Lights" instance=ExtResource("4_xm7at")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -48.65209, 12.966294, 27.818401)
-
-[node name="Pize Games" type="Node3D" parent="Building Blockout"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.26799, 0, -0.3279972)
-
-[node name="Claw Machines" type="Node3D" parent="Building Blockout/Pize Games"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.274164, 0, 0)
-
-[node name="AreaBlockout" type="CSGBox3D" parent="Building Blockout/Pize Games/Claw Machines"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.863015, 1.8278809, 2.3647242)
-material_override = SubResource("StandardMaterial3D_xm7at")
-size = Vector3(7.455261, 3.269043, 32.633514)
-
-[node name="AreaBlockout2" type="CSGBox3D" parent="Building Blockout/Pize Games/Claw Machines"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.13356, 1.8278594, 2.3647242)
-material_override = SubResource("StandardMaterial3D_xm7at")
-size = Vector3(7.494, 3.269, 32.634)
-
-[node name="Dropper Machines" type="Node3D" parent="Building Blockout/Pize Games"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.274164, 0, 0)
-
-[node name="AreaBlockout" type="CSGBox3D" parent="Building Blockout/Pize Games/Dropper Machines"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.8708057, 1.7636414, -14.693441)
-material_override = SubResource("StandardMaterial3D_r1wa2")
-size = Vector3(7.298279, 3.140564, 1)
-
-[node name="AreaBlockout5" type="CSGBox3D" parent="Building Blockout/Pize Games/Dropper Machines"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.995496, 1.7636414, 2.2869663)
-material_override = SubResource("StandardMaterial3D_r1wa2")
-size = Vector3(2.802719, 3.140564, 34.960815)
-
-[node name="AreaBlockout2" type="CSGBox3D" parent="Building Blockout/Pize Games/Dropper Machines"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.1033764, 1.7636414, -14.693441)
-material_override = SubResource("StandardMaterial3D_r1wa2")
-size = Vector3(7.298279, 3.140564, 1)
-
-[node name="AreaBlockout3" type="CSGBox3D" parent="Building Blockout/Pize Games/Dropper Machines"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.8708057, 1.7636414, 19.321095)
-material_override = SubResource("StandardMaterial3D_r1wa2")
-size = Vector3(7.298279, 3.140564, 1)
-
-[node name="AreaBlockout4" type="CSGBox3D" parent="Building Blockout/Pize Games/Dropper Machines"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.1033764, 1.7636414, 19.321095)
-material_override = SubResource("StandardMaterial3D_r1wa2")
-size = Vector3(7.298279, 3.140564, 1)
-
-[node name="Lottery Games" type="Node3D" parent="Building Blockout"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -28.0709, -1.9073486e-06, 3.1161232)
-
-[node name="Coin Toss Machines" type="Node3D" parent="Building Blockout/Lottery Games"]
-
-[node name="AreaBlockout" type="CSGBox3D" parent="Building Blockout/Lottery Games/Coin Toss Machines"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.418911, 1.8278614, -8.565302)
-material_override = SubResource("StandardMaterial3D_qhghr")
-size = Vector3(6.180441, 3.269, 10.120424)
-
-[node name="AreaBlockout2" type="CSGBox3D" parent="Building Blockout/Lottery Games/Coin Toss Machines"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.4028645, 1.8278614, -22.531134)
-material_override = SubResource("StandardMaterial3D_qhghr")
-size = Vector3(6.212535, 3.269, 9.455879)
-
-[node name="Ticket-Scoring Machines" type="Node3D" parent="Building Blockout/Lottery Games"]
-
-[node name="AreaBlockout" type="CSGBox3D" parent="Building Blockout/Lottery Games/Ticket-Scoring Machines"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.136797, 1.8278614, 8.213888)
-material_override = SubResource("StandardMaterial3D_knd62")
-size = Vector3(6.744671, 3.269, 15.627722)
-
-[node name="AreaBlockout2" type="CSGBox3D" parent="Building Blockout/Lottery Games/Ticket-Scoring Machines"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.687994, 1.8278613, 8.213888)
-material_override = SubResource("StandardMaterial3D_knd62")
-size = Vector3(6.744671, 3.269, 15.627722)
-
-[node name="Ranked Games" type="Node3D" parent="Building Blockout"]
-
-[node name="Pinball Machines" type="Node3D" parent="Building Blockout/Ranked Games"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.338942, 0, -22.542496)
-
-[node name="AreaBlockout" type="CSGBox3D" parent="Building Blockout/Ranked Games/Pinball Machines"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.636038, 1.828, 0)
-material_override = SubResource("StandardMaterial3D_wrj5e")
-size = Vector3(15.451, 3.269, 4.118207)
-
-[node name="AreaBlockout2" type="CSGBox3D" parent="Building Blockout/Ranked Games/Pinball Machines"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.045841, 1.828, 0)
-material_override = SubResource("StandardMaterial3D_wrj5e")
-size = Vector3(15.451, 3.269, 4.118207)
-
-[node name="Dart Boards" type="Node3D" parent="Building Blockout/Ranked Games"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.359275, 0, 33.789967)
-
-[node name="AreaBlockout" type="CSGBox3D" parent="Building Blockout/Ranked Games/Dart Boards"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0044555664, 1.8278593, 0.5292969)
-size = Vector3(8.482, 3.269, 2.059)
-material = SubResource("StandardMaterial3D_pdcxv")
-
-[node name="Skeeball Machines" type="Node3D" parent="Building Blockout/Ranked Games"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.134, 0, 33.263)
-
-[node name="AreaBlockout" type="CSGBox3D" parent="Building Blockout/Ranked Games/Skeeball Machines"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.8278594, 0)
-material_override = SubResource("StandardMaterial3D_a70lm")
-size = Vector3(13.990213, 3.269, 4.118207)
-
-[node name="BBGun Machines" type="Node3D" parent="Building Blockout/Ranked Games"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14.083, 0, 33.263)
-
-[node name="AreaBlockout" type="CSGBox3D" parent="Building Blockout/Ranked Games/BBGun Machines"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.7890205, 1.8278594, 0)
-material_override = SubResource("StandardMaterial3D_5a1wu")
-size = Vector3(13.990213, 3.269, 4.118207)
-
-[node name="Racing Game Machines" type="Node3D" parent="Building Blockout/Ranked Games"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20.701115, 0, 0)
-
-[node name="AreaBlockout" type="CSGBox3D" parent="Building Blockout/Ranked Games/Racing Game Machines"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.2054558, 1.8278594, 3.4034452)
-size = Vector3(8.226294, 3.269, 24.166082)
-material = SubResource("StandardMaterial3D_feulc")
-
-[node name="AreaBlockout3" type="CSGBox3D" parent="Building Blockout/Ranked Games/Racing Game Machines"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -51.379982, 1.8278594, -12.259487)
-size = Vector3(6.842639, 3.269, 23.644566)
-material = SubResource("StandardMaterial3D_feulc")
-
-[node name="AreaBlockout2" type="CSGBox3D" parent="Building Blockout/Ranked Games/Racing Game Machines"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.068436, 1.8278594, 30.050398)
-size = Vector3(21.176142, 3.269, 8.302407)
-material = SubResource("StandardMaterial3D_feulc")
-
-[node name="Fighting Game Machines" type="Node3D" parent="Building Blockout/Ranked Games"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -25.372944, 0, -30.13255)
-
-[node name="AreaBlockout" type="CSGBox3D" parent="Building Blockout/Ranked Games/Fighting Game Machines"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.8678284, 1.8278594, -1.7103729)
-size = Vector3(28.527403, 3.269, 6.784853)
-material = SubResource("StandardMaterial3D_bdh6h")
-
-[node name="Rail Shooter Machines" type="Node3D" parent="Building Blockout/Ranked Games"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -45.97587, 0, 28.066574)
-
-[node name="AreaBlockout" type="CSGBox3D" parent="Building Blockout/Ranked Games/Rail Shooter Machines"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.72839355, 1.8278594, 4.2197533)
-size = Vector3(22.548, 3.269, 6.028133)
-material = SubResource("StandardMaterial3D_t3pw6")
-
-[node name="AreaBlockout2" type="CSGBox3D" parent="Building Blockout/Ranked Games/Rail Shooter Machines"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.611488, 1.8278594, -5.95726)
-size = Vector3(6.7818127, 3.269, 14.021682)
-material = SubResource("StandardMaterial3D_t3pw6")
-
-[node name="Rythym Game Machines" type="Node3D" parent="Building Blockout/Ranked Games"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -41.70631, 0, -9.456133)
-
-[node name="AreaBlockout" type="CSGBox3D" parent="Building Blockout/Ranked Games/Rythym Game Machines"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.3361435, 1.8278596, 6.2469177)
-size = Vector3(6.415, 3.269, 26.659)
-material = SubResource("StandardMaterial3D_nnljs")
-
-[node name="AreaBlockout2" type="CSGBox3D" parent="Building Blockout/Ranked Games/Rythym Game Machines"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13.235241, 1.8278599, 6.2469177)
-size = Vector3(6.415, 3.269, 26.659)
-material = SubResource("StandardMaterial3D_nnljs")
-
-[node name="Booths" type="Node3D" parent="Building Blockout"]
+[node name="Booths" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -24.578594, 0, -27.13808)
 
-[node name="Prize Exchange" type="Node3D" parent="Building Blockout/Booths"]
+[node name="Prize Exchange" type="Node3D" parent="Booths"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.785305, 0, -2.0450745)
 
-[node name="AreaBlockout" type="CSGBox3D" parent="Building Blockout/Booths/Prize Exchange"]
+[node name="AreaBlockout" type="CSGBox3D" parent="Booths/Prize Exchange"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16.813557, 5.4575195, -0.2533722)
 material_override = SubResource("StandardMaterial3D_epp48")
 size = Vector3(16.082977, 10.52832, 11.382416)
 
-[node name="Info Booth" type="Node3D" parent="Building Blockout/Booths"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 59.104973, 3.8146973e-06, 13.377222)
+[node name="Card Kiosk" type="Node3D" parent="Booths"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 53.255936, 3.8146973e-06, 13.277815)
 
-[node name="AreaBlockout" type="CSGBox3D" parent="Building Blockout/Booths/Info Booth"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.497307, 2.4896812, 0.057281494)
+[node name="AreaBlockout" type="CSGBox3D" parent="Booths/Card Kiosk"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.036079407, 4.028225, 0.6305771)
+visible = false
 material_override = SubResource("StandardMaterial3D_qibwg")
-size = Vector3(3.5322266, 4.5926514, 3.3324585)
+size = Vector3(4.406616, 1.515564, 4.4790497)
+
+[node name="CardRefillStation" parent="Booths/Card Kiosk" instance=ExtResource("4_obbyk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.6666813, 1.6933556, -1.1945839)
+
+[node name="CardRefillStation2" parent="Booths/Card Kiosk" instance=ExtResource("4_obbyk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.64276695, 1.6933556, -1.1945839)
+
+[node name="CardRefillStation3" parent="Booths/Card Kiosk" instance=ExtResource("4_obbyk")]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -0.64276695, 1.6933556, 2.3850555)
+
+[node name="CardRefillStation4" parent="Booths/Card Kiosk" instance=ExtResource("4_obbyk")]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0.6666813, 1.6933556, 2.3850555)
+
+[node name="CardRefillStation5" parent="Booths/Card Kiosk" instance=ExtResource("4_obbyk")]
+transform = Transform3D(1.3113416e-07, 0, -1, 0, 1, 0, 1, 0, 1.3113416e-07, 1.7639999, 1.6933556, 1.251421)
+
+[node name="CardRefillStation6" parent="Booths/Card Kiosk" instance=ExtResource("4_obbyk")]
+transform = Transform3D(1.3113416e-07, 0, -1, 0, 1, 0, 1, 0, 1.3113416e-07, 1.7639999, 1.6933556, -0.058027267)
+
+[node name="CardRefillStation7" parent="Booths/Card Kiosk" instance=ExtResource("4_obbyk")]
+transform = Transform3D(-4.371138e-08, 0, 1, 0, 1, 0, -1, 0, -4.371138e-08, -1.7527351, 1.6933556, -0.058027267)
+
+[node name="CardRefillStation8" parent="Booths/Card Kiosk" instance=ExtResource("4_obbyk")]
+transform = Transform3D(-4.371138e-08, 0, 1, 0, 1, 0, -1, 0, -4.371138e-08, -1.7527351, 1.6933556, 1.251421)
+
+[node name="Pillar" type="CSGBox3D" parent="Booths/Card Kiosk"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.347042, 0.5397568)
+use_collision = true
+collision_mask = 3
+size = Vector3(1, 6.307373, 1)
+material = SubResource("StandardMaterial3D_qg221")
+
+[node name="Banner" type="CSGBox3D" parent="Booths/Card Kiosk/Pillar"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.3446741, 0)
+size = Vector3(2.9384766, 0.77441406, 2.9257813)
+material = SubResource("StandardMaterial3D_nhcos")
+
+[node name="Banner Cutout" type="CSGBox3D" parent="Booths/Card Kiosk/Pillar/Banner"]
+operation = 2
+size = Vector3(2.5126953, 1.4958496, 2.5595703)
+material = SubResource("StandardMaterial3D_exsln")
+
+[node name="Support" type="CSGBox3D" parent="Booths/Card Kiosk/Pillar/Banner"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0301857, 0)
+use_collision = true
+size = Vector3(2.668213, 0.20135498, 0.17480469)
+material = SubResource("StandardMaterial3D_w38l8")
+
+[node name="Support2" type="CSGBox3D" parent="Booths/Card Kiosk/Pillar/Banner"]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0, -0.0301857, 0)
+use_collision = true
+size = Vector3(2.668213, 0.20135498, 0.17480469)
+material = SubResource("StandardMaterial3D_sfuxl")
+
+[node name="Label1" type="Label3D" parent="Booths/Card Kiosk/Pillar/Banner"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1.4673233)
+modulate = Color(1, 0, 0, 1)
+text = "refill card"
+font_size = 82
+outline_size = 20
+uppercase = true
+
+[node name="Label2" type="Label3D" parent="Booths/Card Kiosk/Pillar/Banner"]
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 0, 0, -1.4696379)
+modulate = Color(1, 0, 0, 1)
+text = "refill card"
+font_size = 82
+outline_size = 20
+uppercase = true
+
+[node name="Label3" type="Label3D" parent="Booths/Card Kiosk/Pillar/Banner"]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -1.4724369, 0, 0)
+modulate = Color(1, 0, 0, 1)
+text = "refill card"
+font_size = 82
+outline_size = 20
+uppercase = true
+
+[node name="Label4" type="Label3D" parent="Booths/Card Kiosk/Pillar/Banner"]
+transform = Transform3D(1.3113416e-07, 0, 1, 0, 1, 0, -1, 0, 1.3113416e-07, 1.475275, 0, 0)
+modulate = Color(1, 0, 0, 1)
+text = "refill card"
+font_size = 82
+outline_size = 20
+uppercase = true
+
+[node name="Banner2" type="CSGBox3D" parent="Booths/Card Kiosk/Pillar"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.2362618, 0)
+size = Vector3(2.9384766, 0.77441406, 2.9257813)
+material = SubResource("StandardMaterial3D_nhcos")
+
+[node name="Banner Cutout" type="CSGBox3D" parent="Booths/Card Kiosk/Pillar/Banner2"]
+operation = 2
+size = Vector3(2.5126953, 1.4958496, 2.5595703)
+material = SubResource("StandardMaterial3D_exsln")
+
+[node name="Support3" type="CSGBox3D" parent="Booths/Card Kiosk/Pillar/Banner2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.03289938, 0)
+use_collision = true
+size = Vector3(2.668213, 0.20135498, 0.17480469)
+material = SubResource("StandardMaterial3D_w38l8")
+
+[node name="Support4" type="CSGBox3D" parent="Booths/Card Kiosk/Pillar/Banner2"]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0, -0.03289938, 0)
+use_collision = true
+size = Vector3(2.668213, 0.20135498, 0.17480469)
+material = SubResource("StandardMaterial3D_sfuxl")
+
+[node name="Label1" type="Label3D" parent="Booths/Card Kiosk/Pillar/Banner2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1.4673233)
+modulate = Color(1, 0, 0, 1)
+text = "refill card"
+font_size = 82
+outline_size = 20
+uppercase = true
+
+[node name="Label2" type="Label3D" parent="Booths/Card Kiosk/Pillar/Banner2"]
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 0, 0, -1.4696379)
+modulate = Color(1, 0, 0, 1)
+text = "refill card"
+font_size = 82
+outline_size = 20
+uppercase = true
+
+[node name="Label3" type="Label3D" parent="Booths/Card Kiosk/Pillar/Banner2"]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -1.4724369, 0, 0)
+modulate = Color(1, 0, 0, 1)
+text = "refill card"
+font_size = 82
+outline_size = 20
+uppercase = true
+
+[node name="Label4" type="Label3D" parent="Booths/Card Kiosk/Pillar/Banner2"]
+transform = Transform3D(1.3113416e-07, 0, 1, 0, 1, 0, -1, 0, 1.3113416e-07, 1.475275, 0, 0)
+modulate = Color(1, 0, 0, 1)
+text = "refill card"
+font_size = 82
+outline_size = 20
+uppercase = true

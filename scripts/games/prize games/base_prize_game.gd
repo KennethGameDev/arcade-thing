@@ -1,4 +1,5 @@
-extends PrizeGame
+class_name PrizeGame
+extends ArcadeGame
 
 
 func _ready():

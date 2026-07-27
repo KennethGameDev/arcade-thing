@@ -13,7 +13,7 @@ var player_cam: CameraController
 
 @onready var interaction_range: Area3D = $Mesh/InteractionRange
 var detected_interactables: Array[Interactable] = []
-var current_interactable: Interactable = null
+var current_interactable: Interactable
 
 var control_mode: String
 
@@ -32,8 +32,8 @@ func _input(event):
 					current_interactable.interact()
 				else:
 					print("Nothing to interact with...")
-		"claw machine":
-			if event.is_action_pressed("escape"):
+		_:
+			if event.is_action_pressed("escape") or event.is_action_pressed("interact"):
 				GameManager.change_game_mode(GameManager.GameModes.MEANDER_MODE)
 				GameManager.camera_ref.rotation = global_rotation
 
@@ -49,10 +49,17 @@ func _physics_process(delta):
 				#handle_run(delta)
 				
 				handle_locomotion()
-				
-				move_and_slide()
+		"card refill":
+			velocity = Vector3.ZERO
+			if current_interactable:
+				#position.x = lerpf(position.x, current_interactable.player_position.global_position.x, delta)
+				#position.z = lerpf(position.z, current_interactable.player_position.global_position.z, delta)
+				position.x = current_interactable.player_position.global_position.x
+				position.z = current_interactable.player_position.global_position.z
 		"claw machine":
 			pass
+	move_and_slide()
+	print(current_interactable)
 
 
 func handle_locomotion():
@@ -112,46 +119,50 @@ func handle_jump():
 
 #region : Interaction-related functions
 func set_closest_interactable():
-	var closest_interactable: Interactable = null
-	var current_interactable_distance: float = 999
-	var prev_interactable_distance: float = 999
-	
-	if detected_interactables.size() != 0:
-		for interactable in detected_interactables:
-			prev_interactable_distance = current_interactable_distance
-			current_interactable_distance = position.distance_to(interactable.position)
-			if current_interactable_distance < prev_interactable_distance:
-				closest_interactable = interactable
-			else:
-				interactable.hide_details()
-	
-	if closest_interactable != current_interactable:
-		set_current_interactable(closest_interactable)
+	if control_mode == "meander":
+		var closest_interactable: Interactable = null
+		var current_interactable_distance: float = 999
+		var prev_interactable_distance: float = 999
+		
+		if detected_interactables.size() != 0:
+			for interactable in detected_interactables:
+				prev_interactable_distance = current_interactable_distance
+				current_interactable_distance = position.distance_to(interactable.position)
+				if current_interactable_distance < prev_interactable_distance:
+					closest_interactable = interactable
+				else:
+					interactable.hide_details()
+		
+		if closest_interactable != current_interactable:
+			set_current_interactable(closest_interactable)
 
 
 func set_current_interactable(interactable: Interactable):
-	current_interactable = interactable
-	current_interactable.show_details()
+	if control_mode == "meander":
+		current_interactable = interactable
+		current_interactable.show_details()
 
 
 func _on_interaction_range_body_entered(body):
-	detected_interactables.append(body)
-	set_closest_interactable()
+	if control_mode == "meander":
+		detected_interactables.append(body)
+		set_closest_interactable()
 
 
 func _on_interaction_range_body_exited(body):
-	var i: int = 0
-	while i < detected_interactables.size():
-		if detected_interactables[i] == body:
-			var removed_interactable: Interactable = detected_interactables.pop_at(i)
-			if removed_interactable == current_interactable:
-				if detected_interactables.size() == 0:
-					current_interactable.hide_details()
-					current_interactable = null
-				else:
-					removed_interactable.hide_details()
-					set_closest_interactable()
-		i += 1
+	if control_mode == "meander":
+		var i: int = 0
+		while i < detected_interactables.size():
+			if detected_interactables[i] == body:
+				var removed_interactable: Interactable = detected_interactables.pop_at(i)
+				if removed_interactable == current_interactable:
+					if detected_interactables.size() == 0:
+						current_interactable.hide_details()
+						current_interactable = null
+					else:
+						removed_interactable.hide_details()
+						set_closest_interactable()
+			i += 1
 #endregion
 
 
@@ -159,5 +170,7 @@ func change_control_mode(new_mode: int):
 	match new_mode:
 		GameManager.GameModes.MEANDER_MODE:
 			control_mode = "meander"
+		GameManager.GameModes.CARD_REFILL_MODE:
+			control_mode = "card refill"
 		GameManager.GameModes.CLAW_MACHINE_MODE:
 			control_mode = "claw machine"

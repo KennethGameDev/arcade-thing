@@ -1,7 +1,7 @@
 [gd_scene load_steps=10 format=3 uid="uid://8hsxu26nhkdq"]
 
 [ext_resource type="Texture2D" uid="uid://b2q00j6rjei08" path="res://textures/corkboard.jpg" id="1_2hmgw"]
-[ext_resource type="Script" uid="uid://cjto843mif0qh" path="res://scripts/games/darts/darts_game.gd" id="1_hrhfp"]
+[ext_resource type="Script" uid="uid://cjto843mif0qh" path="res://scripts/games/ranked games/darts/darts_game.gd" id="1_hrhfp"]
 [ext_resource type="PackedScene" uid="uid://baog074021hl8" path="res://meshes/dart game/dartboard.glb" id="1_pokqq"]
 [ext_resource type="Texture2D" uid="uid://b47iel5y6o2vj" path="res://textures/wood_wall.jpg" id="1_yx1dv"]
 [ext_resource type="PackedScene" uid="uid://bm3k3vk3r2xo3" path="res://scenes/games/darts/sub-scenes/Scoreboard.tscn" id="7_40cyx"]

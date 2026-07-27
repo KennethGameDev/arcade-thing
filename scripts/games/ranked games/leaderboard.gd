@@ -1,4 +1,8 @@
-extends PrizeGame
+class_name Leaderboard
+extends Node
+
+
+
 
 
 func _ready():

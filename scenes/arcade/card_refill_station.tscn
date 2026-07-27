@@ -1,0 +1,61 @@
+[gd_scene load_steps=6 format=3 uid="uid://dxlunn7wgfpw"]
+
+[ext_resource type="Script" uid="uid://c87vhy0ak0ytd" path="res://scripts/arcade/card_refill_station.gd" id="1_76wya"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_wa0x0"]
+albedo_color = Color(0.0142752165, 0.014275218, 0.014275218, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_76wya"]
+albedo_color = Color(1, 1, 0.039215688, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_fkla3"]
+emission_enabled = true
+emission = Color(1, 1, 1, 1)
+emission_energy_multiplier = 0.5
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_fkla3"]
+size = Vector3(1, 2.5942383, 1)
+
+[node name="CardRefillStation" type="StaticBody3D" node_paths=PackedStringArray("camera_anchor", "player_position")]
+script = ExtResource("1_76wya")
+camera_anchor = NodePath("Camera Anchor")
+player_position = NodePath("Player Position")
+
+[node name="Mesh" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.203125, 0)
+use_collision = true
+collision_mask = 3
+size = Vector3(1, 2.59375, 1)
+material = SubResource("StandardMaterial3D_wa0x0")
+
+[node name="Controls Cutout" type="CSGPolygon3D" parent="Mesh"]
+transform = Transform3D(-1.808855e-08, 0, 1, 0, 1.2948518, 0, -0.41381773, 0, -4.371139e-08, 0.638373, -0.23022455, -0.16005746)
+operation = 2
+polygon = PackedVector2Array(0, 0, 0, 1, 1, 1, 1.0356694, -0.32540506)
+depth = 1.25
+material = SubResource("StandardMaterial3D_76wya")
+
+[node name="Screen Cutout" type="CSGBox3D" parent="Mesh"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00024414063, 0.416153, -0.16900635)
+operation = 2
+size = Vector3(0.9379883, 1.2284851, 0.08117676)
+material = SubResource("StandardMaterial3D_fkla3")
+
+[node name="Card Swipe" type="CSGBox3D" parent="Mesh"]
+transform = Transform3D(-4.371139e-08, 0, -1, 0.68647856, 0.72715, -3.000693e-08, 0.72715, -0.68647856, -3.1784737e-08, -0.35800606, -0.42184627, -0.39195994)
+size = Vector3(0.2454834, 0.091430664, 0.061462402)
+
+[node name="Swipe Cutout" type="CSGBox3D" parent="Mesh/Card Swipe"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, -6.1461947e-13, -3.0730973e-13, 1, 5.9604645e-08, 0.020496368, 0)
+operation = 2
+size = Vector3(0.27734375, 0.066093445, 0.011962891)
+
+[node name="Camera Anchor" type="Marker3D" parent="."]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 0.22802097, -0.74557555)
+
+[node name="Player Position" type="Marker3D" parent="."]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, -1.4220121, -1.5852202)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.20092773, 0)
+shape = SubResource("BoxShape3D_fkla3")

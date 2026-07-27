@@ -20,14 +20,16 @@ curved_lines_2d/stroke_color=Color(1, 0, 0, 1)
 
 [application]
 
-config/name="arcade thing"
+config/name="arcade thing (4.5)"
 run/main_scene="uid://cesmlm6lleomr"
 config/features=PackedStringArray("4.5", "Forward Plus")
 config/icon="res://icon.svg"
 
 [autoload]
 
-GameManager="*res://globals/game_manager.gd"
+PlayerVars="*res://scripts/globals/player_vars.gd"
+ArcadeGameVars="*res://scripts/globals/arcade_machine_vars.gd"
+GameManager="*res://scripts/globals/game_manager.gd"
 
 [editor_plugins]
 

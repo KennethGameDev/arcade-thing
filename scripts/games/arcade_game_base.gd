@@ -1,8 +1,8 @@
 class_name ArcadeGame
 extends Interactable
 
-var arc_game_name: StringName
-var arc_game_type: StringName
+var game_name: StringName
+var game_type: StringName
 var play_cost: float
 
 
@@ -10,17 +10,17 @@ func _ready():
 	pass
 
 
-func _process(_delta):
+func process(_delta):
 	pass
 
 
-func _initialize_game():
+func initialize():
 	pass
 
 
-func _start_game():
+func start_game():
 	pass
 
 
 func interact():
-	_initialize_game()
+	pass

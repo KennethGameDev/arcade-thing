@@ -1,7 +1,7 @@
 [gd_scene load_steps=9 format=3 uid="uid://cm265vbivtqny"]
 
 [ext_resource type="PackedScene" uid="uid://dqm3yphkxanuk" path="res://meshes/dart game/dart.glb" id="1_lqc12"]
-[ext_resource type="Script" uid="uid://c2ksm552koiyb" path="res://scripts/games/darts/dart.gd" id="2_p8e8g"]
+[ext_resource type="Script" uid="uid://c2ksm552koiyb" path="res://scripts/games/ranked games/darts/dart.gd" id="2_p8e8g"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_p8e8g"]
 transparency = 4
