@@ -168,7 +168,7 @@ var p1_ready: bool = false
 @onready var p2_shaft_color_label = $OuterMargins/Panel/InnerMargins/HBoxContainer/VBoxContainer2/Line6/Label
 @onready var p2_barrel_color_label = $OuterMargins/Panel/InnerMargins/HBoxContainer/VBoxContainer2/Line7/Label
 @onready var p2_tip_color_label = $OuterMargins/Panel/InnerMargins/HBoxContainer/VBoxContainer2/Line8/Label
-@onready var p2_ready_button: Button = $OuterMargins/Panel/InnerMargins/HBoxContainer/VBoxContainer2/Line9/Button
+@onready var p2_ready_button: Button = $OuterMargins/Panel/InnerMargins/HBoxContainer/VBoxContainer2/Line9/DoneButton
 @onready var p2_all_menu_option_refs: Array = [
 	p2_team_select, 
 	p2_same_flight_colors,

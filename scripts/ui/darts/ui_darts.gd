@@ -1,10 +1,7 @@
 class_name DartsUI
 extends Control
 
-@onready var ui_reticle_controller: Control = $DartsReticleController
-@onready var ui_dart_customizer: Control = $DartCustomizer
-@onready var ui_game_rules_selector: Control = $DartsGameRulesSelector
-@onready var dart_preview_lighting: DirectionalLight3D = $DirectionalLight3D
+@onready var ui_game_rules_selector: Control = %DartsGameRulesSelector
 
 
 func _ready():

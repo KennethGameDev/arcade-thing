@@ -1,9 +1,7 @@
-[gd_scene load_steps=52 format=3 uid="uid://cesmlm6lleomr"]
+[gd_scene load_steps=53 format=3 uid="uid://cesmlm6lleomr"]
 
 [ext_resource type="Script" uid="uid://ckonmmgrmb36y" path="res://scripts/arcade/arcade.gd" id="1_x56v0"]
-[ext_resource type="PackedScene" uid="uid://bonhemtxbopnt" path="res://scenes/player_start.tscn" id="2_ixbdb"]
 [ext_resource type="PackedScene" uid="uid://biotmdpiehybf" path="res://scenes/arcade/hanging_light.tscn" id="3_eb06h"]
-[ext_resource type="Script" uid="uid://cqbe4kjgmeeg8" path="res://scripts/spawner.gd" id="3_ixbdb"]
 [ext_resource type="PackedScene" uid="uid://dxlunn7wgfpw" path="res://scenes/arcade/card_refill_station.tscn" id="4_obbyk"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_adccw"]
@@ -100,8 +98,17 @@ albedo_color = Color(0, 0, 0, 1)
 metallic = 1.0
 metallic_specular = 1.0
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_lt1t2"]
+albedo_color = Color(0.25884765, 0.45926172, 0.6475755, 1)
+
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_84opf"]
 albedo_color = Color(0.0885599, 0.0885599, 0.0885599, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_x56v0"]
+albedo_color = Color(0.20854488, 0.20437747, 0.20080364, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ixbdb"]
+albedo_color = Color(0.66656864, 0.6665687, 0.6665685, 1)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xm7at"]
 transparency = 1
@@ -193,12 +200,6 @@ environment = SubResource("Environment_me10n")
 transform = Transform3D(-0.8660254, -0.43301278, 0.25, 0, 0.49999997, 0.86602545, -0.50000006, 0.75, -0.43301266, 0, 0, 0)
 shadow_enabled = true
 
-[node name="PlayerStart" parent="." instance=ExtResource("2_ixbdb")]
-transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 37.187202, 0.1933595, -17.628162)
-
-[node name="@Node3D@22193" type="Node3D" parent="PlayerStart"]
-script = ExtResource("3_ixbdb")
-
 [node name="Mesh" type="Node3D" parent="."]
 
 [node name="Building Blockout" type="Node3D" parent="Mesh"]
@@ -209,6 +210,13 @@ script = ExtResource("3_ixbdb")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.794861, 0, -22.536194)
 use_collision = true
 size = Vector3(99.402466, 0.38671875, 116.28308)
+material = SubResource("StandardMaterial3D_hb7i7")
+
+[node name="BuildingEdgeCutoff" type="CSGBox3D" parent="Mesh/Building Blockout/Floor/Carpet"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -24.981369, 0, -35.586884)
+operation = 2
+use_collision = true
+size = Vector3(49.439728, 0.38671875, 45.109314)
 material = SubResource("StandardMaterial3D_hb7i7")
 
 [node name="Rug" type="Node3D" parent="Mesh/Building Blockout/Floor"]
@@ -987,41 +995,44 @@ material = SubResource("StandardMaterial3D_lr4s1")
 
 [node name="Walls" type="Node3D" parent="Mesh/Building Blockout"]
 
-[node name="Node3D" type="Node3D" parent="Mesh/Building Blockout/Walls"]
+[node name="North" type="Node3D" parent="Mesh/Building Blockout/Walls"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.2963567, 6.3823547, -35.57653)
 
-[node name="Segment01" type="CSGBox3D" parent="Mesh/Building Blockout/Walls/Node3D"]
+[node name="Segment01" type="CSGBox3D" parent="Mesh/Building Blockout/Walls/North"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -26.380829, 0.10064697, 0.09183502)
 size = Vector3(49.794067, 13.358582, 0.37109375)
 
-[node name="Segment02" type="CSGBox3D" parent="Mesh/Building Blockout/Walls/Node3D"]
+[node name="Segment02" type="CSGBox3D" parent="Mesh/Building Blockout/Walls/North"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 45.12215, 0.10064697, 0.09183502)
 size = Vector3(6.0290833, 13.358582, 0.37109375)
 
-[node name="Segment03" type="CSGBox3D" parent="Mesh/Building Blockout/Walls/Node3D"]
+[node name="Segment03" type="CSGBox3D" parent="Mesh/Building Blockout/Walls/North"]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 42.238285, 0.10064697, -22.396355)
 size = Vector3(45.20204, 13.358582, 0.37109375)
 
-[node name="Segment04" type="CSGBox3D" parent="Mesh/Building Blockout/Walls/Node3D"]
+[node name="Segment04" type="CSGBox3D" parent="Mesh/Building Blockout/Walls/North"]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -1.6371074, 0.10064697, -22.396355)
 size = Vector3(45.20204, 13.358582, 0.37109375)
 
-[node name="Segment05" type="CSGBox3D" parent="Mesh/Building Blockout/Walls/Node3D"]
-transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 20.269499, 0.10064697, -44.913162)
-size = Vector3(44.05094, 13.358582, 0.37109375)
+[node name="Segment05" type="CSGBox3D" parent="Mesh/Building Blockout/Walls/North"]
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 23.179127, 0.10064697, -44.913162)
+size = Vector3(49.870197, 13.358582, 0.37109375)
 
 [node name="South" type="CSGBox3D" parent="Mesh/Building Blockout/Walls"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.8203125, 6.4626465, 35.523464)
 size = Vector3(99.58203, 13.325684, 0.21228027)
 
 [node name="East" type="CSGBox3D" parent="Mesh/Building Blockout/Walls"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 40.784454, 6.4568787, 0)
-size = Vector3(0.27722168, 13.304382, 71.413086)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 40.784454, 6.4568787, -22.393799)
+size = Vector3(0.27722168, 13.304382, 116.20068)
+material = SubResource("StandardMaterial3D_lt1t2")
 
 [node name="Main Entrance Cutout" type="CSGBox3D" parent="Mesh/Building Blockout/Walls/East"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -4.4043007, -17.618343)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -4.4043007, 4.7754555)
 operation = 2
 size = Vector3(1, 4.6703796, 5.083008)
+
+[node name="EntranceSign" type="Node3D" parent="Mesh/Building Blockout/Walls/East"]
 
 [node name="West" type="CSGBox3D" parent="Mesh/Building Blockout/Walls"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -58.52394, 6.4831543, 0)
@@ -1030,9 +1041,9 @@ size = Vector3(0.32006836, 13.36084, 71.31445)
 [node name="Roof" type="Node3D" parent="Mesh/Building Blockout"]
 
 [node name="Top" type="CSGBox3D" parent="Mesh/Building Blockout/Roof"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.018005, 13.163565, -23.441711)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.747219, 13.163565, -22.573952)
 use_collision = true
-size = Vector3(99.848755, 0.38671875, 118.09412)
+size = Vector3(103.12263, 0.38671875, 119.829636)
 material = SubResource("StandardMaterial3D_84opf")
 
 [node name="Lights" type="Node3D" parent="Mesh/Building Blockout/Roof"]
@@ -1135,6 +1146,20 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -48.65209, 12.966294, 10.8427
 
 [node name="Hanging Light27" parent="Mesh/Building Blockout/Roof/Lights" instance=ExtResource("3_eb06h")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -48.65209, 12.966294, 27.818401)
+
+[node name="Exterior Blockout" type="Node3D" parent="Mesh"]
+
+[node name="ParkingLotGround" type="CSGBox3D" parent="Mesh/Exterior Blockout"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 85.35112, -0.32975006, -22.35408)
+size = Vector3(89.365234, 0.5358734, 116.20059)
+material = SubResource("StandardMaterial3D_x56v0")
+
+[node name="Sidewalk" type="Node3D" parent="Mesh/Exterior Blockout/ParkingLotGround"]
+
+[node name="Segment01" type="CSGBox3D" parent="Mesh/Exterior Blockout/ParkingLotGround/Sidewalk"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -40.395264, 0.21980858, 0)
+size = Vector3(8.574707, 0.5928917, 116.20059)
+material = SubResource("StandardMaterial3D_ixbdb")
 
 [node name="Games" type="Node3D" parent="."]
 

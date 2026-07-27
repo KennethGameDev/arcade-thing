@@ -1,7 +1,6 @@
-extends DartsUI
+extends Control
 
 var darts_game_ref: DartsGame
-var reticle_segments: Array[ScalableVectorShape2D] = [$"Segment 1", $"Segment 2", $"Segment 3", $"Segment 4"]
 var shrinking: bool = true
 
 
@@ -10,7 +9,8 @@ func _ready():
 
 
 func _process(delta):
-	position = darts_game_ref.mouse_position
+	if darts_game_ref:
+		position = darts_game_ref.mouse_position
 	
 	if Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT):
 		rotation += delta

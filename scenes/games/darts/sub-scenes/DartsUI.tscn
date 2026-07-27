@@ -137,6 +137,7 @@ transform = Transform3D(1, -1.5142069e-07, 8.742277e-08, 0, 0.49999997, 0.866025
 shadow_enabled = true
 
 [node name="DartsReticleController" type="Control" parent="."]
+unique_name_in_owner = true
 visible = false
 anchors_preset = 0
 script = ExtResource("1_krcqh")
@@ -237,6 +238,7 @@ sharp_limit = 90.0
 metadata/_edit_lock_ = true
 
 [node name="DartsGameRulesSelector" type="Control" parent="."]
+unique_name_in_owner = true
 visible = false
 layout_mode = 1
 anchors_preset = 15
@@ -355,6 +357,7 @@ text = "  [b][u]Basic Rules:[/u][/b]
 [ul]The player with the highest score after a set number of rounds wins.[/ul]"
 
 [node name="DartCustomizer" type="Control" parent="."]
+unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0

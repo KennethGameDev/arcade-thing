@@ -1,0 +1,3 @@
+[gd_scene format=3 uid="uid://bonhemtxbopnt"]
+
+[node name="PlayerStart" type="Node3D" groups=["Player Start"]]

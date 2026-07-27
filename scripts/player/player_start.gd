@@ -1,4 +1,4 @@
-class_name Arcade
+class_name PlayerStart
 extends Node3D
 
 
