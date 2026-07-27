@@ -108,7 +108,11 @@ albedo_color = Color(0.0885599, 0.0885599, 0.0885599, 1)
 albedo_color = Color(0.20854488, 0.20437747, 0.20080364, 1)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ixbdb"]
-albedo_color = Color(0.66656864, 0.6665687, 0.6665685, 1)
+albedo_color = Color(0.556953, 0.556953, 0.5569529, 1)
+
+[sub_resource type="PrismMesh" id="PrismMesh_lt1t2"]
+left_to_right = 0.0
+size = Vector3(7.335, 0.26, 4.295)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xm7at"]
 transparency = 1
@@ -1156,17 +1160,37 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -48.65209, 12.966294, 27.8184
 
 [node name="Exterior Blockout" type="Node3D" parent="Mesh" unique_id=1617553361]
 
-[node name="ParkingLotGround" type="CSGBox3D" parent="Mesh/Exterior Blockout" unique_id=411857399]
+[node name="ParkingLot" type="Node3D" parent="Mesh/Exterior Blockout" unique_id=528336329]
+
+[node name="ParkingLotGround" type="CSGBox3D" parent="Mesh/Exterior Blockout/ParkingLot" unique_id=411857399]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 85.35112, -0.32975006, -22.35408)
 size = Vector3(89.365234, 0.5358734, 116.20059)
 material = SubResource("StandardMaterial3D_x56v0")
 
-[node name="Sidewalk" type="Node3D" parent="Mesh/Exterior Blockout/ParkingLotGround" unique_id=476634980]
+[node name="Sidewalk" type="Node3D" parent="Mesh/Exterior Blockout/ParkingLot/ParkingLotGround" unique_id=476634980]
 
-[node name="Segment01" type="CSGBox3D" parent="Mesh/Exterior Blockout/ParkingLotGround/Sidewalk" unique_id=1405876876]
+[node name="Segment01" type="CSGBox3D" parent="Mesh/Exterior Blockout/ParkingLot/ParkingLotGround/Sidewalk" unique_id=1405876876]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -40.395264, 0.21980858, 0)
 size = Vector3(8.574707, 0.5928917, 116.20059)
 material = SubResource("StandardMaterial3D_ixbdb")
+
+[node name="Cutout01" type="CSGMesh3D" parent="Mesh/Exterior Blockout/ParkingLot/ParkingLotGround/Sidewalk/Segment01" unique_id=1999132411]
+transform = Transform3D(-1, 8.742278e-08, 0, -8.742278e-08, -1, 0, 0, 0, 1, 0.62290573, 0.18480426, 4.7388554)
+operation = 2
+mesh = SubResource("PrismMesh_lt1t2")
+
+[node name="Segment02" type="CSGBox3D" parent="Mesh/Exterior Blockout/ParkingLot/ParkingLotGround/Sidewalk" unique_id=1485330735]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.398575, 0.21980858, 53.931065)
+size = Vector3(81.04096, 0.593, 8.575)
+material = SubResource("StandardMaterial3D_ixbdb")
+
+[node name="SurroundingArea" type="Node3D" parent="Mesh/Exterior Blockout" unique_id=424058548]
+
+[node name="Roads" type="Node3D" parent="Mesh/Exterior Blockout/SurroundingArea" unique_id=1449633901]
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Mesh/Exterior Blockout/SurroundingArea/Roads" unique_id=17880619]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 91.61554, -0.5308323, 62.26854)
+size = Vector3(643.26624, 0.84239197, 53.17395)
 
 [node name="Games" type="Node3D" parent="." unique_id=256959450]
 
