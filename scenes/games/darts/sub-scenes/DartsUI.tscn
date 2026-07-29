@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://cv3bd6sayxlpj"]
+[gd_scene format=3 uid="uid://cv3bd6sayxlpj"]
 
 [ext_resource type="Script" uid="uid://de3jpss66xjfh" path="res://addons/curved_lines_2d/scalable_vector_shape_2d.gd" id="1_773mb"]
 [ext_resource type="Script" uid="uid://cvpmtpn4v6ta8" path="res://scripts/ui/darts/ui_darts_reticle_controller.gd" id="1_krcqh"]
@@ -7,8 +7,8 @@
 [ext_resource type="Script" uid="uid://dl1t88tthmwts" path="res://addons/curved_lines_2d/scalable_arc_list.gd" id="3_jakak"]
 [ext_resource type="Script" uid="uid://dpbcxddm4sjg4" path="res://scripts/ui/darts/ui_darts_customizer.gd" id="5_urf01"]
 [ext_resource type="PackedScene" uid="uid://cm265vbivtqny" path="res://scenes/games/darts/sub-scenes/Dart.tscn" id="6_remje"]
-[ext_resource type="Theme" uid="uid://dkqd1torgobr1" path="res://themes/ui_theme.tres" id="6_urf01"]
-[ext_resource type="Texture2D" uid="uid://c2hi6wbf80hd3" path="res://icons/reset-arrow-white.svg" id="9_85me2"]
+[ext_resource type="Theme" uid="uid://dkqd1torgobr1" path="res://assets/themes/ui_theme.tres" id="6_urf01"]
+[ext_resource type="Texture2D" uid="uid://c2hi6wbf80hd3" path="res://assets/icons/reset-arrow-white.svg" id="9_85me2"]
 [ext_resource type="Script" uid="uid://dfhel43tuedcd" path="res://scripts/ui/darts/ui_darts_game_rules_selector.gd" id="9_rhadf"]
 [ext_resource type="Script" uid="uid://desvh66pkg7d5" path="res://scripts/ui/darts/ui_darts_confirm_start.gd" id="10_vj21v"]
 

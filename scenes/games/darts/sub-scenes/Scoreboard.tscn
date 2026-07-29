@@ -1,6 +1,6 @@
-[gd_scene load_steps=7 format=3 uid="uid://bm3k3vk3r2xo3"]
+[gd_scene format=3 uid="uid://bm3k3vk3r2xo3"]
 
-[ext_resource type="Theme" uid="uid://xi4akvb87nfr" path="res://themes/Scoreboard_font_theme.tres" id="1_7juoy"]
+[ext_resource type="Theme" uid="uid://xi4akvb87nfr" path="res://assets/themes/Scoreboard_font_theme.tres" id="1_7juoy"]
 [ext_resource type="Script" uid="uid://cmu5plfqpgwrj" path="res://scripts/games/ranked games/darts/scoreboard.gd" id="1_w3bbv"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_tae2i"]

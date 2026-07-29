@@ -2,7 +2,16 @@
 
 [ext_resource type="Script" uid="uid://ckonmmgrmb36y" path="res://scripts/arcade/arcade.gd" id="1_x56v0"]
 [ext_resource type="PackedScene" uid="uid://biotmdpiehybf" path="res://scenes/arcade/hanging_light.tscn" id="3_eb06h"]
+[ext_resource type="ArrayMesh" uid="uid://d1nv02q04rh3a" path="res://assets/kenney packs/City_Roads/Models/OBJ format/road-crossing.obj" id="3_sfuxl"]
 [ext_resource type="PackedScene" uid="uid://dxlunn7wgfpw" path="res://scenes/arcade/card_refill_station.tscn" id="4_obbyk"]
+[ext_resource type="ArrayMesh" uid="uid://b1ot0ea0ibp7p" path="res://assets/kenney packs/City_Roads/Models/OBJ format/road-straight.obj" id="4_uky14"]
+[ext_resource type="ArrayMesh" uid="uid://c4i5twwanirrd" path="res://assets/kenney packs/City_Roads/Models/OBJ format/road-crossroad.obj" id="5_1qfdj"]
+[ext_resource type="ArrayMesh" uid="uid://vtqp7kgpxhyq" path="res://assets/kenney packs/City_Commercial/Models/OBJ format/building-i.obj" id="6_n64ju"]
+[ext_resource type="ArrayMesh" uid="uid://31pbxbr5c7cx" path="res://assets/kenney packs/City_Commercial/Models/OBJ format/building-c.obj" id="7_xjsvq"]
+[ext_resource type="ArrayMesh" uid="uid://b6df53kw3a4lf" path="res://assets/kenney packs/City_Commercial/Models/OBJ format/building-a.obj" id="8_gdgje"]
+[ext_resource type="ArrayMesh" uid="uid://3qolfmwjspex" path="res://assets/kenney packs/City_Commercial/Models/OBJ format/building-d.obj" id="9_kvjh4"]
+[ext_resource type="ArrayMesh" uid="uid://6ymupog8vi12" path="res://assets/kenney packs/City_Commercial/Models/OBJ format/building-j.obj" id="10_mbh5u"]
+[ext_resource type="ArrayMesh" uid="uid://p7r4qqcgo257" path="res://assets/kenney packs/City_Commercial/Models/OBJ format/building-n.obj" id="11_i8d6q"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_adccw"]
 sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
@@ -1179,18 +1188,116 @@ transform = Transform3D(-1, 8.742278e-08, 0, -8.742278e-08, -1, 0, 0, 0, 1, 0.62
 operation = 2
 mesh = SubResource("PrismMesh_lt1t2")
 
-[node name="Segment02" type="CSGBox3D" parent="Mesh/Exterior Blockout/ParkingLot/ParkingLotGround/Sidewalk" unique_id=1485330735]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.398575, 0.21980858, 53.931065)
-size = Vector3(81.04096, 0.593, 8.575)
-material = SubResource("StandardMaterial3D_ixbdb")
-
 [node name="SurroundingArea" type="Node3D" parent="Mesh/Exterior Blockout" unique_id=424058548]
 
 [node name="Roads" type="Node3D" parent="Mesh/Exterior Blockout/SurroundingArea" unique_id=1449633901]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.0385056, 0, 7.730114)
 
-[node name="CSGBox3D" type="CSGBox3D" parent="Mesh/Exterior Blockout/SurroundingArea/Roads" unique_id=17880619]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 91.61554, -0.5308323, 62.26854)
-size = Vector3(643.26624, 0.84239197, 53.17395)
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Mesh/Exterior Blockout/SurroundingArea/Roads" unique_id=834170372]
+transform = Transform3D(80, 0, 0, 0, 80, 0, 0, 0, 80, -19.903381, -1.3848476, 67.899734)
+mesh = ExtResource("3_sfuxl")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="Mesh/Exterior Blockout/SurroundingArea/Roads" unique_id=270179572]
+transform = Transform3D(80, 0, 0, 0, 80, 0, 0, 0, 80, 133.99243, -1.3848476, 67.89974)
+mesh = ExtResource("4_uky14")
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="Mesh/Exterior Blockout/SurroundingArea/Roads" unique_id=1724898263]
+transform = Transform3D(80, 0, 0, 0, 80, 0, 0, 0, 80, 213.99243, -1.3848476, 67.89974)
+mesh = ExtResource("4_uky14")
+
+[node name="MeshInstance3D4" type="MeshInstance3D" parent="Mesh/Exterior Blockout/SurroundingArea/Roads" unique_id=923380830]
+transform = Transform3D(80, 0, 0, 0, 80, 0, 0, 0, 80, 293.99243, -1.3848476, 67.89974)
+mesh = ExtResource("4_uky14")
+
+[node name="MeshInstance3D5" type="MeshInstance3D" parent="Mesh/Exterior Blockout/SurroundingArea/Roads" unique_id=657273418]
+transform = Transform3D(80, 0, 0, 0, 80, 0, 0, 0, 80, 59.912647, -1.3848476, 67.899734)
+mesh = ExtResource("4_uky14")
+
+[node name="MeshInstance3D7" type="MeshInstance3D" parent="Mesh/Exterior Blockout/SurroundingArea/Roads" unique_id=1239604835]
+transform = Transform3D(-3.4969112e-06, 0, -80, 0, 80, 0, 80, 0, -3.4969112e-06, -99.81824, -1.3848476, -11.091385)
+mesh = ExtResource("3_sfuxl")
+
+[node name="MeshInstance3D10" type="MeshInstance3D" parent="Mesh/Exterior Blockout/SurroundingArea/Roads" unique_id=972501484]
+transform = Transform3D(-3.4969112e-06, 0, -80, 0, 80, 0, 80, 0, -3.4969112e-06, -99.81824, -1.3848476, -91.091385)
+mesh = ExtResource("4_uky14")
+
+[node name="MeshInstance3D11" type="MeshInstance3D" parent="Mesh/Exterior Blockout/SurroundingArea/Roads" unique_id=909743607]
+transform = Transform3D(-3.4969112e-06, 0, -80, 0, 80, 0, 80, 0, -3.4969112e-06, -99.81824, -1.3848476, -170.95427)
+mesh = ExtResource("4_uky14")
+
+[node name="MeshInstance3D12" type="MeshInstance3D" parent="Mesh/Exterior Blockout/SurroundingArea/Roads" unique_id=734604323]
+transform = Transform3D(-3.4969112e-06, 0, -80, 0, 80, 0, 80, 0, -3.4969112e-06, -99.81824, -1.3848476, -250.95427)
+mesh = ExtResource("4_uky14")
+
+[node name="MeshInstance3D8" type="MeshInstance3D" parent="Mesh/Exterior Blockout/SurroundingArea/Roads" unique_id=1263893098]
+transform = Transform3D(-3.4969112e-06, 0, -80, 0, 80, 0, 80, 0, -3.4969112e-06, -99.81824, -1.3848476, 147.5571)
+mesh = ExtResource("3_sfuxl")
+
+[node name="MeshInstance3D16" type="MeshInstance3D" parent="Mesh/Exterior Blockout/SurroundingArea/Roads" unique_id=279720182]
+transform = Transform3D(-3.4969112e-06, 0, -80, 0, 80, 0, 80, 0, -3.4969112e-06, -99.81824, -1.3848476, 227.56032)
+mesh = ExtResource("4_uky14")
+
+[node name="MeshInstance3D17" type="MeshInstance3D" parent="Mesh/Exterior Blockout/SurroundingArea/Roads" unique_id=1725237782]
+transform = Transform3D(-3.4969112e-06, 0, -80, 0, 80, 0, 80, 0, -3.4969112e-06, -99.81824, -1.3848476, 306.91302)
+mesh = ExtResource("4_uky14")
+
+[node name="MeshInstance3D18" type="MeshInstance3D" parent="Mesh/Exterior Blockout/SurroundingArea/Roads" unique_id=509462917]
+transform = Transform3D(-3.4969112e-06, 0, -80, 0, 80, 0, 80, 0, -3.4969112e-06, -99.81824, -1.3848476, 386.91623)
+mesh = ExtResource("4_uky14")
+
+[node name="MeshInstance3D9" type="MeshInstance3D" parent="Mesh/Exterior Blockout/SurroundingArea/Roads" unique_id=1246830617]
+transform = Transform3D(-80, 0, 6.9938224e-06, 0, 80, 0, -6.9938224e-06, 0, -80, -179.52127, -1.3848324, 67.831726)
+mesh = ExtResource("3_sfuxl")
+
+[node name="MeshInstance3D13" type="MeshInstance3D" parent="Mesh/Exterior Blockout/SurroundingArea/Roads" unique_id=690210386]
+transform = Transform3D(-80, 0, 6.9938224e-06, 0, 80, 0, -6.9938224e-06, 0, -80, -257.72095, -1.3848324, 67.831726)
+mesh = ExtResource("4_uky14")
+
+[node name="MeshInstance3D14" type="MeshInstance3D" parent="Mesh/Exterior Blockout/SurroundingArea/Roads" unique_id=1627536788]
+transform = Transform3D(-80, 0, 6.9938224e-06, 0, 80, 0, -6.9938224e-06, 0, -80, -335.98584, -1.3848324, 67.831726)
+mesh = ExtResource("4_uky14")
+
+[node name="MeshInstance3D15" type="MeshInstance3D" parent="Mesh/Exterior Blockout/SurroundingArea/Roads" unique_id=2052300962]
+transform = Transform3D(-80, 0, 6.9938224e-06, 0, 80, 0, -6.9938224e-06, 0, -80, -414.18552, -1.3848324, 67.831726)
+mesh = ExtResource("4_uky14")
+
+[node name="MeshInstance3D6" type="MeshInstance3D" parent="Mesh/Exterior Blockout/SurroundingArea/Roads" unique_id=286594830]
+transform = Transform3D(80, 0, 0, 0, 80, 0, 0, 0, 80, -99.886215, -1.3848476, 67.89974)
+mesh = ExtResource("5_1qfdj")
+
+[node name="Buildings" type="Node3D" parent="Mesh/Exterior Blockout/SurroundingArea" unique_id=2106791608]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Mesh/Exterior Blockout/SurroundingArea/Buildings" unique_id=264096469]
+transform = Transform3D(-1.7484556e-06, 0, -40, 0, 40, 0, 40, 0, -1.7484556e-06, -162.98613, 0, 139.34602)
+mesh = ExtResource("6_n64ju")
+
+[node name="MeshInstance3D8" type="MeshInstance3D" parent="Mesh/Exterior Blockout/SurroundingArea/Buildings" unique_id=1628553563]
+transform = Transform3D(40, 0, -2.2737368e-13, 0, 40, 0, 2.2737368e-13, 0, 40, -204.90956, 0, 135.36241)
+mesh = ExtResource("7_xjsvq")
+
+[node name="MeshInstance3D5" type="MeshInstance3D" parent="Mesh/Exterior Blockout/SurroundingArea/Buildings" unique_id=1350668165]
+transform = Transform3D(40, 0, -2.2737368e-13, 0, 40, 0, 2.2737368e-13, 0, 40, -43.252235, 0, 129.40077)
+mesh = ExtResource("8_gdgje")
+
+[node name="MeshInstance3D6" type="MeshInstance3D" parent="Mesh/Exterior Blockout/SurroundingArea/Buildings" unique_id=1547914235]
+transform = Transform3D(40, 0, -2.2737368e-13, 0, 40, 0, 2.2737368e-13, 0, 40, -10.531914, 0, 131.80598)
+mesh = ExtResource("9_kvjh4")
+
+[node name="MeshInstance3D7" type="MeshInstance3D" parent="Mesh/Exterior Blockout/SurroundingArea/Buildings" unique_id=1998024820]
+transform = Transform3D(40, 0, -2.2737368e-13, 0, 40, 0, 2.2737368e-13, 0, 40, 29.39666, 0, 138.98534)
+mesh = ExtResource("6_n64ju")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="Mesh/Exterior Blockout/SurroundingArea/Buildings" unique_id=724721996]
+transform = Transform3D(-1.7484556e-06, 0, 40, 0, 40, 0, -40, 0, -1.7484556e-06, -162.82372, 0, -4.00694)
+mesh = ExtResource("10_mbh5u")
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="Mesh/Exterior Blockout/SurroundingArea/Buildings" unique_id=687900096]
+transform = Transform3D(-1.7484556e-06, 0, 40, 0, 40, 0, -40, 0, -1.7484556e-06, -162.82372, 0, -95.788086)
+mesh = ExtResource("10_mbh5u")
+
+[node name="MeshInstance3D4" type="MeshInstance3D" parent="Mesh/Exterior Blockout/SurroundingArea/Buildings" unique_id=1273982920]
+transform = Transform3D(-1.7484556e-06, 0, -40, 0, 40, 0, 40, 0, -1.7484556e-06, -167.47308, 0, -189.19933)
+mesh = ExtResource("11_i8d6q")
 
 [node name="Games" type="Node3D" parent="." unique_id=256959450]
 

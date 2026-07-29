@@ -11,8 +11,8 @@ var current_spring_length: float
 var camera_anchor_offset_transform: Transform3D
 
 
-func _ready():
-	camera_anchor_offset_transform = GameManager.player_ref.cam_anchor.get_global_transform_interpolated()
+# func _ready():
+# 	camera_anchor_offset_transform = GameManager.player_ref.cam_anchor.get_global_transform_interpolated()
 
 
 func _input(event: InputEvent) -> void:
@@ -55,13 +55,13 @@ func process_inputs():
 func handle_inputs():
 	handles.rotation.x = input_rotation.x
 	handles.rotate(Vector3.UP, input_rotation.y)
-	GameManager.player_ref.mesh.rotate(Vector3.UP, input_rotation.y)
-	GameManager.player_ref.cam_anchor.rotation.x = input_rotation.x
-	GameManager.player_ref.cam_anchor.rotate(Vector3.UP, input_rotation.y)
+	# GameManager.player_ref.mesh.rotate(Vector3.UP, input_rotation.y)
+	# GameManager.player_ref.cam_anchor.rotation.x = input_rotation.x
+	# GameManager.player_ref.cam_anchor.rotate(Vector3.UP, input_rotation.y)
 
 
 func handle_camera_view(delta: float):
-	var camera_anchor_pos: Vector3 = GameManager.player_ref.cam_anchor.get_global_transform_interpolated().orthonormalized().origin
+	# var camera_anchor_pos: Vector3 = GameManager.player_ref.cam_anchor.get_global_transform_interpolated().orthonormalized().origin
 	var camera_vertical_offset: float = 0
 	
 	# If Perspective is set to First Person (0):
@@ -89,39 +89,39 @@ func handle_camera_view(delta: float):
 	current_spring_length = spring_arm.spring_length
 	
 	# Player becomes transparent if the camera is pushed too close to it.
-	handle_camera_too_close()
+	# handle_camera_too_close()
 	
-	# Verify that the camera height needs to be adjusted.
-	# If so: Shift the camera's position to the new position.
-	if handles.global_position != camera_anchor_pos - Vector3(0, camera_vertical_offset, 0):
-		handles.global_position.x = camera_anchor_pos.x
-		handles.global_position.y = lerpf(handles.global_position.y, camera_anchor_pos.y - camera_vertical_offset, delta * 10)
-		handles.global_position.z = camera_anchor_pos.z
-	# If not: Lock camera position to the new anchor position.
-	else:
-		handles.global_position = camera_anchor_pos - Vector3(0, camera_vertical_offset, 0)
+	# # Verify that the camera height needs to be adjusted.
+	# # If so: Shift the camera's position to the new position.
+	# if handles.global_position != camera_anchor_pos - Vector3(0, camera_vertical_offset, 0):
+	# 	handles.global_position.x = camera_anchor_pos.x
+	# 	handles.global_position.y = lerpf(handles.global_position.y, camera_anchor_pos.y - camera_vertical_offset, delta * 10)
+	# 	handles.global_position.z = camera_anchor_pos.z
+	# # If not: Lock camera position to the new anchor position.
+	# else:
+	# 	handles.global_position = camera_anchor_pos - Vector3(0, camera_vertical_offset, 0)
 	
-	camera_anchor_offset_transform = Transform3D(GameManager.player_ref.cam_anchor.get_global_transform_interpolated().basis, camera_anchor_pos - Vector3(0, camera_vertical_offset, 0))
+	# camera_anchor_offset_transform = Transform3D(GameManager.player_ref.cam_anchor.get_global_transform_interpolated().basis, camera_anchor_pos - Vector3(0, camera_vertical_offset, 0))
 
 
-func handle_camera_too_close():
-	# Convenience variables:
-	var cam_distance_to_player: float = camera.global_transform.origin.distance_to(GameManager.player_ref.cam_anchor.global_transform.origin)
-	var trans_trigger_distance: float = 3.0
-	var trans_trigger_min_distance: float = 2.4
-	var trans_percent: float = (cam_distance_to_player - trans_trigger_min_distance) / (trans_trigger_distance - trans_trigger_min_distance)
-	# If the camera is closer than the transition threshold:
-	if cam_distance_to_player <= trans_trigger_distance:
-		# Check if it's also closer than the minimum distance threshold.
-		# If it is: Set the meshs' alpha levels to 0.
-		if cam_distance_to_player <= trans_trigger_min_distance:
-			GameManager.player_ref.mesh.material.albedo_color.a = 0
-			GameManager.player_ref.mesh.get_child(0).material.albedo_color.a = 0
-		# If it's not: Set the meshs' alpha to the calculated transition percent.
-		else:
-			GameManager.player_ref.mesh.material.albedo_color.a = trans_percent
-			GameManager.player_ref.mesh.get_child(0).material.albedo_color.a = trans_percent
-	# If the camera is further than the transition threshold: Set the meshs' alpha levels to 1.
-	else:
-		GameManager.player_ref.mesh.material.albedo_color.a = 1
-		GameManager.player_ref.mesh.get_child(0).material.albedo_color.a = 1
+# func handle_camera_too_close():
+# 	# Convenience variables:
+# 	var cam_distance_to_player: float = camera.global_transform.origin.distance_to(GameManager.player_ref.cam_anchor.global_transform.origin)
+# 	var trans_trigger_distance: float = 3.0
+# 	var trans_trigger_min_distance: float = 2.4
+# 	var trans_percent: float = (cam_distance_to_player - trans_trigger_min_distance) / (trans_trigger_distance - trans_trigger_min_distance)
+# 	# If the camera is closer than the transition threshold:
+# 	if cam_distance_to_player <= trans_trigger_distance:
+# 		# Check if it's also closer than the minimum distance threshold.
+# 		# If it is: Set the meshs' alpha levels to 0.
+# 		if cam_distance_to_player <= trans_trigger_min_distance:
+# 			GameManager.player_ref.mesh.material.albedo_color.a = 0
+# 			GameManager.player_ref.mesh.get_child(0).material.albedo_color.a = 0
+# 		# If it's not: Set the meshs' alpha to the calculated transition percent.
+# 		else:
+# 			GameManager.player_ref.mesh.material.albedo_color.a = trans_percent
+# 			GameManager.player_ref.mesh.get_child(0).material.albedo_color.a = trans_percent
+# 	# If the camera is further than the transition threshold: Set the meshs' alpha levels to 1.
+# 	else:
+# 		GameManager.player_ref.mesh.material.albedo_color.a = 1
+# 		GameManager.player_ref.mesh.get_child(0).material.albedo_color.a = 1

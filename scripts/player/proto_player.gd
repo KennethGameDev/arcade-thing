@@ -32,23 +32,23 @@ func _input(event):
 					current_interactable.interact()
 				else:
 					print("Nothing to interact with...")
-		_:
-			if event.is_action_pressed("escape") or event.is_action_pressed("interact"):
-				GameManager.change_game_mode(GameManager.GameModes.MEANDER_MODE)
-				GameManager.camera_ref.rotation = global_rotation
+		# _:
+		# 	if event.is_action_pressed("escape") or event.is_action_pressed("interact"):
+		# 		GameManager.change_game_mode(GameManager.GameModes.MEANDER_MODE)
+		# 		GameManager.camera_ref.rotation = global_rotation
 
 
 func _physics_process(delta):
 	match control_mode:
-		"meander":
-			if GameManager.camera_ref.finished_cam_transition:
-				# Add the gravity.
-				if not is_on_floor():
-					velocity += get_gravity() * delta
+		# "meander":
+		# 	if GameManager.camera_ref.finished_cam_transition:
+		# 		# Add the gravity.
+		# 		if not is_on_floor():
+		# 			velocity += get_gravity() * delta
 				
-				#handle_run(delta)
+		# 		#handle_run(delta)
 				
-				handle_locomotion()
+		# 		handle_locomotion()
 		"card refill":
 			velocity = Vector3.ZERO
 			if current_interactable:
@@ -59,23 +59,23 @@ func _physics_process(delta):
 		"claw machine":
 			pass
 	move_and_slide()
-	print(current_interactable)
+	# print(current_interactable)
 
 
-func handle_locomotion():
-	# Get the camera's direction
-	var camera_transform_y: float = GameManager.camera_ref.handles.global_transform.basis.get_euler().y
-	# Get the input direction and handle the movement/deceleration.
-	var input: Vector2 = Input.get_vector("left", "right", "forward", "back")
-	var input_dir: Vector3 = Vector3(input.x, 0, input.y)
-	# Rotate the input direction around the UP axis by the camera's rotation
-	var direction: Vector3 = input_dir.rotated(Vector3.UP, camera_transform_y).normalized()
+# func handle_locomotion():
+# 	# Get the camera's direction
+# 	var camera_transform_y: float = GameManager.camera_ref.handles.global_transform.basis.get_euler().y
+# 	# Get the input direction and handle the movement/deceleration.
+# 	var input: Vector2 = Input.get_vector("left", "right", "forward", "back")
+# 	var input_dir: Vector3 = Vector3(input.x, 0, input.y)
+# 	# Rotate the input direction around the UP axis by the camera's rotation
+# 	var direction: Vector3 = input_dir.rotated(Vector3.UP, camera_transform_y).normalized()
 	
-	if direction:
-		velocity = velocity.move_toward(direction * SPEED, ACCELL)
-		#velocity = velocity.move_toward(direction * SPEED * run_speed_mult, ACCELL)
-	else:
-		velocity = velocity.move_toward(Vector3.ZERO, DECELL)
+# 	if direction:
+# 		velocity = velocity.move_toward(direction * SPEED, ACCELL)
+# 		#velocity = velocity.move_toward(direction * SPEED * run_speed_mult, ACCELL)
+# 	else:
+# 		velocity = velocity.move_toward(Vector3.ZERO, DECELL)
 
 
 #func handle_run(delta: float):
@@ -166,11 +166,11 @@ func _on_interaction_range_body_exited(body):
 #endregion
 
 
-func change_control_mode(new_mode: int):
-	match new_mode:
-		GameManager.GameModes.MEANDER_MODE:
-			control_mode = "meander"
-		GameManager.GameModes.CARD_REFILL_MODE:
-			control_mode = "card refill"
-		GameManager.GameModes.CLAW_MACHINE_MODE:
-			control_mode = "claw machine"
+# func change_control_mode(new_mode: int):
+# 	match new_mode:
+# 		GameManager.GameModes.MEANDER_MODE:
+# 			control_mode = "meander"
+# 		GameManager.GameModes.CARD_REFILL_MODE:
+# 			control_mode = "card refill"
+# 		GameManager.GameModes.CLAW_MACHINE_MODE:
+# 			control_mode = "claw machine"

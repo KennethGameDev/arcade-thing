@@ -1,6 +1,6 @@
-[gd_scene load_steps=2 format=3 uid="uid://bcatf2gmm45k0"]
+[gd_scene format=3 uid="uid://bcatf2gmm45k0"]
 
-[ext_resource type="PackedScene" uid="uid://dqm3yphkxanuk" path="res://meshes/dart game/dart.glb" id="1_ulho7"]
+[ext_resource type="PackedScene" uid="uid://dqm3yphkxanuk" path="res://assets/meshes/dart game/dart.glb" id="1_ulho7"]
 
 [node name="Dart" type="Node3D"]
 

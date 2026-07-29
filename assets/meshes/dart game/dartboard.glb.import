@@ -1,0 +1,525 @@
+[remap]
+
+importer="scene"
+importer_version=1
+type="PackedScene"
+uid="uid://baog074021hl8"
+path="res://.godot/imported/dartboard.glb-2197d9e646f1880ab4e15252204cff33.scn"
+
+[deps]
+
+source_file="res://assets/meshes/dart game/dartboard.glb"
+dest_files=["res://.godot/imported/dartboard.glb-2197d9e646f1880ab4e15252204cff33.scn"]
+
+[params]
+
+nodes/root_type=""
+nodes/root_name=""
+nodes/root_script=null
+nodes/apply_root_scale=true
+nodes/root_scale=1.0
+nodes/import_as_skeleton_bones=false
+nodes/use_name_suffixes=true
+nodes/use_node_type_suffixes=true
+meshes/ensure_tangents=true
+meshes/generate_lods=true
+meshes/create_shadow_meshes=true
+meshes/light_baking=1
+meshes/lightmap_texel_size=0.2
+meshes/force_disable_compression=false
+skins/use_named_skins=true
+animation/import=true
+animation/fps=30
+animation/trimming=false
+animation/remove_immutable_tracks=true
+animation/import_rest_as_RESET=false
+import_script/path=""
+materials/extract=0
+materials/extract_format=0
+materials/extract_path=""
+_subresources={
+"nodes": {
+"PATH:Board": {
+"generate/physics": true,
+"physics/physics_material_override": Resource("uid://pfy3u58olxu2", "res://assets/materials/dart game/dartboard/board_physics_material.tres")
+},
+"PATH:Bullseye_Inner": {
+"generate/physics": true,
+"physics/physics_material_override": Resource("uid://pfy3u58olxu2", "res://assets/materials/dart game/dartboard/board_physics_material.tres")
+},
+"PATH:Bullseye_Outer": {
+"generate/physics": true,
+"physics/physics_material_override": Resource("uid://pfy3u58olxu2", "res://assets/materials/dart game/dartboard/board_physics_material.tres")
+},
+"PATH:Doubles_1": {
+"generate/physics": true,
+"physics/physics_material_override": Resource("uid://pfy3u58olxu2", "res://assets/materials/dart game/dartboard/board_physics_material.tres")
+},
+"PATH:Doubles_10": {
+"generate/physics": true,
+"physics/physics_material_override": Resource("uid://pfy3u58olxu2", "res://assets/materials/dart game/dartboard/board_physics_material.tres")
+},
+"PATH:Doubles_11": {
+"generate/physics": true,
+"physics/physics_material_override": Resource("uid://pfy3u58olxu2", "res://assets/materials/dart game/dartboard/board_physics_material.tres")
+},
+"PATH:Doubles_12": {
+"generate/physics": true,
+"physics/physics_material_override": Resource("uid://pfy3u58olxu2", "res://assets/materials/dart game/dartboard/board_physics_material.tres")
+},
+"PATH:Doubles_13": {
+"generate/physics": true,
+"physics/physics_material_override": Resource("uid://pfy3u58olxu2", "res://assets/materials/dart game/dartboard/board_physics_material.tres")
+},
+"PATH:Doubles_14": {
+"generate/physics": true,
+"physics/physics_material_override": Resource("uid://pfy3u58olxu2", "res://assets/materials/dart game/dartboard/board_physics_material.tres")
+},
+"PATH:Doubles_15": {
+"generate/physics": true,
+"physics/physics_material_override": Resource("uid://pfy3u58olxu2", "res://assets/materials/dart game/dartboard/board_physics_material.tres")
+},
+"PATH:Doubles_16": {
+"generate/physics": true,
+"physics/physics_material_override": Resource("uid://pfy3u58olxu2", "res://assets/materials/dart game/dartboard/board_physics_material.tres")
+},
+"PATH:Doubles_17": {
+"generate/physics": true,
+"physics/physics_material_override": Resource("uid://pfy3u58olxu2", "res://assets/materials/dart game/dartboard/board_physics_material.tres")
+},
+"PATH:Doubles_18": {
+"generate/physics": true,
+"physics/physics_material_override": Resource("uid://pfy3u58olxu2", "res://assets/materials/dart game/dartboard/board_physics_material.tres")
+},
+"PATH:Doubles_19": {
+"generate/physics": true,
+"physics/physics_material_override": Resource("uid://pfy3u58olxu2", "res://assets/materials/dart game/dartboard/board_physics_material.tres")
+},
+"PATH:Doubles_2": {
+"generate/physics": true,
+"physics/physics_material_override": Resource("uid://pfy3u58olxu2", "res://assets/materials/dart game/dartboard/board_physics_material.tres")
+},
+"PATH:Doubles_20": {
+"generate/physics": true,
+"physics/physics_material_override": Resource("uid://pfy3u58olxu2", "res://assets/materials/dart game/dartboard/board_physics_material.tres")
+},
+"PATH:Doubles_3": {
+"generate/physics": true,
+"physics/physics_material_override": Resource("uid://pfy3u58olxu2", "res://assets/materials/dart game/dartboard/board_physics_material.tres")
+},
+"PATH:Doubles_4": {
+"generate/physics": true,
+"physics/physics_material_override": Resource("uid://pfy3u58olxu2", "res://assets/materials/dart game/dartboard/board_physics_material.tres")
+},
+"PATH:Doubles_5": {
+"generate/physics": true,
+"physics/physics_material_override": Resource("uid://pfy3u58olxu2", "res://assets/materials/dart game/dartboard/board_physics_material.tres")
+},
+"PATH:Doubles_6": {
+"generate/physics": true,
+"physics/physics_material_override": Resource("uid://pfy3u58olxu2", "res://assets/materials/dart game/dartboard/board_physics_material.tres")
+},
+"PATH:Doubles_7": {
+"generate/physics": true,
+"physics/physics_material_override": Resource("uid://pfy3u58olxu2", "res://assets/materials/dart game/dartboard/board_physics_material.tres")
+},
+"PATH:Doubles_8": {
+"generate/physics": true,
+"physics/physics_material_override": Resource("uid://pfy3u58olxu2", "res://assets/materials/dart game/dartboard/board_physics_material.tres")
+},
+"PATH:Doubles_9": {
+"generate/physics": true,
+"physics/physics_material_override": Resource("uid://pfy3u58olxu2", "res://assets/materials/dart game/dartboard/board_physics_material.tres")
+},
+"PATH:Num_1": {
+"generate/physics": true,
+"physics/physics_material_override": Resource("uid://c27o8mlym6v6u", "res://assets/materials/dart game/dartboard/spider_physics_material.tres")
+},
+"PATH:Num_10_0": {
+"generate/physics": true,
+"physics/physics_material_override": Resource("uid://c27o8mlym6v6u", "res://assets/materials/dart game/dartboard/spider_physics_material.tres")
+},
+"PATH:Num_10_1": {
+"generate/physics": true,
+"physics/physics_material_override": Resource("uid://c27o8mlym6v6u", "res://assets/materials/dart game/dartboard/spider_physics_material.tres")
+},
+"PATH:Num_11_1": {
+"generate/physics": true,
+"physics/physics_material_override": Resource("uid://c27o8mlym6v6u", "res://assets/materials/dart game/dartboard/spider_physics_material.tres")
+},
+"PATH:Num_11_2": {
+"generate/physics": true,
+"physics/physics_material_override": Resource("uid://c27o8mlym6v6u", "res://assets/materials/dart game/dartboard/spider_physics_material.tres")
+},
+"PATH:Num_12_1": {
+"generate/physics": true,
+"physics/physics_material_override": Resource("uid://c27o8mlym6v6u", "res://assets/materials/dart game/dartboard/spider_physics_material.tres")
+},
+"PATH:Num_12_2": {
+"generate/physics": true,
+"physics/physics_material_override": Resource("uid://c27o8mlym6v6u", "res://assets/materials/dart game/dartboard/spider_physics_material.tres")
+},
+"PATH:Num_13_1": {
+"generate/physics": true,
+"physics/physics_material_override": Resource("uid://c27o8mlym6v6u", "res://assets/materials/dart game/dartboard/spider_physics_material.tres")
+},
+"PATH:Num_13_3": {
+"generate/physics": true,
+"physics/physics_material_override": Resource("uid://c27o8mlym6v6u", "res://assets/materials/dart game/dartboard/spider_physics_material.tres")
+},
+"PATH:Num_14_1": {
+"generate/physics": true,
+"physics/physics_material_override": Resource("uid://c27o8mlym6v6u", "res://assets/materials/dart game/dartboard/spider_physics_material.tres")
+},
+"PATH:Num_14_4": {
+"generate/physics": true,
+"physics/physics_material_override": Resource("uid://c27o8mlym6v6u", "res://assets/materials/dart game/dartboard/spider_physics_material.tres")
+},
+"PATH:Num_15_1": {
+"generate/physics": true,
+"physics/physics_material_override": Resource("uid://c27o8mlym6v6u", "res://assets/materials/dart game/dartboard/spider_physics_material.tres")
+},
+"PATH:Num_15_5": {
+"generate/physics": true,
+"physics/physics_material_override": Resource("uid://c27o8mlym6v6u", "res://assets/materials/dart game/dartboard/spider_physics_material.tres")
+},
+"PATH:Num_16_1": {
+"generate/physics": true,
+"physics/physics_material_override": Resource("uid://c27o8mlym6v6u", "res://assets/materials/dart game/dartboard/spider_physics_material.tres")
+},
+"PATH:Num_16_6": {
+"generate/physics": true,
+"physics/physics_material_override": Resource("uid://c27o8mlym6v6u", "res://assets/materials/dart game/dartboard/spider_physics_material.tres")
+},
+"PATH:Num_17_1": {
+"generate/physics": true,
+"physics/physics_material_override": Resource("uid://c27o8mlym6v6u", "res://assets/materials/dart game/dartboard/spider_physics_material.tres")
+},
+"PATH:Num_17_7": {
+"generate/physics": true,
+"physics/physics_material_override": Resource("uid://c27o8mlym6v6u", "res://assets/materials/dart game/dartboard/spider_physics_material.tres")
+},
+"PATH:Num_18_1": {
+"generate/physics": true,
+"physics/physics_material_override": Resource("uid://c27o8mlym6v6u", "res://assets/materials/dart game/dartboard/spider_physics_material.tres")
+},
+"PATH:Num_18_8": {
+"generate/physics": true,
+"physics/physics_material_override": Resource("uid://c27o8mlym6v6u", "res://assets/materials/dart game/dartboard/spider_physics_material.tres")
+},
+"PATH:Num_19_1": {
+"generate/physics": true,
+"physics/physics_material_override": Resource("uid://c27o8mlym6v6u", "res://assets/materials/dart game/dartboard/spider_physics_material.tres")
+},
+"PATH:Num_19_9": {
+"generate/physics": true,
+"physics/physics_material_override": Resource("uid://c27o8mlym6v6u", "res://assets/materials/dart game/dartboard/spider_physics_material.tres")
+},
+"PATH:Num_2": {
+"generate/physics": true,
+"physics/physics_material_override": Resource("uid://c27o8mlym6v6u", "res://assets/materials/dart game/dartboard/spider_physics_material.tres")
+},
+"PATH:Num_20_0": {
+"generate/physics": true,
+"physics/physics_material_override": Resource("uid://c27o8mlym6v6u", "res://assets/materials/dart game/dartboard/spider_physics_material.tres")
+},
+"PATH:Num_20_2": {
+"generate/physics": true,
+"physics/physics_material_override": Resource("uid://c27o8mlym6v6u", "res://assets/materials/dart game/dartboard/spider_physics_material.tres")
+},
+"PATH:Num_3": {
+"generate/physics": true,
+"physics/physics_material_override": Resource("uid://c27o8mlym6v6u", "res://assets/materials/dart game/dartboard/spider_physics_material.tres")
+},
+"PATH:Num_4": {
+"generate/physics": true,
+"physics/physics_material_override": Resource("uid://c27o8mlym6v6u", "res://assets/materials/dart game/dartboard/spider_physics_material.tres")
+},
+"PATH:Num_5": {
+"generate/physics": true,
+"physics/physics_material_override": Resource("uid://c27o8mlym6v6u", "res://assets/materials/dart game/dartboard/spider_physics_material.tres")
+},
+"PATH:Num_6": {
+"generate/physics": true,
+"physics/physics_material_override": Resource("uid://c27o8mlym6v6u", "res://assets/materials/dart game/dartboard/spider_physics_material.tres")
+},
+"PATH:Num_7": {
+"generate/physics": true,
+"physics/physics_material_override": Resource("uid://c27o8mlym6v6u", "res://assets/materials/dart game/dartboard/spider_physics_material.tres")
+},
+"PATH:Num_8": {
+"generate/physics": true,
+"physics/physics_material_override": Resource("uid://c27o8mlym6v6u", "res://assets/materials/dart game/dartboard/spider_physics_material.tres")
+},
+"PATH:Num_9": {
+"generate/physics": true,
+"physics/physics_material_override": Resource("uid://c27o8mlym6v6u", "res://assets/materials/dart game/dartboard/spider_physics_material.tres")
+},
+"PATH:Singles_10_Inner": {
+"generate/physics": true,
+"physics/physics_material_override": Resource("uid://pfy3u58olxu2", "res://assets/materials/dart game/dartboard/board_physics_material.tres")
+},
+"PATH:Singles_10_Outer": {
+"generate/physics": true,
+"physics/physics_material_override": Resource("uid://pfy3u58olxu2", "res://assets/materials/dart game/dartboard/board_physics_material.tres")
+},
+"PATH:Singles_11_Inner": {
+"generate/physics": true,
+"physics/physics_material_override": Resource("uid://pfy3u58olxu2", "res://assets/materials/dart game/dartboard/board_physics_material.tres")
+},
+"PATH:Singles_11_Outer": {
+"generate/physics": true,
+"physics/physics_material_override": Resource("uid://pfy3u58olxu2", "res://assets/materials/dart game/dartboard/board_physics_material.tres")
+},
+"PATH:Singles_12_Inner": {
+"generate/physics": true,
+"physics/physics_material_override": Resource("uid://pfy3u58olxu2", "res://assets/materials/dart game/dartboard/board_physics_material.tres")
+},
+"PATH:Singles_12_Outer": {
+"generate/physics": true,
+"physics/physics_material_override": Resource("uid://pfy3u58olxu2", "res://assets/materials/dart game/dartboard/board_physics_material.tres")
+},
+"PATH:Singles_13_Inner": {
+"generate/physics": true,
+"physics/physics_material_override": Resource("uid://pfy3u58olxu2", "res://assets/materials/dart game/dartboard/board_physics_material.tres")
+},
+"PATH:Singles_13_Outer": {
+"generate/physics": true,
+"physics/physics_material_override": Resource("uid://pfy3u58olxu2", "res://assets/materials/dart game/dartboard/board_physics_material.tres")
+},
+"PATH:Singles_14_Inner": {
+"generate/physics": true,
+"physics/physics_material_override": Resource("uid://pfy3u58olxu2", "res://assets/materials/dart game/dartboard/board_physics_material.tres")
+},
+"PATH:Singles_14_Outer": {
+"generate/physics": true,
+"physics/physics_material_override": Resource("uid://pfy3u58olxu2", "res://assets/materials/dart game/dartboard/board_physics_material.tres")
+},
+"PATH:Singles_15_Inner": {
+"generate/physics": true,
+"physics/physics_material_override": Resource("uid://pfy3u58olxu2", "res://assets/materials/dart game/dartboard/board_physics_material.tres")
+},
+"PATH:Singles_15_Outer": {
+"generate/physics": true,
+"physics/physics_material_override": Resource("uid://pfy3u58olxu2", "res://assets/materials/dart game/dartboard/board_physics_material.tres")
+},
+"PATH:Singles_16_Inner": {
+"generate/physics": true,
+"physics/physics_material_override": Resource("uid://pfy3u58olxu2", "res://assets/materials/dart game/dartboard/board_physics_material.tres")
+},
+"PATH:Singles_16_Outer": {
+"generate/physics": true,
+"physics/physics_material_override": Resource("uid://pfy3u58olxu2", "res://assets/materials/dart game/dartboard/board_physics_material.tres")
+},
+"PATH:Singles_17_Inner": {
+"generate/physics": true,
+"physics/physics_material_override": Resource("uid://pfy3u58olxu2", "res://assets/materials/dart game/dartboard/board_physics_material.tres")
+},
+"PATH:Singles_17_Outer": {
+"generate/physics": true,
+"physics/physics_material_override": Resource("uid://pfy3u58olxu2", "res://assets/materials/dart game/dartboard/board_physics_material.tres")
+},
+"PATH:Singles_18_Inner": {
+"generate/physics": true,
+"physics/physics_material_override": Resource("uid://pfy3u58olxu2", "res://assets/materials/dart game/dartboard/board_physics_material.tres")
+},
+"PATH:Singles_18_Outer": {
+"generate/physics": true,
+"physics/physics_material_override": Resource("uid://pfy3u58olxu2", "res://assets/materials/dart game/dartboard/board_physics_material.tres")
+},
+"PATH:Singles_19_Inner": {
+"generate/physics": true,
+"physics/physics_material_override": Resource("uid://pfy3u58olxu2", "res://assets/materials/dart game/dartboard/board_physics_material.tres")
+},
+"PATH:Singles_19_Outer": {
+"generate/physics": true,
+"physics/physics_material_override": Resource("uid://pfy3u58olxu2", "res://assets/materials/dart game/dartboard/board_physics_material.tres")
+},
+"PATH:Singles_1_Inner": {
+"generate/physics": true,
+"physics/physics_material_override": Resource("uid://pfy3u58olxu2", "res://assets/materials/dart game/dartboard/board_physics_material.tres")
+},
+"PATH:Singles_1_Outer": {
+"generate/physics": true,
+"physics/physics_material_override": Resource("uid://pfy3u58olxu2", "res://assets/materials/dart game/dartboard/board_physics_material.tres")
+},
+"PATH:Singles_20_Inner": {
+"generate/physics": true,
+"physics/physics_material_override": Resource("uid://pfy3u58olxu2", "res://assets/materials/dart game/dartboard/board_physics_material.tres")
+},
+"PATH:Singles_20_Outer": {
+"generate/physics": true,
+"physics/physics_material_override": Resource("uid://pfy3u58olxu2", "res://assets/materials/dart game/dartboard/board_physics_material.tres")
+},
+"PATH:Singles_2_Inner": {
+"generate/physics": true,
+"physics/physics_material_override": Resource("uid://pfy3u58olxu2", "res://assets/materials/dart game/dartboard/board_physics_material.tres")
+},
+"PATH:Singles_2_Outer": {
+"generate/physics": true,
+"physics/physics_material_override": Resource("uid://pfy3u58olxu2", "res://assets/materials/dart game/dartboard/board_physics_material.tres")
+},
+"PATH:Singles_3_Inner": {
+"generate/physics": true,
+"physics/physics_material_override": Resource("uid://pfy3u58olxu2", "res://assets/materials/dart game/dartboard/board_physics_material.tres")
+},
+"PATH:Singles_3_Outer": {
+"generate/physics": true,
+"physics/physics_material_override": Resource("uid://pfy3u58olxu2", "res://assets/materials/dart game/dartboard/board_physics_material.tres")
+},
+"PATH:Singles_4_Inner": {
+"generate/physics": true,
+"physics/physics_material_override": Resource("uid://pfy3u58olxu2", "res://assets/materials/dart game/dartboard/board_physics_material.tres")
+},
+"PATH:Singles_4_Outer": {
+"generate/physics": true,
+"physics/physics_material_override": Resource("uid://pfy3u58olxu2", "res://assets/materials/dart game/dartboard/board_physics_material.tres")
+},
+"PATH:Singles_5_Inner": {
+"generate/physics": true,
+"physics/physics_material_override": Resource("uid://pfy3u58olxu2", "res://assets/materials/dart game/dartboard/board_physics_material.tres")
+},
+"PATH:Singles_5_Outer": {
+"generate/physics": true,
+"physics/physics_material_override": Resource("uid://pfy3u58olxu2", "res://assets/materials/dart game/dartboard/board_physics_material.tres")
+},
+"PATH:Singles_6_Inner": {
+"generate/physics": true,
+"physics/physics_material_override": Resource("uid://pfy3u58olxu2", "res://assets/materials/dart game/dartboard/board_physics_material.tres")
+},
+"PATH:Singles_6_Outer": {
+"generate/physics": true,
+"physics/physics_material_override": Resource("uid://pfy3u58olxu2", "res://assets/materials/dart game/dartboard/board_physics_material.tres")
+},
+"PATH:Singles_7_Inner": {
+"generate/physics": true,
+"physics/physics_material_override": Resource("uid://pfy3u58olxu2", "res://assets/materials/dart game/dartboard/board_physics_material.tres")
+},
+"PATH:Singles_7_Outer": {
+"generate/physics": true,
+"physics/physics_material_override": Resource("uid://pfy3u58olxu2", "res://assets/materials/dart game/dartboard/board_physics_material.tres")
+},
+"PATH:Singles_8_Inner": {
+"generate/physics": true,
+"physics/physics_material_override": Resource("uid://pfy3u58olxu2", "res://assets/materials/dart game/dartboard/board_physics_material.tres")
+},
+"PATH:Singles_8_Outer": {
+"generate/physics": true,
+"physics/physics_material_override": Resource("uid://pfy3u58olxu2", "res://assets/materials/dart game/dartboard/board_physics_material.tres")
+},
+"PATH:Singles_9_Inner": {
+"generate/physics": true,
+"physics/physics_material_override": Resource("uid://pfy3u58olxu2", "res://assets/materials/dart game/dartboard/board_physics_material.tres")
+},
+"PATH:Singles_9_Outer": {
+"generate/physics": true,
+"physics/physics_material_override": Resource("uid://pfy3u58olxu2", "res://assets/materials/dart game/dartboard/board_physics_material.tres")
+},
+"PATH:Spider": {
+"generate/physics": true,
+"physics/physics_material_override": Resource("uid://c27o8mlym6v6u", "res://assets/materials/dart game/dartboard/spider_physics_material.tres")
+},
+"PATH:Spider_Bullseye_Inner_Ring": {
+"generate/physics": true,
+"physics/physics_material_override": Resource("uid://c27o8mlym6v6u", "res://assets/materials/dart game/dartboard/spider_physics_material.tres")
+},
+"PATH:Spider_Bullseye_Outer_Ring": {
+"generate/physics": true,
+"physics/physics_material_override": Resource("uid://c27o8mlym6v6u", "res://assets/materials/dart game/dartboard/spider_physics_material.tres")
+},
+"PATH:Spider_Doubles_Inner_Ring": {
+"generate/physics": true,
+"physics/physics_material_override": Resource("uid://c27o8mlym6v6u", "res://assets/materials/dart game/dartboard/spider_physics_material.tres")
+},
+"PATH:Spider_Trebles_Inner_Ring": {
+"generate/physics": true,
+"physics/physics_material_override": Resource("uid://c27o8mlym6v6u", "res://assets/materials/dart game/dartboard/spider_physics_material.tres")
+},
+"PATH:Spider_Trebles_Outer_Ring": {
+"generate/physics": true,
+"physics/physics_material_override": Resource("uid://c27o8mlym6v6u", "res://assets/materials/dart game/dartboard/spider_physics_material.tres")
+},
+"PATH:Trebles_1": {
+"generate/physics": true,
+"physics/physics_material_override": Resource("uid://pfy3u58olxu2", "res://assets/materials/dart game/dartboard/board_physics_material.tres")
+},
+"PATH:Trebles_10": {
+"generate/physics": true,
+"physics/physics_material_override": Resource("uid://pfy3u58olxu2", "res://assets/materials/dart game/dartboard/board_physics_material.tres")
+},
+"PATH:Trebles_11": {
+"generate/physics": true,
+"physics/physics_material_override": Resource("uid://pfy3u58olxu2", "res://assets/materials/dart game/dartboard/board_physics_material.tres")
+},
+"PATH:Trebles_12": {
+"generate/physics": true,
+"physics/physics_material_override": Resource("uid://pfy3u58olxu2", "res://assets/materials/dart game/dartboard/board_physics_material.tres")
+},
+"PATH:Trebles_13": {
+"generate/physics": true,
+"physics/physics_material_override": Resource("uid://pfy3u58olxu2", "res://assets/materials/dart game/dartboard/board_physics_material.tres")
+},
+"PATH:Trebles_14": {
+"generate/physics": true,
+"physics/physics_material_override": Resource("uid://pfy3u58olxu2", "res://assets/materials/dart game/dartboard/board_physics_material.tres")
+},
+"PATH:Trebles_15": {
+"generate/physics": true,
+"physics/physics_material_override": Resource("uid://pfy3u58olxu2", "res://assets/materials/dart game/dartboard/board_physics_material.tres")
+},
+"PATH:Trebles_16": {
+"generate/physics": true,
+"physics/physics_material_override": Resource("uid://pfy3u58olxu2", "res://assets/materials/dart game/dartboard/board_physics_material.tres")
+},
+"PATH:Trebles_17": {
+"generate/physics": true,
+"physics/physics_material_override": Resource("uid://pfy3u58olxu2", "res://assets/materials/dart game/dartboard/board_physics_material.tres")
+},
+"PATH:Trebles_18": {
+"generate/physics": true,
+"physics/physics_material_override": Resource("uid://pfy3u58olxu2", "res://assets/materials/dart game/dartboard/board_physics_material.tres")
+},
+"PATH:Trebles_19": {
+"generate/physics": true,
+"physics/physics_material_override": Resource("uid://pfy3u58olxu2", "res://assets/materials/dart game/dartboard/board_physics_material.tres")
+},
+"PATH:Trebles_2": {
+"generate/physics": true,
+"physics/physics_material_override": Resource("uid://pfy3u58olxu2", "res://assets/materials/dart game/dartboard/board_physics_material.tres")
+},
+"PATH:Trebles_20": {
+"generate/physics": true,
+"physics/physics_material_override": Resource("uid://pfy3u58olxu2", "res://assets/materials/dart game/dartboard/board_physics_material.tres")
+},
+"PATH:Trebles_3": {
+"generate/physics": true,
+"physics/physics_material_override": Resource("uid://pfy3u58olxu2", "res://assets/materials/dart game/dartboard/board_physics_material.tres")
+},
+"PATH:Trebles_4": {
+"generate/physics": true,
+"physics/physics_material_override": Resource("uid://pfy3u58olxu2", "res://assets/materials/dart game/dartboard/board_physics_material.tres")
+},
+"PATH:Trebles_5": {
+"generate/physics": true,
+"physics/physics_material_override": Resource("uid://pfy3u58olxu2", "res://assets/materials/dart game/dartboard/board_physics_material.tres")
+},
+"PATH:Trebles_6": {
+"generate/physics": true,
+"physics/physics_material_override": Resource("uid://pfy3u58olxu2", "res://assets/materials/dart game/dartboard/board_physics_material.tres")
+},
+"PATH:Trebles_7": {
+"generate/physics": true,
+"physics/physics_material_override": Resource("uid://pfy3u58olxu2", "res://assets/materials/dart game/dartboard/board_physics_material.tres")
+},
+"PATH:Trebles_8": {
+"generate/physics": true,
+"physics/physics_material_override": Resource("uid://pfy3u58olxu2", "res://assets/materials/dart game/dartboard/board_physics_material.tres")
+},
+"PATH:Trebles_9": {
+"generate/physics": true,
+"physics/physics_material_override": Resource("uid://pfy3u58olxu2", "res://assets/materials/dart game/dartboard/board_physics_material.tres")
+}
+}
+}
+gltf/naming_version=2
+gltf/embedded_image_handling=1

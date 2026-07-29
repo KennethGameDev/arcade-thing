@@ -1,0 +1,111 @@
+[gd_scene format=3 uid="uid://bi8ln1qkbb0qu"]
+
+[ext_resource type="Script" uid="uid://dduca62bccl6j" path="res://scripts/ui/core/ui_manager.gd" id="1_qjbkm"]
+
+[node name="UIManager" type="Control" unique_id=500997333]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_qjbkm")
+
+[node name="MainMenu" type="Control" parent="." unique_id=2083322456]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="MainMenu" unique_id=97465136]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 92
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MainMenu/MarginContainer" unique_id=74549756]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+theme_override_constants/separation = 37
+alignment = 1
+
+[node name="Button" type="Button" parent="MainMenu/MarginContainer/VBoxContainer" unique_id=1836851380]
+layout_mode = 2
+text = "Singleplayer"
+
+[node name="Button2" type="Button" parent="MainMenu/MarginContainer/VBoxContainer" unique_id=2103875803]
+layout_mode = 2
+text = "Multiplayer"
+
+[node name="Button3" type="Button" parent="MainMenu/MarginContainer/VBoxContainer" unique_id=277407920]
+layout_mode = 2
+text = "Settings"
+
+[node name="Button4" type="Button" parent="MainMenu/MarginContainer/VBoxContainer" unique_id=1906844627]
+layout_mode = 2
+text = "Quit"
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="MainMenu/MarginContainer" unique_id=866671117]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+theme_override_constants/separation = 37
+alignment = 1
+
+[node name="Button" type="Button" parent="MainMenu/MarginContainer/VBoxContainer2" unique_id=62406694]
+layout_mode = 2
+text = "Singleplayer"
+
+[node name="Button2" type="Button" parent="MainMenu/MarginContainer/VBoxContainer2" unique_id=1865606901]
+layout_mode = 2
+text = "Multiplayer"
+
+[node name="Button3" type="Button" parent="MainMenu/MarginContainer/VBoxContainer2" unique_id=1171249659]
+layout_mode = 2
+text = "Settings"
+
+[node name="Button4" type="Button" parent="MainMenu/MarginContainer/VBoxContainer2" unique_id=247166060]
+layout_mode = 2
+text = "Quit"
+
+[node name="Settings" type="Control" parent="." unique_id=32725553]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MultiplayerLobbySetup" type="Control" parent="." unique_id=338082654]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MultiplayerJoin" type="Control" parent="." unique_id=1329769842]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="PlayerUI" type="Control" parent="." unique_id=1033750590]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2

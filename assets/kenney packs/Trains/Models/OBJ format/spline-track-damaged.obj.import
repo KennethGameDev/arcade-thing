@@ -1,0 +1,25 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://c8iv3cvqy2a0y"
+path="res://.godot/imported/spline-track-damaged.obj-69c5c9e3201590e772a36dc5199e9502.mesh"
+
+[deps]
+
+files=["res://.godot/imported/spline-track-damaged.obj-69c5c9e3201590e772a36dc5199e9502.mesh"]
+
+source_file="res://assets/kenney packs/Trains/Models/OBJ format/spline-track-damaged.obj"
+dest_files=["res://.godot/imported/spline-track-damaged.obj-69c5c9e3201590e772a36dc5199e9502.mesh", "res://.godot/imported/spline-track-damaged.obj-69c5c9e3201590e772a36dc5199e9502.mesh"]
+
+[params]
+
+generate_tangents=true
+generate_lods=true
+generate_shadow_mesh=true
+generate_lightmap_uv2=false
+generate_lightmap_uv2_texel_size=0.2
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+force_disable_mesh_compression=false

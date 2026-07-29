@@ -6,8 +6,8 @@ func _ready():
 	camera_distance = 0.5
 
 
-func initialize():
-	GameManager.change_game_mode(GameManager.GameModes.CARD_REFILL_MODE, self)
+# func initialize():
+# 	GameManager.change_game_mode(GameManager.GameModes.CARD_REFILL_MODE, self)
 
 
 func process(_delta):

@@ -1,0 +1,25 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://dg5x8udjpvpm"
+path="res://.godot/imported/train-carriage-flatbed-wood.obj-657c53cc0c684dabc2b3a275d155b3ca.mesh"
+
+[deps]
+
+files=["res://.godot/imported/train-carriage-flatbed-wood.obj-657c53cc0c684dabc2b3a275d155b3ca.mesh"]
+
+source_file="res://assets/kenney packs/Trains/Models/OBJ format/train-carriage-flatbed-wood.obj"
+dest_files=["res://.godot/imported/train-carriage-flatbed-wood.obj-657c53cc0c684dabc2b3a275d155b3ca.mesh", "res://.godot/imported/train-carriage-flatbed-wood.obj-657c53cc0c684dabc2b3a275d155b3ca.mesh"]
+
+[params]
+
+generate_tangents=true
+generate_lods=true
+generate_shadow_mesh=true
+generate_lightmap_uv2=false
+generate_lightmap_uv2_texel_size=0.2
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+force_disable_mesh_compression=false
