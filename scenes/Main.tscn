@@ -1,0 +1,24 @@
+[gd_scene format=3 uid="uid://cnsp23rov0y15"]
+
+[ext_resource type="Script" uid="uid://kpw2d0ioqq2d" path="res://scripts/main.gd" id="1_0bbpv"]
+[ext_resource type="PackedScene" uid="uid://cesmlm6lleomr" path="res://scenes/arcade/Arcade.tscn" id="2_rarhs"]
+[ext_resource type="PackedScene" uid="uid://bi8ln1qkbb0qu" path="res://scenes/ui/ui_manager.tscn" id="3_vcsgt"]
+
+[node name="Main" type="Node" unique_id=1716353511]
+script = ExtResource("1_0bbpv")
+
+[node name="Arcade" parent="." unique_id=142472355 instance=ExtResource("2_rarhs")]
+
+[node name="UI" parent="." unique_id=500997333 instance=ExtResource("3_vcsgt")]
+
+[node name="Camera3D" type="Camera3D" parent="." unique_id=1753826200]
+transform = Transform3D(0.24517207, -0.4005733, 0.88285434, -2.0563435e-08, 0.9106477, 0.41318387, -0.9694796, -0.10130116, 0.22326535, 107.08345, 35.887352, 29.399628)
+fov = 61.4
+size = 0.061
+
+[node name="Players" type="Node3D" parent="." unique_id=2057230013]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 45.810196, 0.396568, -9.091511)
+
+[node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="." unique_id=1622659575]
+_spawnable_scenes = PackedStringArray("uid://pb213jsy1a7f")
+spawn_path = NodePath("../Players")
