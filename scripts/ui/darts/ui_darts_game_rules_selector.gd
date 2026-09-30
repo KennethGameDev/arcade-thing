@@ -14,4 +14,4 @@ func _process(_delta):
 
 func _on_continue_button_pressed():
 	_set_ui_element_visiblity(self, false)
-	_set_ui_element_visiblity(GameManager.current_ui.ui_dart_customizer, true)
+	# _set_ui_element_visiblity(GameManager.current_ui.ui_dart_customizer, true)

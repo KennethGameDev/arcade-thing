@@ -1,176 +1,177 @@
 class_name Player
 extends CharacterBody3D
 
+
 @export var JUMP_VELOCITY: float = 4.5
 @export var ACCELL: float = 0.11
 @export var DECELL: float = 0.25
 @export var SPEED: float = 5.0
+var direction: Vector3 = Vector3.ZERO
 
 var player_cam: CameraController
 
 @export var cam_anchor: Marker3D
 @onready var mesh: CSGMesh3D = $Mesh
 
-@onready var interaction_range: Area3D = $Mesh/InteractionRange
-var detected_interactables: Array[Interactable] = []
-var current_interactable: Interactable
+enum STATE {
+	IDLE = 0,
+	WALK = 1,
+	RUN = 2,
+	JUMP = 3,
+	FALL = 4,
+	GAMING = 5,
+	SOCALIZING = 6
+}
 
-var control_mode: String
+var peer_id: int = 1 # The peer that controls this player
+var local = true # If this player belongs to the local peer
 
-
-func _ready():
-	pass
-
-
-func _input(event):
-	match control_mode:
-		"meander":
-			if event.is_action_pressed("jump"):
-				handle_jump()
-			if event.is_action_pressed("interact"):
-				if current_interactable:
-					current_interactable.interact()
-				else:
-					print("Nothing to interact with...")
-		# _:
-		# 	if event.is_action_pressed("escape") or event.is_action_pressed("interact"):
-		# 		GameManager.change_game_mode(GameManager.GameModes.MEANDER_MODE)
-		# 		GameManager.camera_ref.rotation = global_rotation
+var state: STATE = STATE.IDLE: # The current state the player is in
+	set(value):
+		# Limit the value to the bounds of STATE
+		state = clampi(value, 0, STATE.size() - 1) as STATE
+		# Change animation based on state:
+		# [[WIP]]
 
 
-func _physics_process(delta):
-	match control_mode:
-		# "meander":
-		# 	if GameManager.camera_ref.finished_cam_transition:
-		# 		# Add the gravity.
-		# 		if not is_on_floor():
-		# 			velocity += get_gravity() * delta
-				
-		# 		#handle_run(delta)
-				
-		# 		handle_locomotion()
-		"card refill":
-			velocity = Vector3.ZERO
-			if current_interactable:
-				#position.x = lerpf(position.x, current_interactable.player_position.global_position.x, delta)
-				#position.z = lerpf(position.z, current_interactable.player_position.global_position.z, delta)
-				position.x = current_interactable.player_position.global_position.x
-				position.z = current_interactable.player_position.global_position.z
-		"claw machine":
-			pass
-	move_and_slide()
-	# print(current_interactable)
+func _enter_tree() -> void:
+	# Set node authority
+	peer_id = int(name)
+	%ClientSynchronizer.set_multiplayer_authority(peer_id)
+	local = (peer_id == multiplayer.get_unique_id())
 
 
-# func handle_locomotion():
-# 	# Get the camera's direction
-# 	var camera_transform_y: float = GameManager.camera_ref.handles.global_transform.basis.get_euler().y
-# 	# Get the input direction and handle the movement/deceleration.
-# 	var input: Vector2 = Input.get_vector("left", "right", "forward", "back")
-# 	var input_dir: Vector3 = Vector3(input.x, 0, input.y)
-# 	# Rotate the input direction around the UP axis by the camera's rotation
-# 	var direction: Vector3 = input_dir.rotated(Vector3.UP, camera_transform_y).normalized()
+func _ready() -> void:
+	if local:
+		# Activate the camera if local
+		%Camera3D.make_current()
+
+
+func _input(event) -> void:
+	if event.is_action_pressed("jump") and is_on_floor():
+		jump()
+
+
+func _physics_process(delta) -> void:
+	# Add the gravity.
+	if not is_on_floor():
+		velocity += get_gravity() * delta
 	
-# 	if direction:
-# 		velocity = velocity.move_toward(direction * SPEED, ACCELL)
-# 		#velocity = velocity.move_toward(direction * SPEED * run_speed_mult, ACCELL)
-# 	else:
-# 		velocity = velocity.move_toward(Vector3.ZERO, DECELL)
+	handle_locomotion()
+
+	match(state):
+		STATE.IDLE: _state_idle(direction, delta)
+		STATE.WALK: _state_walk(direction, delta)
+		STATE.RUN: _state_run(direction, delta)
+		STATE.JUMP: _state_jump(direction, delta)
+		STATE.FALL: _state_fall(direction, delta)
+		STATE.GAMING: _state_gaming(direction, delta)
+		STATE.SOCALIZING: _state_socializing(direction, delta)
+
+	move_and_slide()
 
 
-#func handle_run(delta: float):
-	#if Input.is_action_pressed("run"):
-		#button_timer += delta
-		#if button_timer > button_hold_threshold:
-			#button_held = true
-	#
-	#if run_level == 0:
-		#if Input.is_action_just_pressed("run"):
-			#change_run_level(1)
-	#elif run_level == 1:
-		#if Input.is_action_just_released("run"):
-			#if button_timer < button_hold_threshold:
-				#change_run_level(0)
-		##if button_timer >= button_hold_threshold and button_held:
-			##change_run_level(2)
-	#
-	#if Input.is_action_just_released("run"):
-		#button_timer = 0
-		#button_held = false
-	#
-	##if Focus.input_is_action_just_pressed(action):
-		##if run_level == 0:
-			##change_run_level(1)
-		##elif run_level == 1:
-			##change_run_level(0)
-	##if button_timer > button_tap_threshold:
-		##if run_level != 2:
-			##change_run_level(2)
-		##elif Focus.input_is_action_just_released(action):
-			##change_run_level(prev_run_level)
-	##if Focus.input_is_action_just_released(action):
-		##button_timer = 0
+#region: Internal Helpers
+
+func _check_jump() -> bool:
+	if is_on_floor() and is_zero_approx(velocity.y):
+		jump()
+		return true
+	return false
 
 
-func handle_jump():
-	if Input.is_action_pressed("jump") and is_on_floor():
-		velocity.y = JUMP_VELOCITY
+func _check_fall() -> bool:
+	if !is_on_floor() and velocity.y > 0.0:
+		state = STATE.FALL
+		return true
+	return false
 
 
-#region : Interaction-related functions
-func set_closest_interactable():
-	if control_mode == "meander":
-		var closest_interactable: Interactable = null
-		var current_interactable_distance: float = 999
-		var prev_interactable_distance: float = 999
-		
-		if detected_interactables.size() != 0:
-			for interactable in detected_interactables:
-				prev_interactable_distance = current_interactable_distance
-				current_interactable_distance = position.distance_to(interactable.position)
-				if current_interactable_distance < prev_interactable_distance:
-					closest_interactable = interactable
-				else:
-					interactable.hide_details()
-		
-		if closest_interactable != current_interactable:
-			set_current_interactable(closest_interactable)
+func _check_walk() -> bool:
+	if !is_zero_approx(velocity.x) or !is_zero_approx(velocity.z):
+		state = STATE.WALK
+		return true
+	return false
 
 
-func set_current_interactable(interactable: Interactable):
-	if control_mode == "meander":
-		current_interactable = interactable
-		current_interactable.show_details()
+func _check_idle() -> bool:
+	if is_zero_approx(velocity.x) and is_zero_approx(velocity.z):
+		state = STATE.IDLE
+		return true
+	return false
 
-
-func _on_interaction_range_body_entered(body):
-	if control_mode == "meander":
-		detected_interactables.append(body)
-		set_closest_interactable()
-
-
-func _on_interaction_range_body_exited(body):
-	if control_mode == "meander":
-		var i: int = 0
-		while i < detected_interactables.size():
-			if detected_interactables[i] == body:
-				var removed_interactable: Interactable = detected_interactables.pop_at(i)
-				if removed_interactable == current_interactable:
-					if detected_interactables.size() == 0:
-						current_interactable.hide_details()
-						current_interactable = null
-					else:
-						removed_interactable.hide_details()
-						set_closest_interactable()
-			i += 1
 #endregion
 
 
-# func change_control_mode(new_mode: int):
-# 	match new_mode:
-# 		GameManager.GameModes.MEANDER_MODE:
-# 			control_mode = "meander"
-# 		GameManager.GameModes.CARD_REFILL_MODE:
-# 			control_mode = "card refill"
-# 		GameManager.GameModes.CLAW_MACHINE_MODE:
-# 			control_mode = "claw machine"
+#region: Public Helpers
+
+func handle_locomotion() -> void:
+	# Get the camera's direction
+	var camera_transform_y: float = %Camera3D.global_transform.basis.get_euler().y
+	# Get the input direction and handle the movement/deceleration.
+	var input: Vector2 = Input.get_vector("left", "right", "forward", "back")
+	var input_dir: Vector3 = Vector3(input.x, 0, input.y)
+	# Rotate the input direction around the UP axis by the camera's rotation
+	direction = input_dir.rotated(Vector3.UP, camera_transform_y).normalized()
+	
+	if direction:
+		velocity = velocity.move_toward(direction * SPEED, ACCELL)
+	else:
+		velocity = velocity.move_toward(Vector3.ZERO, DECELL)
+
+
+func get_direction() -> Vector3:
+	return direction
+
+
+func jump() -> void:
+	if state == STATE.JUMP: return
+	state = STATE.JUMP
+	velocity.y = JUMP_VELOCITY
+
+#endregion
+
+
+#region: States
+
+func _state_idle(_direction: Vector3, _delta: float) -> void:
+	if _check_fall(): return
+	if _check_walk(): return
+	if _check_jump(): return
+
+
+func _state_walk(_direction: Vector3, _delta: float) -> void:
+	pass
+
+
+func _state_run(_direction: Vector3, _delta: float) -> void:
+	pass
+
+
+func _state_jump(_direction: Vector3, _delta: float) -> void:
+	pass
+
+
+func _state_fall(_direction: Vector3, _delta: float) -> void:
+	pass
+
+
+func _state_gaming(_direction: Vector3, _delta: float) -> void:
+	pass
+
+
+func _state_socializing(_direction: Vector3, _delta: float) -> void:
+	pass
+
+#endregion
+
+
+#region: RPC Functions
+
+@rpc("authority", "call_local", "reliable")
+func teleport(new_pos: Vector3) -> void:
+	velocity = Vector3.ZERO
+	global_position = new_pos
+	state = STATE.IDLE
+
+#endregion

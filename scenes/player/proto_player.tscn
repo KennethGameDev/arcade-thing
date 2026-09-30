@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://pb213jsy1a7f"]
+[gd_scene format=3 uid="uid://pb213jsy1a7f"]
 
 [ext_resource type="Script" uid="uid://dwbdfc7gqjrk2" path="res://scripts/player/proto_player.gd" id="1_2flv3"]
 
@@ -22,39 +22,55 @@ length = 4.5
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_l2o7l"]
 
-[node name="ProtoPlayer" type="CharacterBody3D" node_paths=PackedStringArray("cam_anchor")]
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_frg7m"]
+
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_v67e1"]
+
+[node name="ProtoPlayer" type="CharacterBody3D" unique_id=1540732094 node_paths=PackedStringArray("cam_anchor")]
 collision_layer = 2
 collision_mask = 5
 script = ExtResource("1_2flv3")
 cam_anchor = NodePath("Cam Anchor")
 
-[node name="Cam Anchor" type="Marker3D" parent="."]
+[node name="Cam Anchor" type="Marker3D" parent="." unique_id=1918328385]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.1, 0)
 
-[node name="Visuals Anchor" type="Marker3D" parent="."]
+[node name="Visuals Anchor" type="Marker3D" parent="." unique_id=1543130286]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 
-[node name="Mesh" type="CSGMesh3D" parent="."]
+[node name="Mesh" type="CSGMesh3D" parent="." unique_id=1792620770]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 mesh = SubResource("CapsuleMesh_voqum")
 material = SubResource("StandardMaterial3D_l2o7l")
 
-[node name="Face" type="CSGMesh3D" parent="Mesh"]
+[node name="Face" type="CSGMesh3D" parent="Mesh" unique_id=54890726]
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0.45610118, -0.64401627)
 mesh = SubResource("CylinderMesh_l2o7l")
 material = SubResource("StandardMaterial3D_jq1um")
 
-[node name="InteractionRange" type="Area3D" parent="Mesh"]
+[node name="InteractionRange" type="Area3D" parent="Mesh" unique_id=530930872]
 collision_layer = 2
 collision_mask = 5
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Mesh/InteractionRange"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Mesh/InteractionRange" unique_id=1939798200]
 transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 0, 0, 0)
 shape = SubResource("SeparationRayShape3D_gnew0")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=867797843]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 shape = SubResource("CapsuleShape3D_l2o7l")
+
+[node name="ClientSynchronizer" type="MultiplayerSynchronizer" parent="." unique_id=1255918402]
+unique_name_in_owner = true
+replication_config = SubResource("SceneReplicationConfig_frg7m")
+
+[node name="ServerSynchronizer" type="MultiplayerSynchronizer" parent="." unique_id=1221943657]
+unique_name_in_owner = true
+root_path = NodePath("../ClientSynchronizer")
+replication_config = SubResource("SceneReplicationConfig_v67e1")
+
+[node name="Camera3D" type="Camera3D" parent="." unique_id=334336350]
+unique_name_in_owner = true
 
 [connection signal="body_entered" from="Mesh/InteractionRange" to="." method="_on_interaction_range_body_entered"]
 [connection signal="body_exited" from="Mesh/InteractionRange" to="." method="_on_interaction_range_body_exited"]

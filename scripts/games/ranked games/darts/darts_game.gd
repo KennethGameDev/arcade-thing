@@ -16,9 +16,9 @@ func _initialize_game():
 	pass
 
 
-func _ready():
-	mouse_position.x = GameManager.right_limit / 2
-	mouse_position.y = GameManager.lower_limit / 2
+# func _ready():
+	# mouse_position.x = GameManager.right_limit / 2
+	# mouse_position.y = GameManager.lower_limit / 2
 
 
 func _input(event: InputEvent):
@@ -40,14 +40,14 @@ func _process(_delta):
 	else:
 		mouse_sense_modifier = 1
 	
-	if mouse_position.x < GameManager.left_limit:
-		mouse_position.x = GameManager.left_limit
-	if mouse_position.x > GameManager.right_limit:
-		mouse_position.x = GameManager.right_limit
-	if mouse_position.y < GameManager.upper_limit:
-		mouse_position.y = GameManager.upper_limit
-	if mouse_position.y > GameManager.lower_limit:
-		mouse_position.y = GameManager.lower_limit
+	# if mouse_position.x < GameManager.left_limit:
+	# 	mouse_position.x = GameManager.left_limit
+	# if mouse_position.x > GameManager.right_limit:
+	# 	mouse_position.x = GameManager.right_limit
+	# if mouse_position.y < GameManager.upper_limit:
+	# 	mouse_position.y = GameManager.upper_limit
+	# if mouse_position.y > GameManager.lower_limit:
+	# 	mouse_position.y = GameManager.lower_limit
 
 
 func _throw_dart():

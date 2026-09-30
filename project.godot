@@ -24,14 +24,19 @@ compatibility/default_parent_skeleton_in_mesh_instance_3d=true
 
 [application]
 
-config/name="arcade thing (4.5)"
-run/main_scene="uid://cesmlm6lleomr"
-config/features=PackedStringArray("4.6", "Forward Plus")
+config/name="arcade thing"
+run/main_scene="uid://cnsp23rov0y15"
+config/features=PackedStringArray("4.7", "Forward Plus")
 config/icon="res://assets/icon.svg"
+
+[autoload]
+
+GameMaster="*uid://b51luwklkucwn"
+PhantomCameraManager="*uid://duq6jhf6unyis"
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/curved_lines_2d/plugin.cfg")
+enabled=PackedStringArray("res://addons/anthonyec.camera_preview/plugin.cfg", "res://addons/curved_lines_2d/plugin.cfg", "res://addons/godot_state_charts/plugin.cfg", "res://addons/kanban_tasks/plugin.cfg", "res://addons/phantom_camera/plugin.cfg")
 
 [global_group]
 
@@ -40,6 +45,10 @@ Game=""
 Dart=""
 Interactable=""
 "Player Start"=""
+
+[godots]
+
+version_hint="4.7.2-stable"
 
 [input]
 

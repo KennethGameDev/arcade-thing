@@ -1,0 +1,102 @@
+{
+	"categories": [
+		{
+			"uuid": "c3e9c56b-3192-4c88-aac3-fa0a5d845bbc",
+			"title": "Task",
+			"color": "569eff"
+		},
+		{
+			"uuid": "c5d63a4a-10f5-4713-a750-535d7711f894",
+			"title": "Bug",
+			"color": "fa2217"
+		}
+	],
+	"stages": [
+		{
+			"uuid": "c29d20fd-2176-41f5-b317-717f46de5856",
+			"title": "Todo",
+			"tasks": [
+				"943dc3bd-e71f-4ef0-9b77-afca3c5201d0",
+				"6c9f2494-b822-4004-8d46-f11451365b2f",
+				"688ff797-b31a-4996-8b36-42d5e9c97cf3"
+			]
+		},
+		{
+			"uuid": "a836f126-6d11-4ea2-a604-ebed1085c610",
+			"title": "Doing",
+			"tasks": []
+		},
+		{
+			"uuid": "cb3eb3d9-d2f5-4771-a702-31bfbed57dbf",
+			"title": "Done",
+			"tasks": []
+		}
+	],
+	"tasks": [
+		{
+			"uuid": "943dc3bd-e71f-4ef0-9b77-afca3c5201d0",
+			"title": "Re-Create the player controller using the State Charts plugin",
+			"description": "",
+			"category": "c3e9c56b-3192-4c88-aac3-fa0a5d845bbc",
+			"steps": [
+				{
+					"details": "Make a new Player scene",
+					"done": true
+				},
+				{
+					"details": "Add the new mesh",
+					"done": true
+				},
+				{
+					"details": "Make a new player controller script",
+					"done": false
+				},
+				{
+					"details": "Set up the State Chart node structure",
+					"done": false
+				},
+				{
+					"details": "Connect state transition signals",
+					"done": false
+				}
+			]
+		},
+		{
+			"uuid": "6c9f2494-b822-4004-8d46-f11451365b2f",
+			"title": "Implement the PhantomCamera plugin.",
+			"description": "",
+			"category": "c3e9c56b-3192-4c88-aac3-fa0a5d845bbc",
+			"steps": [
+				{
+					"details": "Learn how to use this camera system",
+					"done": false
+				}
+			]
+		},
+		{
+			"uuid": "688ff797-b31a-4996-8b36-42d5e9c97cf3",
+			"title": "Create the Main Menu with transitions",
+			"description": "",
+			"category": "c3e9c56b-3192-4c88-aac3-fa0a5d845bbc",
+			"steps": [
+				{
+					"details": "Position the camera",
+					"done": false
+				}
+			]
+		}
+	],
+	"layout": {
+		"columns": [
+			[
+				"c29d20fd-2176-41f5-b317-717f46de5856"
+			],
+			[
+				"a836f126-6d11-4ea2-a604-ebed1085c610"
+			],
+			[
+				"cb3eb3d9-d2f5-4771-a702-31bfbed57dbf"
+			]
+		]
+	}
+}

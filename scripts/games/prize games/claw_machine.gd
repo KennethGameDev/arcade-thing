@@ -13,8 +13,8 @@ func process(_delta):
 	pass
 
 
-func initialize():
-	GameManager.change_game_mode(GameManager.GameModes.CARD_REFILL_MODE, self)
+# func initialize():
+# 	GameManager.change_game_mode(GameManager.GameModes.CARD_REFILL_MODE, self)
 
 
 func start_game():

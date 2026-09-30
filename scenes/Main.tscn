@@ -3,6 +3,11 @@
 [ext_resource type="Script" uid="uid://kpw2d0ioqq2d" path="res://scripts/main.gd" id="1_0bbpv"]
 [ext_resource type="PackedScene" uid="uid://cesmlm6lleomr" path="res://scenes/arcade/Arcade.tscn" id="2_rarhs"]
 [ext_resource type="PackedScene" uid="uid://bi8ln1qkbb0qu" path="res://scenes/ui/ui_manager.tscn" id="3_vcsgt"]
+[ext_resource type="Script" uid="uid://csjccrhj5wnx7" path="res://addons/phantom_camera/scripts/phantom_camera/phantom_camera_3d.gd" id="4_vcsgt"]
+[ext_resource type="Script" uid="uid://8umksf8e80fw" path="res://addons/phantom_camera/scripts/resources/tween_resource.gd" id="5_c01mt"]
+
+[sub_resource type="Resource" id="Resource_nxtc6"]
+script = ExtResource("5_c01mt")
 
 [node name="Main" type="Node" unique_id=1716353511]
 script = ExtResource("1_0bbpv")
@@ -11,14 +16,17 @@ script = ExtResource("1_0bbpv")
 
 [node name="UI" parent="." unique_id=500997333 instance=ExtResource("3_vcsgt")]
 
-[node name="Camera3D" type="Camera3D" parent="." unique_id=1753826200]
-transform = Transform3D(0.24517207, -0.4005733, 0.88285434, -2.0563435e-08, 0.9106477, 0.41318387, -0.9694796, -0.10130116, 0.22326535, 107.08345, 35.887352, 29.399628)
-fov = 61.4
-size = 0.061
-
 [node name="Players" type="Node3D" parent="." unique_id=2057230013]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 45.810196, 0.396568, -9.091511)
 
-[node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="." unique_id=1622659575]
-_spawnable_scenes = PackedStringArray("uid://pb213jsy1a7f")
-spawn_path = NodePath("../Players")
+[node name="PhantomCamera3D" type="Node3D" parent="." unique_id=443564968 node_paths=PackedStringArray("follow_target", "look_at_target")]
+transform = Transform3D(0.23217177, -0.3768134, 0.8967093, 4.4703484e-08, 0.9219114, 0.3873946, -0.9726748, -0.08994312, 0.21403928, 122.144936, 52.768818, 29.155262)
+script = ExtResource("4_vcsgt")
+follow_target = NodePath("")
+look_at_mode = 2
+look_at_target = NodePath("../Arcade")
+tween_resource = SubResource("Resource_nxtc6")
+align_transform_with_view = Callable()
+align_rotation_with_view = Callable()
+draw_look_at_line = true
+metadata/_custom_type_script = "uid://csjccrhj5wnx7"
